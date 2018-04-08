@@ -9,6 +9,8 @@ tags:
 jupyter类似web版的ipython，吊炸天，帅爆了，很适合写代码示例或者技术文档
 
 
+<!-- more -->
+
 # 部署步骤
 
 默认目录为：`/home/jupyter`

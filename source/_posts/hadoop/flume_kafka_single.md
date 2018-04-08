@@ -15,6 +15,8 @@ tags:
  - kafka: `kafka_2.11-1.0.0.tgz`
  - flume: `apache-flume-1.8.0-bin.tar.gz`
 
+<!-- more -->
+
 # kafka部署配置
 
  1. 解压kafka安装包至指定目录`/opt/kafka`

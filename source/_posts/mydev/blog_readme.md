@@ -15,6 +15,8 @@ tags:
 此博客是一个基于[Flask](http://flask.pocoo.org/)和[Python Markdown](https://pythonhosted.org/Markdown/)开发的简易博客。
 本博客支持基本的Markdown语法，并且支持table和Meta信息，具体参见[About.md](in/About.md)
 
+<!-- more -->
+
 # 工程依赖包安装
 
 本工程主要依赖于Flask、Jinja2，具体参见requirement.txt
