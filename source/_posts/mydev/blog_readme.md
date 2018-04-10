@@ -1,5 +1,6 @@
 ---
 title: 个人开发的博客介绍
+date: 2018-04-08
 tags:
     - blog
     - Python

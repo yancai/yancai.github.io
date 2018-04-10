@@ -6,7 +6,7 @@ tags:
     - docker
 ---
 
-本文将简单介绍docker的基本使用方法。本文以使用[nginx](https://nginx.org/)的[镜像](https://hub.docker.com/_/nginx/)为例说明如可快速上手使用docker。
+本文将简单介绍docker的基本使用方法。本文以使用[nginx](https://nginx.org/)的[镜像](https://hub.docker.com/_/nginx/)为例说明如何快速上手使用docker。
 
 <!-- more -->
 

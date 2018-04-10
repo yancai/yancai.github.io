@@ -1,5 +1,6 @@
 ---
 title: flume和kafka单节点部署和使用的方法
+date: 2018-04-08
 tags:
   - FlumeNG
   - Kafka

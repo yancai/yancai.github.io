@@ -1,5 +1,6 @@
 ---
 title: jupyter快速部署
+date: 2018-04-08
 tags: 
   - Python
   - jupyter
