@@ -14,23 +14,23 @@ tags:
 本文以使用[ubuntu](http://www.ubuntu.com/)的[镜像](https://hub.docker.com/_/ubuntu/)为例说明如何根据已有的镜像为基础构建自己需要的镜像。
 
 
-本例中将演示以`Ubuntu16.04`为基础，安装`ssh`, `jdk`, `vim`等软件。
+本例中将演示以`Ubuntu 16.04`为基础，安装`ssh`, `jdk`, `vim`等软件。
 
 <!-- more -->
 
 # 安装包准备
 
- - jdk-7u79-linux-x64.gz
+ - jdk-8u77-linux-x64.tar.gz
 
-# 目录结构
+# 目录结构及Dockerfile
 
 假如工作目录在：`~/dockerfiles/my-ubuntu`  
 此目录中的结构如下：
 
 ```
 |-- Dockerfile
-`-- packages
-    `-- jdk-7u79-linux-x64.gz
+`-- files
+    `-- jdk-8u77-linux-x64.tar.gz
 ```
 
 其中Dockerfile中的内容如下：
@@ -42,20 +42,9 @@ ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 
-RUN echo "export LANG=zh_CN.UTF-8" >> /etc/profile
-
 # 设置apt-get源
-RUN echo "" > /etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list \
-    && echo "deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list \
+RUN sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list \
+    && sed -i "s/security.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list \
     && apt-get update
 
 # 安装常用工具 设置SSH
@@ -77,13 +66,10 @@ RUN sed -i '1s/^/set encoding=utf-8\n/' /etc/vim/vimrc \
     && echo "set sw=4" >> /etc/vim/vimrc \
     && echo "set tabstop=4" >> /etc/vim/vimrc
 
-RUN mkdir /root/packages \
-    && mkdir /usr/java \
-    && mkdir -p /usr/local/service/tomcat
-
+RUN mkdir /usr/java
 # 安装jdk
-ADD packages/jdk-7u79-linux-x64.gz /usr/java
-RUN echo "export JAVA_HOME=/usr/java/jdk1.7.0_79" >> /etc/profile \
+ADD files/jdk-8u77-linux-x64.tar.gz /usr/java
+RUN echo "export JAVA_HOME=/usr/java/jdk1.8.0_77" >> /etc/profile \
     && echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> /etc/profile \
     && echo "export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar" >> /etc/profile
 
@@ -109,4 +95,10 @@ docker build --tag="my-ubuntu:1.0" .
 使用如下命令可以看到已经构建好的镜像
 ```bash
 docker images
+```
+
+例如：
+```
+REPOSITORY                                      TAG                 IMAGE ID            CREATED             SIZE
+my-ubuntu                                       1.0                 1979d1447f6d        2 minutes ago       612 MB
 ```
