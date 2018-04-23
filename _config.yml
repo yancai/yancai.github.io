@@ -81,8 +81,8 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:yancai/notes.git
-  branch: gh-pages
+  repo: git@github.com:yancai/yancai.github.io.git
+  branch: master
 
 search:
   path: search.xml
