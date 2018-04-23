@@ -29,7 +29,7 @@ tar -xvf node-v8.11.1-linux-x64.tar.xz -C /opt
 ln -vs /opt/node-v8.11.1-linux-x64 /opt/node
 ```
 
-将nodejs目录添加至环境变量  
+将node.js目录添加至环境变量  
 在`~/.zshrc`或`~/.bashrc`中添加如下内容
 ```bash
 export NODE_HOME=/opt/node
