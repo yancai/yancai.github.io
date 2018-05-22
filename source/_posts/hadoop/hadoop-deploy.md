@@ -32,36 +32,33 @@ node3 | datanode, JournalNode, zookeeper, httpfs
 ## 配置zookeeper
 
 ```bash
+# 添加zookeeper用户
 useradd zookeeper
 
 
+# 解压并安装zookeeper包
 tar -xvf zookeeper-3.4.12.tar.gz
-
 mv zookeeper-3.4.12 /opt/
-
 chown root:root /opt/zookeeper-3.4.12/ -R
-
 ln -vs /opt/zookeeper-3.4.12/ /opt/zookeeper
 
+# 创建配置文件
 cd /opt/zookeeper
-
 cp conf/zoo_sample.cfg conf/zoo.cfg
 
+# 创建日志和数据目录
 mkdir /var/log/zookeeper
 chown zookeeper:zookeeper /var/log/zookeeper/
 
-mkdir /var/log/zookeeper
-chown zookeeper:zookeeper /var/log/zookeeper/
+mkdir /var/lib/zookeeper
+chown zookeeper:zookeeper /var/lib/zookeeper/
 ```
 
-在node1上执行：echo 1 > /var/lib/zookeeper/myid
-在node2上执行：echo 2 > /var/lib/zookeeper/myid
-在node3上执行：echo 3 > /var/lib/zookeeper/myid
+在node1上执行：`echo 1 > /var/lib/zookeeper/myid`
+在node2上执行：`echo 2 > /var/lib/zookeeper/myid`
+在node3上执行：`echo 3 > /var/lib/zookeeper/myid`
 
-```bash
-vim conf/zoo.cfg
-```
-底部添加如下内容
+`vim /opt/zookeeper/conf/zoo.cfg`底部添加如下内容
 ```
 dataDir=/var/lib/zookeeper
 server.1=node1:2888:3888
@@ -69,10 +66,7 @@ server.2=node2:2888:3888
 server.3=node3:2888:3888
 ```
 
-```
-vim bin/zkEnv.sh
-```
-修改如下内容
+`vim /opt/zookeeper/bin/zkEnv.sh`修改如下内容
 ```sh
 if [ "x${ZOO_LOG_DIR}" = "x" ]
 then
@@ -80,11 +74,11 @@ then
 fi
 ```
 
+在node1, node2, node3上启动zookeeper  
 ```bash
+# 启动
 su zookeeper -c "/opt/zookeeper/bin/zkServer.sh start"
-```
-
-```bash
+# 停止
 su zookeeper -c "/opt/zookeeper/bin/zkServer.sh stop"
 ```
 
@@ -285,7 +279,7 @@ su hdfs -c "./sbin/hadoop-daemon.sh stop journalnode"
     su hdfs -c "/opt/hadoop/sbin/start-dfs.sh"
     ```
 
-    打开(http://node1:50070)[http://node1:50070]或(http://node2:50070)[http://node2:50070]查看hdfs信息
+    打开[http://node1:50070](http://node1:50070)或[http://node2:50070](http://node2:50070)查看hdfs信息
 
  ## 配置HttpFs  
 
