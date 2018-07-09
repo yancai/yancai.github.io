@@ -8,13 +8,18 @@ tags:
 # 简介
 
 本文将介绍分布式部署hadoop方式，各角色部署使用独立的用户  
-**待完善...**
+
+ - [x] HDFS 部署
+ - [x] httpfs 部署
+ - [ ] yarn 部署
+ - [ ] hive 部署
+ - [ ] HBase 部署
 
 <!-- more -->
 
 # 环境准备
 
- - CentOS7
+ - CentOS-7(Ubuntu亦可)
  - [hadoop-2.6.5.tar.gz](https://mirrors.aliyun.com/apache/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz)
  - [zookeeper-3.4.12.tar.gz](https://mirrors.aliyun.com/apache/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz)
 
