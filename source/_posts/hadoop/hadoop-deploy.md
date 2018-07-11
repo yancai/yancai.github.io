@@ -19,7 +19,7 @@ tags:
 
 # 环境准备
 
- - CentOS-7(Ubuntu亦可)
+ - CentOS-7(Ubuntu亦可，或使用docker容器部署)
  - [hadoop-2.6.5.tar.gz](https://mirrors.aliyun.com/apache/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz)
  - [zookeeper-3.4.12.tar.gz](https://mirrors.aliyun.com/apache/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz)
 
@@ -339,3 +339,88 @@ su hdfs -c "./sbin/hadoop-daemon.sh stop journalnode"
     su httpfs -c "/opt/hadoop/sbin/httpfs.sh stop"
     ```
 
+# 附
+
+以下为本文档中所使用的docker容器构建和编排相关的文档，如果需要使用容器部署hadoop，可以参考使用
+
+## Dockerfile
+
+构建`centos7-base`镜像所使用的相关文件如下
+
+
+目录结构
+```
+├── Dockerfile
+└── files
+    └── jdk-8u171-linux-x64.tar.gz
+```
+
+jdk下载地址：  
+[jdk-8u171-linux-x64.tar.gz](http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz)
+
+
+Dockerfile内容
+```dockerfile
+FROM centos:7.2.1511
+
+MAINTAINER yancai
+ENV TZ Asia/Shanghai
+
+# 设置yum源 安装常用工具
+RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
+    && yum makecache \
+    && yum install -y vim mlocate telnet zlib-devel \
+    && mkdir /usr/java
+
+WORKDIR /root
+
+# 安装jdk
+ADD files/jdk-8u171-linux-x64.tar.gz /usr/java
+RUN echo "export JAVA_HOME=/usr/java/jdk1.8.0_171" >> /etc/profile \
+    && echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> /etc/profile \
+    && echo "export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar" >> /etc/profile \
+    && ln -vs /usr/java/jdk1.8.0_171/bin/java /usr/bin/java
+```
+
+
+在Dockerfile所在目录使用`sudo docker build --tag="centos7-base" .`构建镜像
+
+
+## docker-compose.yml
+
+以下为`docker-compose.yml`内容：
+```yaml
+version: '2.2'
+services:
+    node1:
+        image: centos7-base
+        container_name: node1
+        hostname: node1
+        environment:
+            - TZ=Asia/Shanghai
+        command: tail -f /dev/null
+        volumes:
+            - ~/share:/root/share
+
+    node2:
+        image: centos7-base
+        container_name: node2
+        hostname: node2
+        environment:
+            - TZ=Asia/Shanghai
+        command: tail -f /dev/null
+        volumes:
+            - ~/share:/root/share
+
+    node3:
+        image: centos7-base
+        container_name: node3
+        hostname: node3
+        environment:
+            - TZ=Asia/Shanghai
+        command: tail -f /dev/null
+        volumes:
+            - ~/share:/root/share
+```
+
+在`docker-compose.yml`所在目录使用命令`sudo docker-compose up -d`启动容器
