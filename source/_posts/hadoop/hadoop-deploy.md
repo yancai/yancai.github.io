@@ -105,9 +105,12 @@ su hdfs
 # 一路回车
 ssh-keygen
 
-# node1, node2到node1, node2, node3
-# node3到node3
+# 将本主机的公钥分发至node1
 ssh-copy-id node1
+
+# 使用ssh-copy-id将：
+# node1, node2的公钥分发至node1, node2, node3
+# node3的公钥分发至node3
 ```
 
 ## 配置HDFS
@@ -383,7 +386,7 @@ RUN echo "export JAVA_HOME=/usr/java/jdk1.8.0_171" >> /etc/profile \
 ```
 
 
-在Dockerfile所在目录使用`sudo docker build --tag="centos7-base" .`构建镜像
+在`Dockerfile`所在目录使用`sudo docker build --tag="centos7-base" .`构建镜像
 
 
 ## docker-compose.yml
