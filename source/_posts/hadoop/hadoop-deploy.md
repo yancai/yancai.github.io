@@ -63,7 +63,7 @@ chown zookeeper:zookeeper /var/lib/zookeeper/
 在node2上执行：`echo 2 > /var/lib/zookeeper/myid`
 在node3上执行：`echo 3 > /var/lib/zookeeper/myid`
 
-`vim /opt/zookeeper/conf/zoo.cfg`底部添加如下内容
+执行`vim /opt/zookeeper/conf/zoo.cfg` 底部添加如下内容
 ```
 dataDir=/var/lib/zookeeper
 server.1=node1:2888:3888
@@ -71,7 +71,7 @@ server.2=node2:2888:3888
 server.3=node3:2888:3888
 ```
 
-`vim /opt/zookeeper/bin/zkEnv.sh`修改如下内容
+执行`vim /opt/zookeeper/bin/zkEnv.sh` 修改如下内容
 ```sh
 if [ "x${ZOO_LOG_DIR}" = "x" ]
 then
@@ -116,7 +116,7 @@ ssh-copy-id node1
 ## 配置HDFS
 切换至root用户
 
- 1. 安装和配置
+ 1. 安装和配置  
 ```bash
 # 解压hadoop安装包
 tar -xvf hadoop-2.6.5.tar.gz
@@ -134,14 +134,17 @@ mkdir /var/lib/hadoop-hdfs
 chown hdfs:hadoop /var/lib/hadoop-hdfs
 ```
 
-vim hadoop-env.sh
+以下修改hdfs相关配置，配置文件位于目录`/opt/hadoop/ect/hadoop`  
+
+执行`vim hadoop-env.sh` 修改如下对应配置
 
 ```
 export HADOOP_LOG_DIR=/var/log/hadoop-hdfs
-export JAVA_HOME=/usr/java/jdk1.8.0_77
+# 此处注意修改为环境中对应的JAVA_HOME路径
+export JAVA_HOME=/usr/java/jdk1.8.0_171
 ```
 
-vim core-site.xml
+执行`vim core-site.xml`，其中`<configuration>`节点修改为如下内容
 
 ```xml
 <configuration>
@@ -165,7 +168,8 @@ vim core-site.xml
 ```
 
 
-vim hdfs-site.xml
+执行`vim hdfs-site.xml`，其中`<configuration>`节点修改为如下内容
+
 ```xml
 <configuration>
 
@@ -250,14 +254,15 @@ vim hdfs-site.xml
 </configuration>
 ```
 
-vim slaves
+执行`vim slaves` 替换为如下内容
+
 ```
 node1
 node2
 node3
 ```
-
-vim mapred-site.xml
+执行`cp mapred-site.xml.template mapred-site.xml` 复制`mapred-site.xml.template`为`mapred-site.xml`  
+执行`vim mapred-site.xml`，其中`<configuration>`节点修改为如下内容
 ```xml
 <configuration>
 
@@ -269,10 +274,11 @@ vim mapred-site.xml
 </configuration>
 ```
 
- 2. 启动、停止journalnode
+ 2. 启动journalnode
 ```
 su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
-su hdfs -c "./sbin/hadoop-daemon.sh stop journalnode"
+# 对应停止命令如下
+# su hdfs -c "./sbin/hadoop-daemon.sh stop journalnode"
 ```
 使用jsp可以查到JournalNode进程
 
