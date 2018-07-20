@@ -372,7 +372,7 @@ ENV TZ Asia/Shanghai
 # 设置yum源 安装常用工具
 RUN curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
     && yum makecache \
-    && yum install -y vim mlocate telnet zlib-devel openssh-server openssh-clients \
+    && yum install -y vim mlocate telnet zlib-devel openssh-server openssh-clients net-tools \
     && mkdir /usr/java
 
 WORKDIR /root
