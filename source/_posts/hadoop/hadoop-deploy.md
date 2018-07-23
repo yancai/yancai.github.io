@@ -432,4 +432,11 @@ services:
             - ~/share:/root/share
 ```
 
-在`docker-compose.yml`所在目录使用命令`sudo docker-compose up -d`启动容器
+在`docker-compose.yml`所在目录使用命令`sudo docker-compose up -d`启动容器  
+
+使用docker容器部署时，需要开启SSH服务，手动开启方式如下：
+```shell
+# 在容器内执行
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+/usr/sbin/sshd
+```
