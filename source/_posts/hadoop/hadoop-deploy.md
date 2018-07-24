@@ -297,6 +297,11 @@ su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
 
  ## 配置HttpFs  
 
+    创建用户
+    ```bash
+    useradd httpfs
+    ```
+
     创建目录
     ```bash
     mkdir /var/log/hadoop-httpfs
