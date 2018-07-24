@@ -297,7 +297,7 @@ su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
 
  ## 配置HttpFs  
 
-    ```bash
+    ```sh
     # 创建用户
     useradd httpfs
 
@@ -305,8 +305,8 @@ su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
     mkdir /var/log/hadoop-httpfs
     chown httpfs:httpfs /var/log/hadoop-httpfs/
 
-    mkdir /var/run/hadoop-httpfs
-    chown httpfs:httpfs /var/run/hadoop-httpfs/
+    mkdir /var/tmp/hadoop-httpfs
+    chown httpfs:httpfs /var/tmp/hadoop-httpfs/
 
     # 设置权限
     chmod +r /opt/hadoop/share/hadoop/httpfs/tomcat/conf -R
@@ -345,7 +345,7 @@ su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
     vim httpfs-env.sh
     ```sh
     export HTTPFS_LOG=/var/log/hadoop-httpfs
-    export HTTPFS_TEMP=/var/run/hadoop-httpfs
+    export HTTPFS_TEMP=/var/tmp/hadoop-httpfs
     ```
 
     启动或停止
