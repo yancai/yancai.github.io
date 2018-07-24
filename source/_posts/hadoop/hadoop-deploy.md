@@ -297,18 +297,19 @@ su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
 
  ## 配置HttpFs  
 
-    创建用户
     ```bash
+    # 创建用户
     useradd httpfs
-    ```
 
-    创建目录
-    ```bash
+    # 创建目录
     mkdir /var/log/hadoop-httpfs
     chown httpfs:httpfs /var/log/hadoop-httpfs/
 
     mkdir /var/run/hadoop-httpfs
     chown httpfs:httpfs /var/run/hadoop-httpfs/
+
+    # 设置权限
+    chmod +r /opt/hadoop/share/hadoop/httpfs/tomcat/conf -R
     ```
 
     vim httpfs-site.xml
