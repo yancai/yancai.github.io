@@ -48,8 +48,7 @@ chown root:root /opt/zookeeper-3.4.12/ -R
 ln -vs /opt/zookeeper-3.4.12/ /opt/zookeeper
 
 # 创建配置文件
-cd /opt/zookeeper
-cp conf/zoo_sample.cfg conf/zoo.cfg
+cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg
 
 # 创建日志和数据目录
 mkdir /var/log/zookeeper
