@@ -276,9 +276,9 @@ node3
 
  2. 启动journalnode
 ```
-su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
+su hdfs -c "/opt/hadoop/sbin/hadoop-daemon.sh start journalnode"
 # 对应停止命令如下
-# su hdfs -c "./sbin/hadoop-daemon.sh stop journalnode"
+# su hdfs -c "/opt/hadoop/sbin/hadoop-daemon.sh stop journalnode"
 ```
 使用jsp可以查到JournalNode进程
 
@@ -286,10 +286,9 @@ su hdfs -c "./sbin/hadoop-daemon.sh start journalnode"
  3. 初始化namenode  
     ```
     # node1上执行
-    cd /opt/hadoop
-    su hdfs -c "./bin/hdfs namenode -format"
+    su hdfs -c "/opt/hadoop/bin/hdfs namenode -format"
     su hdfs -c "scp -r /var/lib/hadoop-hdfs/nn hdfs@node2:/var/lib/hadoop-hdfs"
-    su hdfs -c "./bin/hdfs zkfc -formatZK"
+    su hdfs -c "/opt/hadoop/bin/hdfs zkfc -formatZK"
     su hdfs -c "/opt/hadoop/sbin/start-dfs.sh"
     ```
 
