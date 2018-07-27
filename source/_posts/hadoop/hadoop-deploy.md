@@ -279,7 +279,8 @@ su hdfs -c "/opt/hadoop/sbin/hadoop-daemon.sh start journalnode"
 # 对应停止命令如下
 # su hdfs -c "/opt/hadoop/sbin/hadoop-daemon.sh stop journalnode"
 ```
-使用jsp可以查到JournalNode进程
+使用jps可以查到JournalNode进程  
+如果无法使用jps则需要先导入java环境变量，例如使用`source /etc/profile`
 
 
  3. 初始化namenode  
