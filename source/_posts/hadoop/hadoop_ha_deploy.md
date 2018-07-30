@@ -3,7 +3,7 @@ title: 分布式 HA HDFS YARN SPARK HBASE部署
 date: 2018-04-08
 tags:
     - Hadoop
-    - YARN
+    - Hadoop YARN
     - Spark
     - HBase
 ---
