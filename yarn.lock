@@ -811,10 +811,6 @@ hawk@3.1.3, hawk@~3.1.3:
     hoek "2.x.x"
     sntp "1.x.x"
 
-he@^1.0.0:
-  version "1.1.1"
-  resolved "http://registry.npm.taobao.org/he/download/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
-
 hexo-bunyan@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/hexo-bunyan/download/hexo-bunyan-1.0.0.tgz#b2106b26547b232f0195db863cb5d5ff8527fd36"
@@ -958,6 +954,10 @@ hexo-server@^0.2.0:
     opn "^4.0.0"
     serve-static "^1.10.0"
 
+hexo-symbols-count-time@^0.4.4:
+  version "0.4.4"
+  resolved "http://registry.npm.taobao.org/hexo-symbols-count-time/download/hexo-symbols-count-time-0.4.4.tgz#c5bad76d445d7e0a1ee8a46c7ad23349bc162c1d"
+
 hexo-util@^0.6.0, hexo-util@^0.6.2, hexo-util@^0.6.3:
   version "0.6.3"
   resolved "http://registry.npm.taobao.org/hexo-util/download/hexo-util-0.6.3.tgz#16a2ade457bef955af0dfd22a3fe6f0a49a9137c"
@@ -968,14 +968,6 @@ hexo-util@^0.6.0, hexo-util@^0.6.2, hexo-util@^0.6.3:
     highlight.js "^9.4.0"
     html-entities "^1.2.0"
     striptags "^2.1.1"
-
-hexo-wordcount@^3.0.2:
-  version "3.0.2"
-  resolved "http://registry.npm.taobao.org/hexo-wordcount/download/hexo-wordcount-3.0.2.tgz#dbe15ba56913f0bce490b94f84c042629ebe672d"
-  dependencies:
-    html-to-text "^2.1.3"
-    numeral "^1.5.3"
-    wordcount "^1.1.1"
 
 hexo@^3.2.0:
   version "3.7.0"
@@ -1021,16 +1013,6 @@ html-entities@^1.2.0:
   version "1.2.1"
   resolved "http://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
 
-html-to-text@^2.1.3:
-  version "2.1.3"
-  resolved "http://registry.npm.taobao.org/html-to-text/download/html-to-text-2.1.3.tgz#e50dbe4e4079912dbedcde05d278388edb8eea91"
-  dependencies:
-    he "^1.0.0"
-    htmlparser "^1.7.7"
-    optimist "^0.6.1"
-    underscore "^1.8.3"
-    underscore.string "^3.2.3"
-
 htmlparser2@^3.9.1:
   version "3.9.2"
   resolved "http://registry.npm.taobao.org/htmlparser2/download/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
@@ -1041,10 +1023,6 @@ htmlparser2@^3.9.1:
     entities "^1.1.1"
     inherits "^2.0.1"
     readable-stream "^2.0.2"
-
-htmlparser@^1.7.7:
-  version "1.7.7"
-  resolved "http://registry.npm.taobao.org/htmlparser/download/htmlparser-1.7.7.tgz#19e7b3997ff6fbac99ae5a7d2766489efe7e2d0e"
 
 http-errors@~1.6.2:
   version "1.6.3"
@@ -1331,12 +1309,6 @@ marked@^0.3.9:
   version "0.3.19"
   resolved "http://registry.npm.taobao.org/marked/download/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
 
-match-words@^0.1.0:
-  version "0.1.1"
-  resolved "http://registry.npm.taobao.org/match-words/download/match-words-0.1.1.tgz#dcd3119e74a6a67be4304ca5cf926580e8e1a7af"
-  dependencies:
-    word-regex "^0.1.0"
-
 micromatch@^2.1.5:
   version "2.3.11"
   resolved "http://registry.npm.taobao.org/micromatch/download/micromatch-2.3.11.tgz#86677c97d1720b363431d04d0d15293bd38c1565"
@@ -1511,10 +1483,6 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/number-is-nan/download/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-numeral@^1.5.3:
-  version "1.5.6"
-  resolved "http://registry.npm.taobao.org/numeral/download/numeral-1.5.6.tgz#3831db968451b9cf6aff9bf95925f1ef8e37b33f"
-
 nunjucks@^3.1.2:
   version "3.1.2"
   resolved "http://registry.npm.taobao.org/nunjucks/download/nunjucks-3.1.2.tgz#85945a66bb8239bb37ecef83dab4cc1f152aabb9"
@@ -1568,7 +1536,7 @@ opn@^4.0.0:
     object-assign "^4.0.1"
     pinkie-promise "^2.0.0"
 
-optimist@^0.6.1, optimist@~0.6:
+optimist@~0.6:
   version "0.6.1"
   resolved "http://registry.npm.taobao.org/optimist/download/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
   dependencies:
@@ -1854,7 +1822,7 @@ source-map@~0.5.1:
   version "0.5.7"
   resolved "http://registry.npm.taobao.org/source-map/download/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
-sprintf-js@^1.0.2, sprintf-js@^1.0.3:
+sprintf-js@^1.0.2:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/sprintf-js/download/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
 
@@ -2060,17 +2028,6 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "http://registry.npm.taobao.org/uid-number/download/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
-underscore.string@^3.2.3:
-  version "3.3.4"
-  resolved "http://registry.npm.taobao.org/underscore.string/download/underscore.string-3.3.4.tgz#2c2a3f9f83e64762fdc45e6ceac65142864213db"
-  dependencies:
-    sprintf-js "^1.0.3"
-    util-deprecate "^1.0.2"
-
-underscore@^1.8.3:
-  version "1.8.3"
-  resolved "http://registry.npm.taobao.org/underscore/download/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
-
 unpipe@~1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/unpipe/download/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
@@ -2079,7 +2036,7 @@ upper-case@^1.1.1:
   version "1.1.3"
   resolved "http://registry.npm.taobao.org/upper-case/download/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
 
-util-deprecate@^1.0.2, util-deprecate@~1.0.1:
+util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/util-deprecate/download/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
@@ -2133,16 +2090,6 @@ window-size@0.1.0:
 window-size@^0.1.4:
   version "0.1.4"
   resolved "http://registry.npm.taobao.org/window-size/download/window-size-0.1.4.tgz#f8e1aa1ee5a53ec5bf151ffa09742a6ad7697876"
-
-word-regex@^0.1.0:
-  version "0.1.2"
-  resolved "http://registry.npm.taobao.org/word-regex/download/word-regex-0.1.2.tgz#a3bc7f2d222ce4a93c246c3ef69458f61f511639"
-
-wordcount@^1.1.1:
-  version "1.1.1"
-  resolved "http://registry.npm.taobao.org/wordcount/download/wordcount-1.1.1.tgz#e72da7833904d870a154c9ef47ed5f3e7997cf57"
-  dependencies:
-    match-words "^0.1.0"
 
 wordwrap@0.0.2:
   version "0.0.2"

@@ -7,8 +7,10 @@ tags:
 
 # 介绍
 
->“工欲善其事，必先利其器”  
->    ——《论语·卫灵公》
+<blockquote class="blockquote-center bold">
+<strong>“工欲善其事，必先利其器”</strong>
+    ——《论语·卫灵公》
+</blockquote>
 
 好的工具对于日常工作效率提升是很有帮助的，以下为我自己总结的一些很有用的好工具，更多的工具将逐步补充完善。
 
