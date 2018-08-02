@@ -24,6 +24,7 @@ tags:
 - [工具列表目录](#工具列表目录)
 - [工具介绍](#工具介绍)
     - [效率](#效率)
+        - [固态硬盘](#固态硬盘)
         - [Windows原生快速启动](#Windows原生快速启动)
         - [Everything](#Everything)
         - [Ditto](#Ditto)
@@ -37,12 +38,26 @@ tags:
         - [Sublime Text](#Sublime-Text)
         - [Notepad++](#Notepad)
         - [Atom](#Atom)
+    - [设计](#设计)
+        - [Enterprise Architect](#Enterprise-Architect)
 
 <!-- /TOC -->
 
 # 工具介绍
 
 ## 效率
+### 固态硬盘
+**适用系统**：  
+`Windows` | `Mac` | `Linux`  
+
+非官方介绍：  
+这年头了，还有好多人没有体验过固态硬盘的感觉，赶紧装固态硬盘吧  
+目前市面上主流电脑都应该有固态硬盘，如果没有固态硬盘，用Windows的话，建议买个120~128G的就够用了，分两个盘，80G的盘用来安装系统，其它剩下的40G+用来装常用的软件，用起来相当爽
+
+**使用场景**：  
+电脑卡卡卡、慢慢慢
+
+
 ### Windows原生快速启动  
 **适用系统**：  
 `Windows`
@@ -236,3 +251,20 @@ A hackable text editor for the 21st Century
 **使用场景**：  
 别给我说其他的啥啥功能强大，颜即正义，我就稀饭阿童木
 
+
+## 设计
+
+### Enterprise Architect
+**主页**：  
+[http://sparxsystems.com/products/ea/index.html](http://sparxsystems.com/products/ea/index.html)
+
+**适用系统**：  
+`Windows`  
+
+**官方介绍**：  
+UML Design Tools and UML CASE tools for software development  
+非官方介绍：  
+专业的UML设计软件
+
+**使用场景**：  
+是时候找个强大专业的工具来设计下我的工程了
