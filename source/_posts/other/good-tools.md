@@ -40,6 +40,15 @@ tags:
         - [Atom](#Atom)
     - [设计](#设计)
         - [Enterprise Architect](#Enterprise-Architect)
+        - [Visio](#Visio)
+    - [远程工具](#远程工具)
+        - [OpenSSH](#OpenSSH)
+        - [MobaXterm](#MobaXterm)
+        - [PuTTY](#PuTTY)
+        - [Xshell](#Xshell)
+    - [数据库](#数据库)
+        - [Robomongo](#Robomongo)
+        - [DBeaver](#DBeaver)
 
 <!-- /TOC -->
 
@@ -268,3 +277,122 @@ UML Design Tools and UML CASE tools for software development
 
 **使用场景**：  
 是时候找个强大专业的工具来设计下我的工程了
+
+
+### Visio
+**主页**：  
+[https://products.office.com/en-US/visio](https://products.office.com/en-US/visio)
+
+**适用系统**：  
+`Windows` | `Mac`
+
+**官方介绍**：  
+Flowchart Maker & Diagramming Software  
+非官方介绍：  
+Office绘制UML小帮手
+
+**使用场景**：  
+画个漂亮的流程图
+
+
+## 远程工具
+
+### OpenSSH
+**主页**：  
+[https://www.openssh.com/](https://www.openssh.com/)
+
+**适用系统**：  
+`Windows` | `Mac` | `Linux`  
+
+**官方介绍**：  
+OpenSSH is the premier connectivity tool for remote login with the SSH protocol  
+非官方介绍：  
+原始好用的SSH工具  
+Mac, Linux上自带，Windows10之后也提供了可选安装的OpenSSH客户端
+
+**使用场景**：  
+快！我要连上那个服务器！
+
+
+### MobaXterm
+**主页**：  
+[https://mobaxterm.mobatek.net/](https://mobaxterm.mobatek.net/)
+
+**适用系统**：  
+`Windows`  
+
+**官方介绍**：  
+MobaXterm free Xserver and tabbed SSH client for Windows  
+非官方介绍：  
+Windows上简单、免费、好用、功能强大的远程工具，除了SSH还支持远程Windows哦。另外MobaXterm的分屏同时输入功能很好用。
+
+**使用场景**：  
+换个赏心悦目的远程工具吧
+
+
+### PuTTY
+**主页**：  
+[https://www.putty.org/](https://www.putty.org/)
+
+**适用系统**：  
+`Windows`  
+
+**官方介绍**：  
+a free SSH and telnet client for Windows  
+非官方介绍：  
+小巧的SSH客户端  
+Windows10上安装了系统自带的SSH客户端后，我觉得PuTTY作用已经不是很大了。如果说小巧，Windows10自带的ssh客户端才是真小巧，如果论功能，远不及[MobaXterm](#MobaXterm)和[Xshell](#Xshell)  
+另外PyTTY有很多网友改装版，在此就不列举了，大家可以自己搜搜
+
+**使用场景**：  
+我不嫌丑，就想来个轻便而不简陋的SSH客户端
+
+
+### Xshell
+**主页**：  
+[https://www.netsarang.com/products/xsh_overview.html](https://www.netsarang.com/products/xsh_overview.html)
+
+**适用系统**：  
+`Windows`  
+
+**官方介绍**：  
+The Industry’s Most Powerful SSH Client  
+非官方介绍：  
+是个不错的ssh客户端，但是官方介绍口气大的不行不行的。使用此工具时请注意版权！用于商业时请尊重版权。我工作过有两家大公司都因为版权问题禁止使用。
+
+**使用场景**：  
+换个666的SSH客户端
+
+## 数据库
+
+### Robomongo
+**主页**：  
+[https://robomongo.org/](https://robomongo.org/)
+
+**适用系统**：  
+`Windows` | `Mac` | `Linux`  
+
+**官方介绍**：  
+native MongoDB management tool (Admin UI)  
+非官方介绍：  
+好用的MongoDB管理工具，支持界面化查看数据，支持使用mongo命令查询数据  
+以前叫做Robomongo，后来改名为Robo 3T，另外现在还有更专业的Studio 3T
+
+**使用场景**：  
+来个专业的MongoDB开发者工具
+
+### DBeaver
+**主页**：  
+[https://dbeaver.com/](https://dbeaver.com/)
+
+**适用系统**：  
+`Windows` | `Mac` | `Linux`  
+
+**官方介绍**：  
+Universal Database Manager  
+非官方介绍：  
+多种数据库的管理好工具  
+此工具分免费的社区版（DBeaver CE）和收费的企业版（DBeaver EE）
+
+**使用场景**：  
+来个跨平台支持各种数据库的管理工具
