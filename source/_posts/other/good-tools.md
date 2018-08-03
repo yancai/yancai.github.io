@@ -48,6 +48,7 @@ tags:
         - [Xshell](#Xshell)
     - [数据库](#数据库)
         - [Robomongo](#Robomongo)
+        - [MongoDB Compass](#MongoDB-Compass)
         - [DBeaver](#DBeaver)
 
 <!-- /TOC -->
@@ -379,7 +380,24 @@ native MongoDB management tool (Admin UI)
 以前叫做Robomongo，后来改名为Robo 3T，另外现在还有更专业的Studio 3T
 
 **使用场景**：  
-来个专业的MongoDB开发者工具
+来个轻便好用的MongoDB开发者工具
+
+
+### MongoDB Compass
+**主页**：  
+[https://www.mongodb.com/products/compass](https://www.mongodb.com/products/compass)
+
+**适用系统**：  
+`Windows` | `Mac` | `Linux`  
+
+**官方介绍**：  
+The easiest way to explore and manipulate your MongoDB data  
+非官方介绍：  
+这是官方的MongoDB管理工具，好用哦
+
+**使用场景**：  
+官方工具闪亮登场
+
 
 ### DBeaver
 **主页**：  
