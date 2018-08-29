@@ -31,6 +31,7 @@ tags:
         - [Snipaste](#Snipaste)
         - [Listary](#Listary)
         - [cmder](#cmder)
+        - [Beyond Compare](#Beyond-Compare)
     - [文本编辑器](#文本编辑器)
         - [Vim](#Vim)
         - [Notepad2](#Notepad2)
@@ -162,6 +163,25 @@ Windows增强命令行工具
 
 **使用场景**：  
 嫌弃cmd丑丑的界面
+
+### Beyond Compare
+**主页**：  
+[https://www.scootersoftware.com/](https://www.scootersoftware.com/)
+
+**适用系统**：  
+`Windows` | `Mac` | `Linux`
+
+**官方介绍**：  
+（见过最详[冗]细[长]的介绍了）  
+Compare files and folders using simple, powerful commands that focus on the differences you're interested in and ignore those you're not.  Merge changes, synchronize files, and generate reports.  
+Beyond Compare中文版是一款专业的文本文件对比工具，可以高效的针对文件、文件夹、表格、mp3、图片、数据、注册表等文件并进行比较、合并、同步分析，并把相差的每一个字节用颜色加以表示，查看方便。  
+非官方介绍：  
+灰常强大的对比工具  
+
+中文官网下载时候需要填写个人信息，不想泄露个人信息的话，可以从英文官网下载，下载地址为：[https://www.scootersoftware.com/download.php](https://www.scootersoftware.com/download.php)
+
+**使用场景**：  
+这俩文件（夹）有啥区别嘞？
 
 ## 文本编辑器
 
