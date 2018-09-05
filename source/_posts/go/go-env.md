@@ -38,7 +38,7 @@ tags:
     `Windows`  
     新建环境变量`GOHOME`，值为Go安装位置  
     新建环境变量`GOPATH`，设置并创建一个路径，例如：`D:\AppData\go`  
-    `PATH`中追加：`;%GOHOME%\bin;%GOPATH\bin%;`  
+    `PATH`中追加：`;%GOHOME%\bin;%GOPATH%\bin;`  
 
  4. 验证  
     命令行中输入`go version`可以正常查看go版本信息
