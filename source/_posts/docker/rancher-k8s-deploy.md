@@ -73,8 +73,6 @@ vm02|部署kubernetes
                 - TZ=Asia/Shanghai
             ports:
                 - 8080:8080
-            volumes:
-                - ~/share:/root/share
     ```
  2. 配置Rancher主机  
     访问`http://vm01:8080`  
