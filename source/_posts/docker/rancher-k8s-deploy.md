@@ -131,6 +131,7 @@ vm02|部署kubernetes
     wget https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz
     tar -xvf helm-v2.8.2-linux-amd64.tar.gz
     sudo mv linux-amd64/helm /usr/local/bin/helm
+    sudo chmod +x /usr/local/bin/helm
     ```
 
  2. 初始化helm
