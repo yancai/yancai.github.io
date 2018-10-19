@@ -37,7 +37,7 @@ tags:
 ```dockerfile
 FROM ubuntu:16.04
 
-MAINTAINER yancai "yancai915@gmail.com"
+LABEL maintainer="yancai915@gmail.com"
 ENV LANG zh_CN.UTF-8
 ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
