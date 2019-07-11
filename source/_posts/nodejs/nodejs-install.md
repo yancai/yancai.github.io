@@ -86,6 +86,22 @@ registry "https://registry.npm.taobao.org"
 
 之后即可使用yarn来安装管理包啦
 
+# npm与yarn常用配置命令
+
+```bash
+npm config set prefix D:\AppData\npm
+npm config set cache D:\AppData\npm-cache
+
+# 设置镜像源
+npm config set registry http://registry.npm.taobao.org/
+
+yarn config set global-folder D:\AppData\yarn\global
+yarn config set cache-folder D:\AppData\yarn\cache
+
+# 设置镜像源
+yarn config set registry https://registry.npm.taobao.org
+```
+
 # 快速链接
 
  - [Node.js](https://nodejs.org)
