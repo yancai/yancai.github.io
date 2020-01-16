@@ -39,6 +39,7 @@ tags:
         - [Sublime Text](#Sublime-Text)
         - [Notepad++](#Notepad)
         - [Atom](#Atom)
+        - [Typora](#Typora)
     - [设计](#设计)
         - [Enterprise Architect](#Enterprise-Architect)
         - [Visio](#Visio)
@@ -281,6 +282,22 @@ A hackable text editor for the 21st Century
 **使用场景**：  
 别给我说其他的啥啥功能强大，颜即正义，我就稀饭阿童木
 
+### Typora
+
+**主页**：  
+[https://www.typora.io/](https://www.typora.io/)
+
+**适用系统**：  
+`Windows` | `Mac` | `Linux`  
+
+**官方介绍**：  
+a markdown editor, markdown reader.
+非官方介绍：
+高颜值所见即所得的markdown编辑器  
+
+**使用场景**：  
+两个栏写markdown太复杂了，编辑直接看
+
 
 ## 设计
 
@@ -434,3 +451,4 @@ Universal Database Manager
 
 **使用场景**：  
 来个跨平台支持各种数据库的管理工具
+
