@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Note.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/Note.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简介本文将介绍：  Python包是什么？ 如何安装Python包？ 以及Python的常用包管理工具pip(Package Installer for Python)的常用方法和配置方式。">
+<meta name="keywords" content="Python,pip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tutorial-pip">
+<meta property="og:url" content="https://yancai.github.io/doc/python/tutorial-pip/index.html">
+<meta property="og:site_name" content="YanCai&#39;s some notes">
+<meta property="og:description" content="简介本文将介绍：  Python包是什么？ 如何安装Python包？ 以及Python的常用包管理工具pip(Package Installer for Python)的常用方法和配置方式。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yancai.github.io/doc/python/tutorial-pip/01.jpg">
+<meta property="og:updated_time" content="2021-08-10T08:40:04.702Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tutorial-pip">
+<meta name="twitter:description" content="简介本文将介绍：  Python包是什么？ 如何安装Python包？ 以及Python的常用包管理工具pip(Package Installer for Python)的常用方法和配置方式。">
+<meta name="twitter:image" content="https://yancai.github.io/doc/python/tutorial-pip/01.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yancai.github.io/doc/python/tutorial-pip/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>tutorial-pip | YanCai's some notes</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fa919c3ef1b756e53587dd9af91c35b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YanCai's some notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">😝</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />列表</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/python/tutorial-pip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YanCai">
+      <meta itemprop="description" content="一点点记录">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YanCai's some notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">tutorial-pip
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-15 21:41:59" itemprop="dateCreated datePublished" datetime="2019-02-15T21:41:59+08:00">2019-02-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-08-10 16:40:04" itemprop="dateModified" datetime="2021-08-10T16:40:04+08:00">2021-08-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍：</p>
+<ul>
+<li>Python包是什么？</li>
+<li>如何安装Python包？</li>
+<li>以及Python的常用包管理工具<a href="https://pip.pypa.io/en/stable/" target="_blank" rel="noopener">pip</a>(Package Installer for Python)的常用方法和配置方式。</li>
+</ul>
+<a id="more"></a>
+<h1 id="Python包"><a href="#Python包" class="headerlink" title="Python包"></a>Python包</h1><p>在常见的语言中，都会将一个或一组功能封装好，以包的形式发布复用。比如：Java使用maven构建jar包、war包；Node.js使用npm安装管理包。</p>
+<p>Python中也有包这一概念。Python包的格式也是经历了几代的进步，最早有<code>.egg</code>包（Python是大蟒，egg是蛋，那么Python的包就叫做egg），后来有<code>.whl</code>包，直到如今很多包使用<code>.zip</code>、<code>.tar.gz</code>。如今的Python包已经越来越好用了。</p>
+<h1 id="Python包安装方法"><a href="#Python包安装方法" class="headerlink" title="Python包安装方法"></a>Python包安装方法</h1><p>Python包如何安装呢？以下将介绍一下Python包的手动安装方式。</p>
+<blockquote>
+<p>安装Python包，绝大多数情况下建议使用本文后半部分的pip方式安装，只在万不得已的情况下使用手动安装。例如：只有安装包，而没有网络时候。</p>
+</blockquote>
+<p>以下将介绍如何手动安装Python中一个大名鼎鼎的包——<a href="http://python-requests.org/" target="_blank" rel="noopener"><code>requests</code></a>，其它包的安装方式类似，request包下载地址如下：<br><a href="https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz" target="_blank" rel="noopener">https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz</a></p>
+<p>下载好包之后，在任意目录解压开，可以看到如下的目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">`-- requests-2.21.0</span><br><span class="line">    |-- HISTORY.md</span><br><span class="line">    |-- LICENSE</span><br><span class="line">    |-- MANIFEST.in</span><br><span class="line">    |-- Pipfile</span><br><span class="line">    |-- Pipfile.lock</span><br><span class="line">    |-- PKG-INFO</span><br><span class="line">    |-- pytest.ini</span><br><span class="line">    |-- README.md</span><br><span class="line">    |-- requests</span><br><span class="line">    |-- requests.egg-info</span><br><span class="line">    |-- setup.cfg</span><br><span class="line">    |-- setup.py</span><br><span class="line">    `-- tests</span><br></pre></td></tr></table></figure>
+<p>其中<code>setup.py</code>是一个很关键的文件</p>
+<p>在<code>setup.py</code><strong>同级目录</strong>中使用如下命令即可安装<code>requests</code>包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li>务必在<code>setup.py</code><strong>同级目录</strong>中执行如上命令，否则会有可能导致安装失败</li>
+<li>安装时打印的日志如果没有异常，那么安装就顺利完成啦</li>
+<li>不同平台由于用户权限的问题，在执行<code>python setup.py install</code>时，可能需要<code>root</code>权限，在最前面加<code>sudo</code>，即<code>sudo python setup.py install</code></li>
+<li>由于Python包之间可能存在依赖关系，安装A包时候如果依赖了B包，但是B包如果没有安装，那么A包会安装失败，所以还是建议使用更高级的pip来进行包管理</li>
+</ol>
+<h1 id="pip是神马？PyPI是神马？"><a href="#pip是神马？PyPI是神马？" class="headerlink" title="pip是神马？PyPI是神马？"></a>pip是神马？PyPI是神马？</h1><blockquote>
+<p>pip is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes.</p>
+</blockquote>
+<p>以上这段是<a href="https://pip.pypa.io/" target="_blank" rel="noopener">pip官方</a>的一段话，解释了pip和PyPI是什么，以及两者之间的关系。</p>
+<p>简单的来讲，pip（Package Installer for Python）就是Python的安装工具。使用pip可以从<a href="https://pypi.org/" target="_blank" rel="noopener">PyPI（Python Package Index）官方索引</a>下载并安装Python包，或者从其他镜像源下载。</p>
+<p>使用pip安装Python包的时候，可以解决包依赖之间的问题，也可以一次下载安装多个Python包，目前pip已经是Python官方所支持的包安装工具。在某些环境（例如Windows）上安装Python时，已经自带pip工具。</p>
+<p>常用的PyPI镜像如下：</p>
+<ul>
+<li>PyPI官方：<a href="https://pypi.org/" target="_blank" rel="noopener">https://pypi.org/</a></li>
+<li>阿里PyPI镜像源：<a href="https://mirrors.aliyun.com/pypi/simple/" target="_blank" rel="noopener">https://mirrors.aliyun.com/pypi/simple/</a></li>
+<li>网易PyPI镜像源：<a href="http://mirrors.163.com/pypi/simple/" target="_blank" rel="noopener">http://mirrors.163.com/pypi/simple/</a></li>
+<li>豆瓣PyPI镜像源：<a href="https://pypi.doubanio.com/simple/" target="_blank" rel="noopener">https://pypi.doubanio.com/simple/</a></li>
+</ul>
+<h1 id="pip的安装方法"><a href="#pip的安装方法" class="headerlink" title="pip的安装方法"></a>pip的安装方法</h1><h2 id="Windows系统安装pip"><a href="#Windows系统安装pip" class="headerlink" title="Windows系统安装pip"></a>Windows系统安装pip</h2><p>Windows上安装包目前已经自带了pip，安装时勾选pip即可。<br><img src="/doc/python/tutorial-pip/01.jpg" title="01.jpg">  </p>
+<h2 id="Ubuntu系统安装pip"><a href="#Ubuntu系统安装pip" class="headerlink" title="Ubuntu系统安装pip"></a>Ubuntu系统安装pip</h2><p>Ubuntu上通常并没有自带pip，使用apt即可安装pip，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Python3对应的pip</span></span><br><span class="line">sudo apt install python3-pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Python2对应的pip</span></span><br><span class="line">sudo apt install python-pip</span><br></pre></td></tr></table></figure>
+<h2 id="CentOS系统安装pip"><a href="#CentOS系统安装pip" class="headerlink" title="CentOS系统安装pip"></a>CentOS系统安装pip</h2><p>通常yum的官方仓库中木有pip，呵呵<br>so~<br>参考下面的通用安装pip方法</p>
+<h2 id="通用安装pip方法"><a href="#通用安装pip方法" class="headerlink" title="通用安装pip方法"></a>通用安装pip方法</h2><p>由于各平台包管理工具对于pip支持不尽相同，因此有时候不得不使用手动方式安装pip，手动安装方式在<code>Windows</code>、<code>CentOS</code>、<code>Ubuntu</code>、<code>Mac</code>等系统上均适用。</p>
+<ol>
+<li><p>下载安装包<br> 从PyPI搜索并下载<a href="https://pypi.org/" target="_blank" rel="noopener"><code>https://pypi.org/</code></a>，下载时候如果没有特殊要求，那就直接下载最新的稳定版本；</p>
+<p> <strong>或者</strong>从点击如下超链接直接下载：</p>
+<ul>
+<li><a href="https://files.pythonhosted.org/packages/36/fa/51ca4d57392e2f69397cd6e5af23da2a8d37884a605f9e3f2d3bfdc48397/pip-19.0.3.tar.gz" target="_blank" rel="noopener"><code>pip-19.0.3.tar.gz</code></a></li>
+</ul>
+</li>
+<li><p>安装pip  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压pip包</span></span><br><span class="line">tar -xvf pip-19.0.3.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> pip-19.0.3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装pip</span></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+<p> <strong>注意</strong>：<br> 不同平台上由于Python环境不同，可能有些环境上安装pip时会报缺少<code>setuptools</code>，例如：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File &quot;setup.py&quot;, line 6, in &lt;module&gt;</span><br><span class="line">    from setuptools import find_packages, setup</span><br><span class="line">ImportError: No module named setuptools</span><br></pre></td></tr></table></figure>
+<p> 在这种情况下，需要先手动安装<code>setuptools</code>，可以从<a href="https://pypi.org/" target="_blank" rel="noopener">PyPI</a>搜索下载，或点击此处<a href="https://files.pythonhosted.org/packages/c2/f7/c7b501b783e5a74cf1768bc174ee4fb0a8a6ee5af6afa92274ff964703e0/setuptools-40.8.0.zip" target="_blank" rel="noopener"><code>setuptools-40.8.0.zip</code></a>下载安装包。</p>
+</li>
+</ol>
+<h1 id="pip的常用操作"><a href="#pip的常用操作" class="headerlink" title="pip的常用操作"></a>pip的常用操作</h1><ol>
+<li><p>搜索包  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索 名称为xxx 的包</span></span><br><span class="line">pip search xxx</span><br></pre></td></tr></table></figure>
+<p> 示例：搜索名为request的包</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pip search requests</span><br><span class="line">requests-hawk (1.0.0)                  - requests-hawk</span><br><span class="line">requests-dump (0.1.3)                  - `requests-dump` provides hook functions for requests.</span><br><span class="line">...</span><br><span class="line">requests (2.21.0)                      - Python HTTP for Humans.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装包  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 名称为xxx 的包</span></span><br><span class="line">pip install xxx</span><br></pre></td></tr></table></figure>
+<p> 示例</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 名称为requests 的包</span></span><br><span class="line">pip install requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本为2.21.0 的包</span></span><br><span class="line">pip install requests==2.21.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本号小于等于2.20 的包</span></span><br><span class="line">pip install <span class="string">'requests&lt;=2.20'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本号大于等于2.10且小于2.15 的包</span></span><br><span class="line">pip install <span class="string">'requests&gt;=2.10,&lt;2.15'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载包  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载 名称为xxx 的包</span></span><br><span class="line">pip uninstall xxx</span><br></pre></td></tr></table></figure>
+<p> 示例</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载 名称为requests 的包</span></span><br><span class="line">pip uninstall requests</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出当前环境已安装的Python包  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ pip list</span><br><span class="line">Package               Version</span><br><span class="line">--------------------- ----------</span><br><span class="line">pip                   18.0</span><br><span class="line">pipenv                2018.11.26</span><br><span class="line">requests              2.21.0</span><br><span class="line">setuptools            39.0.1</span><br><span class="line">virtualenv            16.0.0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="pip镜像配置"><a href="#pip镜像配置" class="headerlink" title="pip镜像配置"></a>pip镜像配置</h1><p>使用pip安装包时，默认会从<a href="https://pypi.org/" target="_blank" rel="noopener">PyPI</a>官方下载包。由于网络的原因，通常会下载比较慢或者无法下载。为了解决这个问题，可以修改默认的pip下载镜像源，改为速度较快的镜像源。</p>
+<p>以下示例为修改pip镜像源为<a href="https://opsx.alibaba.com/mirror" target="_blank" rel="noopener">阿里巴巴开源镜像站</a>的PyPI镜像源（若使用其它镜像源，配置方法类似）：</p>
+<ul>
+<li>在<code>Linux</code>系统或<code>Mac</code>系统创建文件：<code>~/.pip/pip.conf</code></li>
+<li>在<code>Windows</code>系统创建文件：<code>%USERPROFILE%\pip\pip.ini</code></li>
+</ul>
+<p>具体文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span>=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>按照如上配置后，再使用pip安装包时，就会从指定的镜像源下载包了，然后就可以开始愉快的玩耍啦~</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          
+            <a href="/tags/pip/" rel="tag"><i class="fa fa-tag"></i> pip</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/doc/docker/rancher-k8s-deploy/" rel="next" title="使用rancher部署kubernetes介绍">
+                <i class="fa fa-chevron-left"></i> 使用rancher部署kubernetes介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YanCai</p>
+              <p class="site-description motion-element" itemprop="description">一点点记录</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yancai/yancai.github.io" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:yancai915@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python包"><span class="nav-number">2.</span> <span class="nav-text">Python包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python包安装方法"><span class="nav-number">3.</span> <span class="nav-text">Python包安装方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip是神马？PyPI是神马？"><span class="nav-number">4.</span> <span class="nav-text">pip是神马？PyPI是神马？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip的安装方法"><span class="nav-number">5.</span> <span class="nav-text">pip的安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows系统安装pip"><span class="nav-number">5.1.</span> <span class="nav-text">Windows系统安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu系统安装pip"><span class="nav-number">5.2.</span> <span class="nav-text">Ubuntu系统安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS系统安装pip"><span class="nav-number">5.3.</span> <span class="nav-text">CentOS系统安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用安装pip方法"><span class="nav-number">5.4.</span> <span class="nav-text">通用安装pip方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip的常用操作"><span class="nav-number">6.</span> <span class="nav-text">pip的常用操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip镜像配置"><span class="nav-number">7.</span> <span class="nav-text">pip镜像配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YanCai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">52k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">47 分钟</span>
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
