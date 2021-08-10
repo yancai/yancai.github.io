@@ -265,6 +265,7 @@ A hackable text editor for the 21st Century
 **使用场景**：  
 别给我说其他的啥啥功能强大，颜即正义，我就稀饭阿童木
 
+
 ### Typora
 
 **主页**：  
@@ -274,7 +275,7 @@ A hackable text editor for the 21st Century
 `Windows` | `Mac` | `Linux`  
 
 **官方介绍**：  
-a markdown editor, markdown reader.
+Typora — a markdown editor, markdown reader.
 非官方介绍：
 高颜值所见即所得的markdown编辑器  
 
