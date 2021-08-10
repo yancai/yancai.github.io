@@ -37,7 +37,6 @@ tags:
         - [Notepad2](#Notepad2)
         - [Visual Studio Code](#Visual-Studio-Code)
         - [Sublime Text](#Sublime-Text)
-        - [Notepad++](#Notepad)
         - [Atom](#Atom)
         - [Typora](#Typora)
     - [设计](#设计)
@@ -249,22 +248,6 @@ A sophisticated text editor for code, markup and prose
 
 **使用场景**：  
 看我写代码工具帅不帅
-
-
-### Notepad++
-**主页**：  
-[https://notepad-plus-plus.org/]([https://notepad-plus-plus.org/)
-
-**适用系统**：  
-`Windows`  
-
-**官方介绍**：  
-Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages.  
-非官方介绍：  
-Windows上强大的文本编辑器
-
-**使用场景**：  
-Windows上的编辑器太low了，换一个吧
 
 
 ### Atom
