@@ -45,6 +45,10 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -76,7 +80,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: next6
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -88,12 +92,7 @@ deploy:
 search:
   path: search.xml
   field: post
+  content: true
   format: html
   limit: 10000
-
-symbols_count_time:
-  symbols: true
-  time: true
-  total_symbols: true
-  total_time: true
 

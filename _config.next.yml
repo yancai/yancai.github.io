@@ -1,0 +1,235 @@
+# ===============================================================
+# NexT Theme Configuration
+# This file overrides defaults from node_modules/hexo-theme-next/_config.yml
+# See: https://theme-next.js.org/docs/getting-started/configuration
+# ===============================================================
+
+# ---------------------------------------------------------------
+# Scheme Settings
+# ---------------------------------------------------------------
+#scheme: Muse
+#scheme: Mist
+#scheme: Pisces
+scheme: Gemini
+
+darkmode: false
+
+# ---------------------------------------------------------------
+# Site Information Settings
+# ---------------------------------------------------------------
+favicon:
+  small: /images/favicon.ico
+  medium: /images/favicon.ico
+  apple_touch_icon: /images/Note.png
+  safari_pinned_tab: /images/Note.svg
+
+# ---------------------------------------------------------------
+# Menu Settings
+# ---------------------------------------------------------------
+menu:
+  home: / || fa fa-home
+  tags: /tags/ || fa fa-tags
+  archives: /archives/ || fa fa-archive
+
+menu_settings:
+  icons: true
+  badges: false
+
+# ---------------------------------------------------------------
+# Sidebar Settings
+# ---------------------------------------------------------------
+sidebar:
+  position: left
+  display: post
+  offset: 12
+
+avatar:
+  url: #/images/avatar.gif
+  rounded: false
+  rotated: false
+
+site_state: true
+
+# Social Links
+social:
+  GitHub: https://github.com/yancai/yancai.github.io || fab fa-github
+  E-Mail: mailto:yancai915@gmail.com || fa fa-envelope
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: false
+
+# Table of Contents in the Sidebar
+toc:
+  enable: true
+  number: true
+  wrap: false
+  expand_all: false
+  max_depth: 6
+
+# ---------------------------------------------------------------
+# Footer Settings
+# ---------------------------------------------------------------
+footer:
+  icon:
+    name: fa fa-user
+    animated: false
+    color: "#808080"
+  powered: true
+
+# ---------------------------------------------------------------
+# Post Settings
+# ---------------------------------------------------------------
+excerpt_description: true
+read_more_btn: true
+
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: true
+    another_day: true
+  categories: true
+
+# Dependencies: https://github.com/next-theme/hexo-word-counter
+symbols_count_time:
+  separated_meta: true
+  item_text_total: false
+
+tag_icon: false
+
+post_edit:
+  enable: false
+
+post_navigation: left
+
+# ---------------------------------------------------------------
+# Misc Theme Settings
+# ---------------------------------------------------------------
+mobile_layout_economy: false
+
+theme_color:
+  light: "#222"
+  dark: "#222"
+
+codeblock:
+  theme:
+    light: default
+    dark: stackoverflow-dark
+  copy_button:
+    enable: false
+  fold:
+    enable: false
+    height: 500
+  language: false
+
+back2top:
+  enable: true
+  sidebar: false
+  scrollpercent: true
+
+reading_progress:
+  enable: false
+
+bookmark:
+  enable: false
+
+github_banner:
+  enable: false
+
+# ---------------------------------------------------------------
+# Font Settings
+# ---------------------------------------------------------------
+font:
+  enable: false
+
+# ---------------------------------------------------------------
+# SEO Settings
+# ---------------------------------------------------------------
+index_with_subtitle: false
+exturl: false
+
+# ---------------------------------------------------------------
+# Tags Settings
+# ---------------------------------------------------------------
+note:
+  style: simple
+  icons: false
+  light_bg_offset: 0
+
+tabs:
+  sticky: false
+  transition:
+    tabs: false
+    labels: true
+
+# ---------------------------------------------------------------
+# Third Party Services
+# ---------------------------------------------------------------
+
+# Baidu Analytics
+baidu_analytics: fa919c3ef1b756e53587dd9af91c35b4
+
+# Math
+math:
+  every_page: false
+  mathjax:
+    enable: false
+    tags: none
+  katex:
+    enable: false
+
+# ---------------------------------------------------------------
+# External Libraries
+# ---------------------------------------------------------------
+fancybox: true
+lazyload: false
+pjax: false
+pangu: false
+mediumzoom: false
+
+# ---------------------------------------------------------------
+# Animation Settings
+# ---------------------------------------------------------------
+motion:
+  enable: true
+  async: false
+  duration: 200
+  transition:
+    post_block: fadeIn
+    post_header: fadeInDown
+    post_body: fadeInDown
+    coll_header: fadeInLeft
+    sidebar: fadeInUp
+
+# Progress bar in the top during page loading
+pace:
+  enable: true
+  color: blue
+  theme: minimal
+
+canvas_ribbon:
+  enable: false
+
+# ---------------------------------------------------------------
+# Search Services
+# ---------------------------------------------------------------
+# Dependencies: https://github.com/next-theme/hexo-generator-searchdb
+local_search:
+  enable: true
+  top_n_per_article: 1
+  unescape: false
+  preload: false
+
+# ---------------------------------------------------------------
+# CDN Settings
+# ---------------------------------------------------------------
+vendors:
+  internal: local
+  plugins: cdnjs
+  custom_cdn_url:
+
+css: css
+js: js
+images: images
