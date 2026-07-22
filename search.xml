@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>go开发环境配置</title>
+    <url>/doc/go/go-env/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文介绍<a href="https://golang.org/">Go</a>开发环境的配置方法</p>
+<span id="more"></span>
+
+<h1 id="SDK-安装"><a href="#SDK-安装" class="headerlink" title="SDK 安装"></a>SDK 安装</h1><ol>
+<li><p>安装包下载<br>下载地址：<a href="https://golang.org/dl/">https://golang.org/dl/</a><br>下载<code>Windows</code>、<code>Linux</code>或<code>Mac</code>平台下的安装包</p>
+</li>
+<li><p>安装SDK<br><code>Linux</code>, <code>Mac</code>上执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意修改包名</span></span><br><span class="line">tar -C /usr/local -xzf go<span class="variable">$VERSION</span>.<span class="variable">$OS</span>-<span class="variable">$ARCH</span>.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p><code>Windows</code>上执行exe进行安装</p>
+</li>
+<li><p>配置环境变量<br><code>Linux</code>, <code>Mac</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> GOHOME=/usr/local/go</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOHOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/go</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOPATH</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p><code>Windows</code><br>新建环境变量<code>GOHOME</code>，值为Go安装位置<br>新建环境变量<code>GOPATH</code>，设置并创建一个路径，例如：<code>D:\AppData\go</code><br><code>PATH</code>中追加：<code>;%GOHOME%\bin;%GOPATH%\bin;</code>  </p>
+</li>
+<li><p>验证<br>命令行中输入<code>go version</code>可以正常查看go版本信息</p>
+</li>
+</ol>
+<h1 id="GoLand"><a href="#GoLand" class="headerlink" title="GoLand"></a>GoLand</h1><ol>
+<li><p>下载GoLand安装包<br>下载地址：<a href="https://www.jetbrains.com/go/download/">https://www.jetbrains.com/go/download/</a></p>
+</li>
+<li><p>安装GoLand<br>执行安装包，根据提示安装</p>
+</li>
+<li><p>下载go工程<br>可以下载我的示例工程：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">go get github.com/yancai/hello-go</span><br></pre></td></tr></table></figure>
+<p>下载好后，所在位置为<code>$GOPATH/src/github.com/yancai/hello-go</code></p>
+</li>
+<li><p>命令行构建运行  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 命令行中执行</span></span><br><span class="line">go build github.com/yancai/hello-go</span><br><span class="line"><span class="comment"># 在命令行当前目录中会生成 可执行文件hello-go 或 hello-go.exe</span></span><br><span class="line"><span class="comment"># Linux, Mac执行如下</span></span><br><span class="line">./hello-go</span><br><span class="line"><span class="comment"># Windows执行如下</span></span><br><span class="line">hello-go.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment"># Hello go!</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用GoLand开发<br>【Open Project】 -&gt; 选择工程目录<code>$GOPATH/src/github.com/yancai/hello-go</code>，打开工程目录即可完成工程导入<br>开发Debug方式和JetBrains其他产品（IDEA、PyCharm）类似</p>
+</li>
+</ol>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol>
+<li>开发过程中，如需下载第三方包，执行如下命令<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">go get xxx</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker快速上手指南</title>
+    <url>/doc/docker/docker-quickstart/</url>
+    <content><![CDATA[<p>本文将简单介绍docker的基本使用方法。本文以使用<a href="https://nginx.org/">nginx</a>的<a href="https://hub.docker.com/_/nginx/">镜像</a>为例说明如何快速上手使用docker。</p>
+<span id="more"></span>
+
+<h1 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h1><p>参见: <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a></p>
+<h1 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<h1 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动一个nginx容器，主机的8000转发至容器的80端口</span></span><br><span class="line">docker run -d --name my-nginx -p 8000:80 nginx</span><br></pre></td></tr></table></figure>
+
+<h1 id="测试访问nginx"><a href="#测试访问nginx" class="headerlink" title="测试访问nginx"></a>测试访问nginx</h1><p>浏览器访问<code>http://{主机ip}:8000</code>，可以看到**Welcome to nginx!**页面</p>
+<h1 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询已经启动的容器</span></span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>例如查到类似如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES</span><br><span class="line">b8eca8f07f68        nginx               &quot;nginx -g &#x27;daemon ...&quot;   24 seconds ago      Up 23 seconds       0.0.0.0:8000-&gt;80/tcp   my-nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用my-nginx对应的ContainerID停止容器</span></span><br><span class="line">docker stop &#123;container_id&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用my-nginx对应的ContainerID删除容器</span></span><br><span class="line">docker <span class="built_in">rm</span> &#123;container_id&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>如果容器已经停止，可以使用命令<code>docker ps -a</code>查询所有包含已停止的容器;</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用dockerfile构建docker镜像快速上手指南</title>
+    <url>/doc/docker/dockerfile-quickstart/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在了解了docker的基本使用方法后，我们可以通过容器快速准备环境并部署服务。<br>有些重复性的工作，例如：手动配置一些配置项，安装特定的软件包，使用命令或脚本启动特定服务等等。为了解决这些通用或者重复性的事情，我们可以通过构建一个自己个性化的镜像来固化下来这些环境信息。</p>
+<p>本文将简单介绍使用dockerfile构建docker镜像的基本使用方法。<br>本文以使用<a href="http://www.ubuntu.com/">ubuntu</a>的<a href="https://hub.docker.com/_/ubuntu/">镜像</a>为例说明如何根据已有的镜像为基础构建自己需要的镜像。</p>
+<p>本例中将演示以<code>Ubuntu 16.04</code>为基础，安装<code>ssh</code>, <code>jdk</code>, <code>vim</code>等软件。</p>
+<span id="more"></span>
+
+<h1 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h1><ul>
+<li>jdk-8u77-linux-x64.tar.gz</li>
+</ul>
+<h1 id="目录结构及Dockerfile"><a href="#目录结构及Dockerfile" class="headerlink" title="目录结构及Dockerfile"></a>目录结构及Dockerfile</h1><p>假如工作目录在：<code>~/dockerfiles/my-ubuntu</code><br>此目录中的结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|-- Dockerfile</span><br><span class="line">`-- files</span><br><span class="line">    `-- jdk-8u77-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>其中Dockerfile中的内容如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">16.04</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">LABEL</span><span class="language-bash"> maintainer=<span class="string">&quot;yancai915@gmail.com&quot;</span></span></span><br><span class="line"><span class="keyword">ENV</span> LANG zh_CN.UTF-<span class="number">8</span></span><br><span class="line"><span class="keyword">ENV</span> LC_ALL zh_CN.UTF-<span class="number">8</span></span><br><span class="line"><span class="keyword">ENV</span> TZ Asia/Shanghai</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置apt-get源</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> sed -i <span class="string">&quot;s/archive.ubuntu.com/mirrors.aliyun.com/g&quot;</span> /etc/apt/sources.list \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; sed -i <span class="string">&quot;s/security.ubuntu.com/mirrors.aliyun.com/g&quot;</span> /etc/apt/sources.list \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get update</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装常用工具 设置SSH</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apt-get install -y openssh-server vim telnet <span class="built_in">sudo</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> /etc/ssh/ssh_host_dsa_key -rf \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> /etc/ssh/ssh_host_rsa_key -rf \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; useradd guest \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;guest:guest!@#&quot;</span> | chpasswd \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;guest   ALL=(ALL)       ALL&quot;</span> &gt;&gt; /etc/sudoers \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;root:123456&quot;</span> | chpasswd \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; sed -i <span class="string">&quot;s/PermitRootLogin\ without-password/PermitRootLogin\ yes/g&quot;</span> /etc/ssh/sshd_config</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改vim配置</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> sed -i <span class="string">&#x27;1s/^/set encoding=utf-8\n/&#x27;</span> /etc/vim/vimrc \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;set hls&quot;</span> &gt;&gt; /etc/vim/vimrc \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;set expandtab&quot;</span> &gt;&gt; /etc/vim/vimrc \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;set sw=4&quot;</span> &gt;&gt; /etc/vim/vimrc \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;set tabstop=4&quot;</span> &gt;&gt; /etc/vim/vimrc</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> /usr/java</span></span><br><span class="line"><span class="comment"># 安装jdk</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> files/jdk-8u77-linux-x64.tar.gz /usr/java</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">echo</span> <span class="string">&quot;export JAVA_HOME=/usr/java/jdk1.8.0_77&quot;</span> &gt;&gt; /etc/profile \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;export PATH=\$JAVA_HOME/bin:\$PATH&quot;</span> &gt;&gt; /etc/profile \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar&quot;</span> &gt;&gt; /etc/profile</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">mkdir</span> /var/run/sshd</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">22</span> <span class="number">8080</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> /usr/sbin/sshd -D</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dockerfiles/my-ubuntu</span><br><span class="line"></span><br><span class="line"><span class="comment"># build镜像，注意最后有一个英文半角点号</span></span><br><span class="line">docker build --tag=<span class="string">&quot;my-ubuntu:1.0&quot;</span> .</span><br></pre></td></tr></table></figure>
+
+<p>稍等片刻后构建完成</p>
+<h1 id="查询镜像"><a href="#查询镜像" class="headerlink" title="查询镜像"></a>查询镜像</h1><p>使用如下命令可以看到已经构建好的镜像</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REPOSITORY                                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">my-ubuntu                                       1.0                 1979d1447f6d        2 minutes ago       612 MB</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>dockerfile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>minikube 安装介绍</title>
+    <url>/doc/docker/minikube-install/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍使用<a href="https://github.com/kubernetes/minikube">minikube</a>单机部署<a href="https://kubernetes.io/">kubernetes</a>的方法。</p>
+<span id="more"></span>
+
+<h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><ul>
+<li>minikube:0.28.2</li>
+<li>docker:17.03.x-ce</li>
+</ul>
+<h1 id="安装指南"><a href="#安装指南" class="headerlink" title="安装指南"></a>安装指南</h1><ol>
+<li><p>安装docker<br>详见<a href="%E8%AF%A6%E8%A7%81https://docs.docker.com/install/">https://docs.docker.com/install/</a></p>
+</li>
+<li><p>安装minikube<br>执行命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v0.28.2/minikube-linux-amd64 &amp;&amp; <span class="built_in">chmod</span> +x minikube &amp;&amp; <span class="built_in">sudo</span> <span class="built_in">cp</span> minikube /usr/local/bin/ &amp;&amp; <span class="built_in">rm</span> minikube</span><br></pre></td></tr></table></figure></li>
+<li><p>下载docker镜像<br>minikube安装过程中会下载docker所需的镜像，需要下载的镜像包含：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gcr.io/k8s-minikube/storage-provisioner:v1.8.1</span><br><span class="line">k8s.gcr.io/etcd-amd64:3.1.12</span><br><span class="line">k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8</span><br><span class="line">k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8</span><br><span class="line">k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8</span><br><span class="line">k8s.gcr.io/kube-addon-manager:v8.6</span><br><span class="line">k8s.gcr.io/kube-apiserver-amd64:v1.10.0</span><br><span class="line">k8s.gcr.io/kube-controller-manager-amd64:v1.10.0</span><br><span class="line">k8s.gcr.io/kube-proxy-amd64:v1.10.0</span><br><span class="line">k8s.gcr.io/kube-scheduler-amd64:v1.10.0</span><br><span class="line">k8s.gcr.io/kubernetes-dashboard-amd64:v1.8.1</span><br><span class="line">k8s.gcr.io/pause-amd64:3.1</span><br></pre></td></tr></table></figure>
+
+<p>由于网络原因以上镜像下载会经常失败，可以从我本人的阿里云镜像仓库中下载，地址为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/storage-provisioner:v1.8.1</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/etcd-amd64:3.1.12</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/k8s-dns-dnsmasq-nanny-amd64:1.14.8</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/k8s-dns-kube-dns-amd64:1.14.8</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/k8s-dns-sidecar-amd64:1.14.8</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/kube-addon-manager:v8.6</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/kube-apiserver-amd64:v1.10.0</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/kube-controller-manager-amd64:v1.10.0</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/kube-proxy-amd64:v1.10.0</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/kube-scheduler-amd64:v1.10.0</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/kubernetes-dashboard-amd64:v1.8.1</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/yancai/pause-amd64:3.1</span><br></pre></td></tr></table></figure>
+<p>从阿里云上下载下来，然后重命名镜像即可。<br>例如：<br>如果要下载镜像<code>k8s.gcr.io/pause-amd64:3.1</code> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 先从对应的阿里云仓库中下载</span></span><br><span class="line"><span class="built_in">sudo</span> docker pull registry.cn-hangzhou.aliyuncs.com/yancai/pause-amd64:3.1</span><br><span class="line"><span class="comment"># 添加tag</span></span><br><span class="line"><span class="built_in">sudo</span> docker tag registry.cn-hangzhou.aliyuncs.com/yancai/pause-amd64:3.1 k8s.gcr.io/pause-amd64:3.1</span><br><span class="line"><span class="comment"># 删除原有镜像tag</span></span><br><span class="line"><span class="built_in">sudo</span> docker rmi registry.cn-hangzhou.aliyuncs.com/yancai/pause-amd64:3.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动minikube  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> minikube start --vm-driver=none</span><br></pre></td></tr></table></figure></li>
+<li><p>使用dashboard查看kubernetes  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 此命令可查看dashboard的访问地址，浏览器中打开即可</span></span><br><span class="line"><span class="built_in">sudo</span> minikube dashboard --url</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>minikube</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>发布你的个人docker镜像</title>
+    <url>/doc/docker/publish-your-image/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>假如你有一个比较好的docker镜像怎么发布出来供大家使用呢？  </li>
+<li>你是否遇到过国外某些镜像很难下载下来呢？  </li>
+<li>你是否想过拥有一个自己的镜像仓库呢？</li>
+</ul>
+<p>本文将介绍如何使用<a href="https://hub.docker.com/">Docker Hub</a>和<a href="https://www.aliyun.com/">阿里云</a>的容器镜像服务来创建自己的docker镜像仓库</p>
+<span id="more"></span>
+
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>以下为本文构建镜像时所使用的Dockerfile</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> k8s.gcr.io/etcd-amd64:<span class="number">3.1</span>.<span class="number">12</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> yancai yancai915@gamil.com</span><br></pre></td></tr></table></figure>
+<p>文件托管于<a href="https://github.com/yancai/myDockerfiles/blob/master/kubernetes/etcd-amd64/Dockerfile">https://github.com/yancai/myDockerfiles/blob/master/kubernetes/etcd-amd64/Dockerfile</a></p>
+<h1 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h1><ol>
+<li><p>打开<a href="https://hub.docker.com/">https://hub.docker.com</a></p>
+</li>
+<li><p>注册一个Docker Hub用户，并登录</p>
+</li>
+<li><p>绑定GitHub账号<br>点击【Setting】 - 【Linked Accounts &amp; Service】绑定Github账号  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-01.png" class="" title="docker-hub-01">
+
+<p>选择Public and Private  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-02.png" class="" title="docker-hub-02">
+
+<p>跳转至GitHub页面，授权即可</p>
+<p>授权后可以看到已经绑定成功  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-03.png" class="" title="docker-hub-03">
+</li>
+<li><p>创建构建计划<br>点击【Create】-【Create Automated Build】，选择GitHub  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-04.png" class="" title="docker-hub-04">
+
+<p>选择Dockerfile所在的仓库  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-05.png" class="" title="docker-hub-05">
+
+<p>填写镜像名称和介绍信息后点击【Create】  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-06.png" class="" title="docker-hub-06">
+
+<p>设置构建计划<br>选择【Type】，选择<code>Branch</code>或<code>Tag</code><br>填写【Name】，填写<code>Branch</code>或<code>Tag</code>的名称<br>填写【Dockerfile Location】，此路径为相对于GitHub仓库代码根目录的Dockerfile所在的路径<br>填写【Docker Tag Name】，版本信息<br>完成后点击【Save Changes】保存  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-07.png" class="" title="docker-hub-07">
+</li>
+<li><p>触发构建<br>首次保存构建信息后，如需开始构建需要手动点击【Trigger】触发构建。稍等片刻即可完成构建。<br>之后在GitHub上修改了相关代码提交后会自动触发Docker Hub构建。  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-08.png" class="" title="docker-hub-08">
+</li>
+<li><p>下载镜像<br>构建完成后可以根据【Repo Info】和【Tags】中的镜像信息下载镜像，例如本示例下载方式为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker pull yancai/demo-image:3.1.12</span><br></pre></td></tr></table></figure>
+<img src="/doc/docker/publish-your-image/docker-hub-09.png" class="" title="docker-hub-09">  
+<img src="/doc/docker/publish-your-image/docker-hub-10.png" class="" title="docker-hub-10"></li>
+</ol>
+<p>Docker Hub提供的镜像构建服务挺好用的，唯一就是构建好之后下载镜像时候，由于网络原因可能会十分慢。可以借用国内的一些类似Docker Hub的镜像服务来进行镜像构建和下载。<br>以下将介绍如何在<a href="https://dev.aliyun.com/">阿里云容器Hub</a>上进行Docker镜像构建和下载。</p>
+<h1 id="阿里云-镜像容器服务"><a href="#阿里云-镜像容器服务" class="headerlink" title="阿里云 镜像容器服务"></a>阿里云 镜像容器服务</h1><ol>
+<li><p>打开<a href="https://dev.aliyun.com/">https://dev.aliyun.com</a></p>
+</li>
+<li><p>注册一个阿里云账号，并登录，进入<a href="https://cr.console.aliyun.com/repositories">容器镜像服务页面</a></p>
+</li>
+<li><p>绑定GitHub账号<br>点击【代码源】-【Github 绑定账号】进行授权绑定代码源  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-01.png" class="" title="aliyun-hub-01">
+</li>
+<li><p>创建镜像仓库<br>点击【镜像仓库】-【创建镜像仓库】<br>选择【地域】<br>选择【命名空间】，如果没有则点击左侧【命名空间】创建命名空间<br>填写【仓库名称】、【摘要】、【描述信息】<br>选择【仓库类型】<br>点击下一步继续  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-02.png" class="" title="aliyun-hub-02">
+
+<p>选择GitHub，绑定Dockefile对应的仓库<br>如果有些镜像在国内拉取比较慢或者无法拉取，可以勾选【海外机构建】<br>点击【创建镜像仓库】保存镜像信息  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-03.png" class="" title="aliyun-hub-03">
+
+<p>点击对应仓库的【管理】设置构建详情  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-04.png" class="" title="aliyun-hub-04">
+
+<p>点击【构建】-【添加规则】<br>选择代码分支或Tag<br>填写【Dockerfile目录】，此路径为相对于GitHub仓库代码根目录的Dockerfile所在的路径<br>填写【Dockerfile文件名】<br>填写【镜像版本】<br>点击【确认】保存  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-05.png" class="" title="aliyun-hub-05">
+</li>
+<li><p>触发构建<br>首次保存构建信息后，如需开始构建需要手动点击【立即构建】触发构建。稍等片刻即可完成构建。<br>如果开启了【代码变更时自动构建镜像】，那么在GitHub上修改了相关代码提交后会自动触发构建。  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-06.png" class="" title="aliyun-hub-06">
+</li>
+<li><p>下载镜像<br>构建完成后根据镜像的【基本信息】、【镜像版本】中的内容可以获取到下载镜像的地址。</p>
+<p>例如本示例镜像下载方式为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker pull registry.cn-hangzhou.aliyuncs.com/yancai/demo:3.1.12</span><br></pre></td></tr></table></figure>
+<img src="/doc/docker/publish-your-image/aliyun-hub-07.png" class="" title="aliyun-hub-07"></li>
+</ol>
+<p>使用阿里云下载构建好的镜像，感觉就一个字：快！<br>如此，国外有些镜像难以下载时候，使用阿里云间接拉取构建，下载到本地后重命名镜像名称，这样也就间接的下载了一些无法拉取下来的镜像。</p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用rancher部署kubernetes介绍</title>
+    <url>/doc/docker/rancher-k8s-deploy/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍在VMware虚拟环境下使用<a href="https://rancher.com/">Rancher</a>部署<a href="https://kubernetes.io/">Kubernetes</a></p>
+<span id="more"></span>
+
+<h1 id="依赖版本"><a href="#依赖版本" class="headerlink" title="依赖版本"></a>依赖版本</h1><ul>
+<li>docker: <code>17.03.3-ce</code></li>
+<li>rancher: <code>v1.6.21</code></li>
+<li>kubernetes: <code>v1.10.5</code></li>
+<li>helm: <code>v2.8.2</code></li>
+</ul>
+<h1 id="包含Docker的VMware虚拟环境创建"><a href="#包含Docker的VMware虚拟环境创建" class="headerlink" title="包含Docker的VMware虚拟环境创建"></a>包含Docker的VMware虚拟环境创建</h1><ol>
+<li><p>虚拟机创建<br>新建一个Linux的虚拟环境vm01，建议为CentOS7.x或Ubuntu18.04</p>
+</li>
+<li><p>安装docker</p>
+<p>安装参考: <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a></p>
+<p>安装好后设置镜像和dns<br><code>sudo vim /etc/docker/daemon.json</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;https://registry.docker-cn.com&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dns&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;114.114.114.114&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;8.8.8.8&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;8.8.4.4&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>创建快照<br>基于vm01快照创建新的虚拟机vm02<br>在vm02中修改：<br>ubuntu <code>sudo vim /etc/cloud/cloud.cfg</code>: 设置preserve_hostname: true</p>
+<p>修改hostname和hosts</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vm01</td>
+<td>部署rancher</td>
+</tr>
+<tr>
+<td>vm02</td>
+<td>部署kubernetes</td>
+</tr>
+</tbody></table>
+<h1 id="Rancher部署"><a href="#Rancher部署" class="headerlink" title="Rancher部署"></a>Rancher部署</h1><p><strong>vm01上部署Rancher</strong>  </p>
+<ol>
+<li><p>安装Rancher<br>使用docker-compose拉起Rancher，docker-compose使用方法参见：<a href="/2018/04/23/docker/docker-compose-quickstart/">《使用docker-compose编排容器快速上手指南》</a>  </p>
+<p><code>docker-compose.yaml</code>如下</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">rancher:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">rancher/server:v1.6.21</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">rancher</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">rancher</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure></li>
+<li><p>配置Rancher主机<br>访问<code>http://vm01:8080</code>  </p>
+<p>添加主机  </p>
+<img src="/doc/docker/rancher-k8s-deploy/01.png" class="" title="01.png">
+
+<p>Rancher API地址确认  </p>
+<img src="/doc/docker/rancher-k8s-deploy/02.png" class="" title="02.png">
+
+<p>添加主机，将生成的脚本复制并在Rancher的主机<strong>vm01</strong>上执行  </p>
+<img src="/doc/docker/rancher-k8s-deploy/03.png" class="" title="03.png">
+
+<p>稍等片刻，rancher会自动下载相关的镜像并拉起容器  </p>
+<img src="/doc/docker/rancher-k8s-deploy/04.png" class="" title="04.png"></li>
+</ol>
+<h1 id="部署Kubernetes"><a href="#部署Kubernetes" class="headerlink" title="部署Kubernetes"></a>部署Kubernetes</h1><p><strong>vm02上部署kubernetes</strong></p>
+<ol>
+<li><p>添加Kubernetes环境<br>【环境管理】-【添加环境】-选择Kubernetes  </p>
+<img src="/doc/docker/rancher-k8s-deploy/05.png" class="" title="05.png">
+</li>
+<li><p>获取添加kubernetes脚本<br>切换至kubernetes环境页面  </p>
+<img src="/doc/docker/rancher-k8s-deploy/06.png" class="" title="06.png">
+
+<p>添加主机，将生成的脚本复制并在Kubernetes的主机<strong>vm02</strong>上执行  </p>
+<img src="/doc/docker/rancher-k8s-deploy/07.png" class="" title="07.png">
+
+<p>执行后稍等片刻</p>
+<img src="/doc/docker/rancher-k8s-deploy/08.png" class="" title="08.png">
+
+<p>完成后可以查看主机上的信息</p>
+<img src="/doc/docker/rancher-k8s-deploy/09.png" class="" title="09.png">
+</li>
+<li><p>配置kubectl  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装kubectl</span></span><br><span class="line">curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.10.5/bin/linux/amd64/kubectl</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> ./kubectl /usr/local/bin/kubectl</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/kubectl</span><br></pre></td></tr></table></figure>
+<p>将kubectl配置写入vm02的<code>~/.kube/config</code>中</p>
+<img src="/doc/docker/rancher-k8s-deploy/10.png" class="" title="10.png">
+
+<img src="/doc/docker/rancher-k8s-deploy/11.png" class="" title="11.png"></li>
+</ol>
+<h1 id="部署helm"><a href="#部署helm" class="headerlink" title="部署helm"></a>部署helm</h1><p><strong>配置了kubectl配置文件的vm02上安装helm客户端</strong></p>
+<ol>
+<li><p>安装helm</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz</span><br><span class="line">tar -xvf helm-v2.8.2-linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> linux-amd64/helm /usr/local/bin/helm</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/helm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化helm</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">helm init</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Rancher</tag>
+        <tag>Kubernetes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>flume和kafka单节点部署和使用的方法</title>
+    <url>/doc/hadoop/flume_kafka_single/</url>
+    <content><![CDATA[<h1 id="flume-kafka-single"><a href="#flume-kafka-single" class="headerlink" title="flume kafka single"></a>flume kafka single</h1><p>本文介绍了flume和kafka单节点部署和使用的方法</p>
+<h1 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h1><ul>
+<li>kafka: <code>kafka_2.11-1.0.0.tgz</code></li>
+<li>flume: <code>apache-flume-1.8.0-bin.tar.gz</code></li>
+</ul>
+<span id="more"></span>
+
+<h1 id="kafka部署配置"><a href="#kafka部署配置" class="headerlink" title="kafka部署配置"></a>kafka部署配置</h1><ol>
+<li><p>解压kafka安装包至指定目录<code>/opt/kafka</code></p>
+</li>
+<li><p>启动zookeeper（也可单独部署zookeeper）</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./bin/zookeeper-server-start.sh -daemon ./config/zookeeper.properties</span><br></pre></td></tr></table></figure>
+<p>启动成功后可以查询2181端口已确认是否启动成功</p>
+</li>
+<li><p>启动 kafka</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./bin/kafka-server-start.sh -daemon ./config/server.properties</span><br></pre></td></tr></table></figure>
+<p>启动成功后可以查询9092端口已确认是否启动成功</p>
+</li>
+</ol>
+<h1 id="flume部署配置"><a href="#flume部署配置" class="headerlink" title="flume部署配置"></a>flume部署配置</h1><ol>
+<li><p>解压flume安装包至指定目录<code>/opt/flume</code></p>
+</li>
+<li><p>修改flume配置文件<code>./conf/flume-conf.properties</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a1.sources = r1</span><br><span class="line">a1.sinks = k1</span><br><span class="line">a1.channels = c1</span><br><span class="line"></span><br><span class="line">a1.sources.r1.type = netcat</span><br><span class="line">a1.sources.r1.bind = 0.0.0.0</span><br><span class="line">a1.sources.r1.port = 44444</span><br><span class="line">a1.sources.r1.channels = c1</span><br><span class="line"></span><br><span class="line">a1.channels.c1.type = file</span><br><span class="line">a1.channels.c1.checkpointDir = /var/log/flume/checkpoint</span><br><span class="line">a1.channels.c1.dataDirs = /var/log/flume/data</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.channel = c1</span><br><span class="line">a1.sinks.k1.type = org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">a1.sinks.k1.brokerList=localhost:9092</span><br><span class="line">a1.sinks.k1.batchSize=10</span><br><span class="line">a1.sinks.k1.topic=flume-topic</span><br><span class="line">a1.sinks.k1.request.required.acks=1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动flume</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./bin/flume-ng agent --conf conf --conf-file conf/flume-conf.properties --name a1 -Dflume.root.logger=WARN,console</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用jps或者ps查询flume进程是否启动成功</p>
+</li>
+</ol>
+<h1 id="测试flume到kafka的消息传递"><a href="#测试flume到kafka的消息传递" class="headerlink" title="测试flume到kafka的消息传递"></a>测试flume到kafka的消息传递</h1><ol>
+<li><p>向flume发送消息</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt;telnet flume 44444</span><br><span class="line">&gt;输入任意字符</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从kafka读取消费消息</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic flume-topic --from-beginning</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="kafka常用命令"><a href="#kafka常用命令" class="headerlink" title="kafka常用命令"></a>kafka常用命令</h1><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查询各组消费状态</span></span><br><span class="line">./bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group g2</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>FlumeNG</tag>
+        <tag>Kafka</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分布式 HA HDFS YARN SPARK HBASE部署</title>
+    <url>/doc/hadoop/hadoop_ha_deploy/</url>
+    <content><![CDATA[<h1 id="分布式-HA-HDFS-YARN-SPARK-HBASE部署"><a href="#分布式-HA-HDFS-YARN-SPARK-HBASE部署" class="headerlink" title="分布式 HA HDFS YARN SPARK HBASE部署"></a>分布式 HA HDFS YARN SPARK HBASE部署</h1><p>本文介绍了支持HA方式的HDFS + YARN + HBase + Spark的部署方式</p>
+<h1 id="部署计划"><a href="#部署计划" class="headerlink" title="部署计划"></a>部署计划</h1><h2 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h2><p><strong>操作系统</strong>：CentOS-7</p>
+<p>默认在<code>/root</code>中执行操作<br>如果对网络端口设置不熟悉，请先关闭防火墙  </p>
+<span id="more"></span>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 停止firewall</span></span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁止firewall开机启动</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="机器划分"><a href="#机器划分" class="headerlink" title="机器划分"></a>机器划分</h2><table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>包含角色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nd1（主）</td>
+<td>namenode, datanode, resourcemanager, nodemanager, zookeeper, hmaster, hregionserver</td>
+</tr>
+<tr>
+<td>nd2（主）</td>
+<td>namenode, datanode, resourcemanager, nodemanager, zookeeper, hmaster, hregionserver</td>
+</tr>
+<tr>
+<td>nd3</td>
+<td>datanode, nodemanager, zookeeper, hregionserver</td>
+</tr>
+</tbody></table>
+<h2 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h2><ul>
+<li>jdk-7u75-linux-x64.rpm</li>
+<li>hadoop-2.6.4.tar.gz</li>
+<li>zookeeper-3.4.8.tar.gz</li>
+<li>hbase-0.98.18-hadoop2-bin.tar.gz</li>
+<li>spark-1.6.1-bin-hadoop2.6.tgz</li>
+</ul>
+<h1 id="基础环境配置"><a href="#基础环境配置" class="headerlink" title="基础环境配置"></a>基础环境配置</h1><h2 id="配置hostname及hosts"><a href="#配置hostname及hosts" class="headerlink" title="配置hostname及hosts"></a>配置hostname及hosts</h2><p>选三台机器，按照部署计划配置hosts和hostname</p>
+<h2 id="配置ssh登录"><a href="#配置ssh登录" class="headerlink" title="配置ssh登录"></a>配置ssh登录</h2><ol>
+<li><p>生成ssh远程登录公钥-密钥对</p>
+<pre><code>ssh-keygen -t rsa
+</code></pre>
+<p>连续回车enter确认</p>
+</li>
+<li><p>由于nd1和nd2为master角色，因此nd1和nd2需要可以访问所有主机，将nd1和nd2的公钥分发给所有机器  </p>
+<blockquote>
+<p>如果nd1希望可以ssh无密钥访问nd2，那么需要将nd1自己的<code>~/.ssh/id_rsa.pub</code>中的公钥添加至nd2的<code>~/.ssh/authorized_keys</code>中。ssh提供了<code>ssh-copy-id</code>来简化复制粘贴的操作。  </p>
+</blockquote>
+<p>例如在nd1上执行：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将nd1的公钥分发给nd1，如有提示，输入yes确认，输入nd1登录密码传输公钥</span></span><br><span class="line">ssh-copy-id nd1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将nd1的公钥分发给nd2，如有提示，输入yes确认，输入nd2登录密码传输公钥</span></span><br><span class="line">ssh-copy-id nd2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将nd1的公钥分发给nd3，如有提示，输入yes确认，输入nd3登录密码传输公钥</span></span><br><span class="line">ssh-copy-id nd3</span><br></pre></td></tr></table></figure>
+<p>在nd2上重复如上分发动作，将nd2的公钥分发给所有机器<br>在nd3上，将nd3的公钥分发给nd3自己</p>
+<p>在nd1上执行<code>ssh-copy-id nd1</code>以确保nd1可以ssh登录nd1自身；<br>在nd1上执行<code>ssh-copy-id nd2</code>以确保nd2可以ssh登录nd2自身；<br>在nd1上执行<code>ssh-copy-id nd3</code>以确保nd3可以ssh登录nd3自身；  </p>
+</li>
+<li><p>验证ssh是否可远程至目标机器，使用<code>ssh hostname</code>验证是否可远程免密登录指定机器。在本例中，nd1和nd2可以远程登录nd1、nd2以及nd3。</p>
+</li>
+</ol>
+<h1 id="安装配置Java"><a href="#安装配置Java" class="headerlink" title="安装配置Java"></a>安装配置Java</h1><ol>
+<li><p>安装Java</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">rpm -ivh jdk-7u75-linux-x64.rpm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量<br>打开&#x2F;etc&#x2F;profile，<code>vim /etc/profile</code>，最下方添加如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.7.0_75</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br></pre></td></tr></table></figure>
+
+<p>导入环境变量<code>source /etc/profile</code>，输入<code>java -version</code>测试Java是否配置成功，正常输出如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java version &quot;1.7.0_75&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.7.0_75-b13)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 24.75-b04, mixed mode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="部署zookeeper"><a href="#部署zookeeper" class="headerlink" title="部署zookeeper"></a>部署zookeeper</h1><ol>
+<li><p>解压并重命名  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -xvf zookeeper-3.4.8.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名</span></span><br><span class="line"><span class="built_in">mv</span> zookeeper-3.4.8 zookeeper</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量  </p>
+<p>打开<code>/etc/profile</code>并修改添加如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> ZOOKEEPER_HOME=/root/zookeeper</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$ZOOKEEPER_HOME</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>导入环境变量<code>source /etc/profile</code></p>
+</li>
+<li><p>配置zookeeper  </p>
+<p>新建文件夹存储zookeeper文件<code>mkdir /var/lib/zookeeper</code><br>进入zookeeper程序目录，<code>cd /root/zookeeper</code><br>重命名配置文件<code>mv conf/zoo_sample.cfg conf/zoo.cfg</code><br>修改zoo.cfg，修改添加如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">dataDir=/var/lib/zookeeper</span><br><span class="line">server.1=nd1:2888:3888</span><br><span class="line">server.2=nd2:2888:3888</span><br><span class="line">server.3=nd3:2888:3888</span><br></pre></td></tr></table></figure>
+
+<p>在nd1上执行：<code>echo 1 &gt; /var/lib/zookeeper/myid</code><br>在nd2上执行：<code>echo 2 &gt; /var/lib/zookeeper/myid</code><br>在nd3上执行：<code>echo 3 &gt; /var/lib/zookeeper/myid</code></p>
+</li>
+<li><p>启动并验证  </p>
+<p>启动方式：<code>./bin/zkServer.sh start</code>  </p>
+<p>验证方式：输入jps查询进程可以看到QuorumPeerMain，则说明zookeeper已启动。<br>使用<code>./bin/zkCli.sh</code>进入zookeeper客户端命令行，并执行：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">input: <span class="built_in">ls</span> /</span><br><span class="line"><span class="comment"># 看到[zookeeper]即说明服务运行正常</span></span><br><span class="line">output: [zookeeper]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="部署Hadoop-HDFS-YARN"><a href="#部署Hadoop-HDFS-YARN" class="headerlink" title="部署Hadoop(HDFS + YARN)"></a>部署Hadoop(HDFS + YARN)</h1><ol>
+<li><p>解压并重命名  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">tar -xvf hadoop-2.6.4.tar.gz</span><br><span class="line"><span class="built_in">mv</span> hadoop-2.6.4 hadoop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量  </p>
+<p>打开<code>vim /etc/profile</code>并修改添加如下内容：  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_HOME=/root/hadoop</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HADOOP_HOME</span>/bin:<span class="variable">$HADOOP_HOME</span>/sbin</span><br></pre></td></tr></table></figure>
+
+<p>导入环境变量<code>source /etc/profile</code></p>
+</li>
+<li><p>配置hadoop  </p>
+<p>新建文件夹存储hadoop文件<code>mkdir /var/lib/hadoop</code><br>进入hadoop程序目录，<code>cd /root/hadoop</code></p>
+<p><strong>修改<code>etc/hadoop/hadoop-env.sh</code></strong></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.7.0_75</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改<code>vim etc/hadoop/core-site.xml</code></strong><br>在<code>&lt;configuration&gt;&lt;/configuration&gt;</code>间添加如下内容：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/var/lib/hadoop<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://mycluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>ha.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1:2181,nd2:2181,nd3:2181<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改<code>vim etc/hadoop/hdfs-site.xml</code></strong><br>在<code>&lt;configuration&gt;&lt;/configuration&gt;</code>间添加如下内容：  </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.nameservices<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mycluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.namenodes.mycluster<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1,nd2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.rpc-address.mycluster.nd1<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.http-address.mycluster.nd1<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.rpc-address.mycluster.nd2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd2:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.http-address.mycluster.nd2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd2:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.shared.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>qjournal://nd1:8485;nd2:8485;nd3:8485/journal<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.journalnode.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/val/lib/hadoop<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.automatic-failover.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.client.failover.proxy.provider.mycluster<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.fencing.methods<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">            sshfence</span><br><span class="line">            shell(/bin/true)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.fencing.ssh.private-key-files<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/root/.ssh/id_rsa<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.fencing.ssh.connect-timeout<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>30000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/var/lib/hadoop/nn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/var/lib/hadoop/dn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>复制mapred-site配置，<code>cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml</code><br><strong>修改<code>vim etc/hadoop/mapred-site.xml</code></strong><br>在<code>&lt;configuration&gt;&lt;/configuration&gt;</code>间添加如下内容：  </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改<code>vim etc/hadoop/yarn-site.xml</code></strong><br>在<code>&lt;configuration&gt;&lt;/configuration&gt;</code>间添加如下内容：  </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.ha.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.cluster-id<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>YARN-HA<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.ha.rm-ids<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>rm1,rm2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname.rm1<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname.rm2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.recovery.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.store.class<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.zk-address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1:2181,nd2:2181,nd2:2181<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-service<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改<code>vim etc/hadoop/slaves</code></strong><br>添加如下内容：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nd1</span><br><span class="line">nd2</span><br><span class="line">nd3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>格式化并启动服务  </p>
+<p>启动journalnode，在nd1，nd2，nd3上执行<code>hadoop-daemon.sh start journalnode</code><br>格式化namenode，在nd1上执行<code>hdfs namenode -format</code>，拷贝nd1的namenode的目录至nd2的相同目录中<code>scp -r /var/lib/hadoop/nn root@nd2:/var/lib/hadoop/</code><br>有类似如下信息输出则为正常：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">16/04/06 09:06:16 INFO common.Storage: Storage directory /var/lib/hadoop/nn has been successfully formatted.</span><br><span class="line">16/04/06 09:06:17 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid &gt;= 0</span><br><span class="line">16/04/06 09:06:17 INFO util.ExitUtil: Exiting with status 0</span><br></pre></td></tr></table></figure>
+
+<p><em>ps1: 也可以在nd2上先执行格式化在拷贝目录至nd1</em><br><em>ps2: 此处可使用网络共享磁盘方式使得nd1和nd2同时读写同一个目录，<strong>生产环境建议使用此方法</strong></em></p>
+<p>格式化zookeeper中的hadoop信息，在nd1或者nd2上执行<code>hdfs zkfc -formatZK</code><br>启动hdfs，在nd1或者nd2上执行<code>start-dfs.sh</code>，在nd1和nd2上使用jps查看会有如下进程：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JournalNode</span><br><span class="line">QuorumPeerMain</span><br><span class="line">DFSZKFailoverController</span><br><span class="line">NameNode</span><br><span class="line">DataNode</span><br></pre></td></tr></table></figure>
+
+<p>在nd3上执行jps查看会有如下进程：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JournalNode</span><br><span class="line">QuorumPeerMain</span><br><span class="line">DataNode</span><br></pre></td></tr></table></figure>
+
+<p>浏览器中打开<code>http://nd1:50070</code>和<code>http://nd2:50070</code>中可以看到其中一个为**<code>active</code><strong>，另一个为</strong><code>standby</code>**，则说明hadoop namenode的HA配置成功<br>或者使用<code>hdfs haadmin -getServiceState nd1</code>来查询nd1的当前状态<br>可以在active的机器上强制杀死namenode或者使用<code>hadoop-daemon.sh stop namenode</code>来模拟active namenode故障，之后刷新另一个节点的页面可以看到状态已经由<code>standby</code>变成了<code>active</code><br>由此可以验证hdfs的HA成功  </p>
+<p>启动yarn<br>在nd1上执行<code>start-yarn.sh</code>，启动nd1的resourcemanager以及nd1-3的nodemanager<br>再在nd2上执行<code>yarn-daemon.sh start resourcemanager</code>，启动nd2的resourcemanager<br>使用jps查询进程可以在nd1和nd2上看到包含有进程：<code>resourcemanager</code>和<code>nodemanager</code><br>在nd3上可以看到包含有进程：<code>nodemanager</code><br>在浏览器打开<code>http://nd1:8088</code>可以看到yarn的applications界面，打开<code>http://nd2:8088</code>会自动跳转至nd1的界面<br>或者使用<code>yarn rmadmin -getServiceState rm1</code>来查询rm1或rm2的状态<br>在nd1上杀死resourcemanager的进程或者使用<code>yarn-daemon.sh stop resourcemanager</code>停止resourcemanager进程，这时访问<code>http:nd2:8080</code>，可以看到resourcemanager已经由nd2接替。或者使用<code>yarn rmadmin -getServiceState xxx</code>来查询每个resourcemanager的状态<br>由此可以验证yarn的HA成功</p>
+</li>
+</ol>
+<h1 id="部署HBase"><a href="#部署HBase" class="headerlink" title="部署HBase"></a>部署HBase</h1><ol>
+<li><p>解压并重命名  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">tar -xvf hbase-0.98.18-hadoop2-bin.tar.gz</span><br><span class="line"><span class="built_in">mv</span> hbase-0.98.18-hadoop2-bin hbase</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量  </p>
+<p>打开<code>vim /etc/profile</code>并修改添加如下内容：  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> HBASE_HOME=/root/hbase</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HBASE_HOME</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>导入环境变量<code>source /etc/profile</code></p>
+</li>
+<li><p>配置HBase  </p>
+<p>新建文件夹存储HBase文件<code>mkdir /var/lib/hbase</code><br>进入hbase程序目录，<code>cd /root/hbase</code>  </p>
+<p>修改<code>vim conf/hbase-env.sh</code>，在最下放添加如下内容：  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.7.0_75/</span><br><span class="line"><span class="built_in">export</span> HBASE_MANAGES_ZK=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改<code>vim conf/hbase-site.xml</code></strong><br>在<code>&lt;configuration&gt;&lt;/configuration&gt;</code>间添加如下内容：  </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://mycluster/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>nd1,nd2,nd3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.dataDir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/var/lib/zookeeper/<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.clientPort<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>2181<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.master<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>60000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改<code>vim conf/regionservers</code></strong><br>在文件中添加如下内容：  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nd1</span><br><span class="line">nd2</span><br><span class="line">nd3</span><br></pre></td></tr></table></figure>
+
+<p>将hadoop中的<code>core-site.xml</code>，<code>hdfs-site.xml</code>拷贝至<code>hbase/conf/</code>中<br>或者使用软连接方式，推荐使用软连接方式：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建立软连接</span></span><br><span class="line"><span class="built_in">ln</span> -vs /root/hadoop/etc/hadoop/core-site.xml /root/hbase/conf/core-site.xml</span><br><span class="line"><span class="built_in">ln</span> -vs /root/hadoop/etc/hadoop/hdfs-site.xml /root/hbase/conf/hdfs-site.xml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动验证服务  </p>
+<p>在nd1上执行<code>start-hbase.sh</code>，在nd2上执行<code>hbase-daemon.sh start master</code><br>在nd1和nd2上使用jps查询可以看到  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HMaster</span><br><span class="line">HRegionServer</span><br></pre></td></tr></table></figure>
+
+<p>浏览器中打开<code>http://nd1:60010</code>或<code>http://nd2:60010</code>可以看到当前HMaster的状态</p>
+<p>在状态为master的机器上执行<code>hbase-daemon.sh stop master</code>或者直接杀死HMaster进程，访问另一个节点对应的HBase web页面，则可看到状态已由Backup变为Master<br>由此可验证HBase的HA切换成功</p>
+</li>
+</ol>
+<h1 id="部署-Spark-On-YARN"><a href="#部署-Spark-On-YARN" class="headerlink" title="部署 Spark On YARN"></a>部署 Spark On YARN</h1><blockquote>
+<p>spark主要的部署方式有：YARN模式、Standalone模式、HA模式<br> 由于已经部署了YARN HA，因此采用Spark On YARN时，spark仅作为提交作业的客户端，具体的map-reduce任务交由YARN去处理，因此仅需要在一台机器上部署spark即可。</p>
+</blockquote>
+<ol>
+<li><p>解压并重命名  </p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -xvf spark-1.6.1-bin-hadoop2.6.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名</span></span><br><span class="line"><span class="built_in">mv</span> spark-1.6.1-bin-hadoop2.6 spark</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置环境变量  </p>
+<p>打开<code>/etc/profile</code>并修改添加如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> SPARK_HOME=/root/zookeeper</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$SPARK_HOME</span>/bin:<span class="variable">$SPARK_HOME</span>/sbin</span><br></pre></td></tr></table></figure>
+
+<p>导入环境变量<code>source /etc/profile</code></p>
+</li>
+<li><p>配置spark  </p>
+<p>进入spark程序目录，<code>cd /root/spark</code><br>复制spark-env.sh配置，<code>cp conf/spark-env.sh.template conf/spark-env.sh</code><br>修改<code>vim conf/spark-env.sh</code>，在最下放添加如下内容：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">HADOOP_CONF_DIR=/root/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试提交作业  </p>
+<p>使用<code>spark-submit</code>提交作业，参数Master URL指定为yarn即可，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spark-submit --class com.xxx --master yarn xxx.jar</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Hadoop</tag>
+        <tag>Hadoop-YARN</tag>
+        <tag>Spark</tag>
+        <tag>HBase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>好工具集合</title>
+    <url>/doc/other/good-tools/</url>
+    <content><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><blockquote class="blockquote-center bold">
+<strong>“工欲善其事，必先利其器”</strong>
+    ——《论语·卫灵公》
+</blockquote>
+
+<p>好的工具对于日常工作效率提升是很有帮助的，以下为我自己总结的一些很有用的好工具，更多的工具将逐步补充完善。</p>
+<span id="more"></span>
+
+<h1 id="工具列表目录"><a href="#工具列表目录" class="headerlink" title="工具列表目录"></a>工具列表目录</h1><!-- TOC -->
+
+<ul>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E5%B7%A5%E5%85%B7%E5%88%97%E8%A1%A8%E7%9B%AE%E5%BD%95">工具列表目录</a></li>
+<li><a href="#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D">工具介绍</a><ul>
+<li><a href="#%E6%95%88%E7%8E%87">效率</a><ul>
+<li><a href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98">固态硬盘</a></li>
+<li><a href="#Windows%E5%8E%9F%E7%94%9F%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8">Windows原生快速启动</a></li>
+<li><a href="#Everything">Everything</a></li>
+<li><a href="#Ditto">Ditto</a></li>
+<li><a href="#Snipaste">Snipaste</a></li>
+<li><a href="#Listary">Listary</a></li>
+<li><a href="#cmder">cmder</a></li>
+<li><a href="#Beyond-Compare">Beyond Compare</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8">文本编辑器</a><ul>
+<li><a href="#Vim">Vim</a></li>
+<li><a href="#Notepad2">Notepad2</a></li>
+<li><a href="#Visual-Studio-Code">Visual Studio Code</a></li>
+<li><a href="#Sublime-Text">Sublime Text</a></li>
+<li><a href="#Atom">Atom</a></li>
+<li><a href="#Typora">Typora</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%BE%E8%AE%A1">设计</a><ul>
+<li><a href="#Enterprise-Architect">Enterprise Architect</a></li>
+<li><a href="#Visio">Visio</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9C%E7%A8%8B%E5%B7%A5%E5%85%B7">远程工具</a><ul>
+<li><a href="#OpenSSH">OpenSSH</a></li>
+<li><a href="#MobaXterm">MobaXterm</a></li>
+<li><a href="#PuTTY">PuTTY</a></li>
+<li><a href="#Xshell">Xshell</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a><ul>
+<li><a href="#Robomongo">Robomongo</a></li>
+<li><a href="#MongoDB-Compass">MongoDB Compass</a></li>
+<li><a href="#DBeaver">DBeaver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h1><h2 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h2><h3 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h3><p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p>非官方介绍：<br>这年头了，还有好多人没有体验过固态硬盘的感觉，赶紧装固态硬盘吧<br>目前市面上主流电脑都应该有固态硬盘，如果没有固态硬盘，用Windows的话，建议买个120~128G的就够用了，分两个盘，80G的盘用来安装系统，其它剩下的40G+用来装常用的软件，用起来相当爽</p>
+<p><strong>使用场景</strong>：<br>电脑卡卡卡、慢慢慢</p>
+<h3 id="Windows原生快速启动"><a href="#Windows原生快速启动" class="headerlink" title="Windows原生快速启动"></a>Windows原生快速启动</h3><p><strong>适用系统</strong>：<br><code>Windows</code></p>
+<p><strong>配置方法</strong>：<br>在<code>%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\</code>建立一个文件夹<code>Tools</code>，常用的快捷方式直接丢到这个文件夹中，也可以把这个文件夹发送到桌面快捷方式方便经常打开使用。  </p>
+<p><strong>使用方法</strong>：<br>需要快速启动应用时，只需按<code>Win</code>键并直接输入快捷方式的名称，系统会自动筛选出对应的应用，然后回车直接打开。  </p>
+<p>Windows上基本都可以，Win10上体验更好。如此一来就不再安装<a href="http://www.launchy.net/">Launchy</a>、<a href="http://www.wox.one/">Wox</a>等快速启动工具  </p>
+<p><strong>使用场景</strong>：<br>我的那啥应用在哪？</p>
+<h3 id="Everything"><a href="#Everything" class="headerlink" title="Everything"></a>Everything</h3><p><strong>主页</strong>：<br><a href="http://www.voidtools.com/">http://www.voidtools.com/</a>  </p>
+<p><strong>适用系统</strong>：<br><code>Windows</code></p>
+<p><strong>官方介绍</strong>：<br>Locate files and folders by name instantly.<br>非官方介绍：<br>Windows文件查找利器  </p>
+<p><strong>使用场景</strong>：<br>我的那个啥文件在哪？</p>
+<h3 id="Ditto"><a href="#Ditto" class="headerlink" title="Ditto"></a>Ditto</h3><p><strong>主页</strong>：<br><a href="https://ditto-cp.sourceforge.io/">https://ditto-cp.sourceforge.io/</a>  </p>
+<p><strong>适用系统</strong>：<br><code>Windows</code>  </p>
+<p><strong>官方介绍</strong>：<br>Clipboard Manager<br>非官方介绍：<br>剪贴板管理好帮手  </p>
+<p><strong>使用场景</strong>：<br>复制过的再复制，啊呀，又要复制下刚才的东西</p>
+<h3 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h3><p><strong>主页</strong>：<br><a href="https://www.snipaste.com/">https://www.snipaste.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code></p>
+<p><strong>官方介绍</strong>：<br>Snip &amp; Paste<br>非官方介绍：<br>简单强大的截图工具  </p>
+<p><strong>使用场景</strong>：<br>截图，贴图功能很好用</p>
+<h3 id="Listary"><a href="#Listary" class="headerlink" title="Listary"></a>Listary</h3><p><strong>主页</strong>：<br><a href="https://www.listary.com/">https://www.listary.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code></p>
+<p><strong>官方介绍</strong>：<br>File Search &amp; App Launcher<br>非官方介绍：<br>文件搜索和快速启动  </p>
+<p><strong>使用场景</strong>：<br>搜索文件；快速打开应用；我更喜欢的是使用快速选择文件夹的功能，Windows上传、下载、保存文件时通常要手动选择。使用Listary如果这个文件夹已经打开了，点到对应文件夹，再切回文件选择窗口，这是就已经自动选择到了刚才已经打开的文件夹</p>
+<h3 id="cmder"><a href="#cmder" class="headerlink" title="cmder"></a>cmder</h3><p><strong>主页</strong>：<br><a href="http://cmder.net/">http://cmder.net/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code></p>
+<p><strong>官方介绍</strong>：<br>Portable console emulator for Windows<br>非官方介绍：<br>Windows增强命令行工具</p>
+<p><strong>使用场景</strong>：<br>嫌弃cmd丑丑的界面</p>
+<h3 id="Beyond-Compare"><a href="#Beyond-Compare" class="headerlink" title="Beyond Compare"></a>Beyond Compare</h3><p><strong>主页</strong>：<br><a href="https://www.scootersoftware.com/">https://www.scootersoftware.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code></p>
+<p><strong>官方介绍</strong>：<br>（见过最详[冗]细[长]的介绍了）<br>Compare files and folders using simple, powerful commands that focus on the differences you’re interested in and ignore those you’re not.  Merge changes, synchronize files, and generate reports.<br>Beyond Compare中文版是一款专业的文本文件对比工具，可以高效的针对文件、文件夹、表格、mp3、图片、数据、注册表等文件并进行比较、合并、同步分析，并把相差的每一个字节用颜色加以表示，查看方便。<br>非官方介绍：<br>灰常强大的对比工具  </p>
+<p>中文官网下载时候需要填写个人信息，不想泄露个人信息的话，可以从英文官网下载，下载地址为：<a href="https://www.scootersoftware.com/download.php">https://www.scootersoftware.com/download.php</a></p>
+<p><strong>使用场景</strong>：<br>这俩文件（夹）有啥区别嘞？</p>
+<h2 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h2><h3 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h3><p><strong>主页</strong>：<br><a href="https://www.vim.org/">https://www.vim.org/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>the ubiquitous text editor<br>非官方介绍：<br>程序猿中普及的诡异而又高效的编辑器</p>
+<p><strong>使用场景</strong>：<br>换个思维方式来编辑文本</p>
+<h3 id="Notepad2"><a href="#Notepad2" class="headerlink" title="Notepad2"></a>Notepad2</h3><p><strong>主页</strong>：<br><a href="http://www.flos-freeware.ch/">http://www.flos-freeware.ch/</a></p>
+<p>网友修改增强版地址：<br><a href="https://xhmikosr.github.io/notepad2-mod/">https://xhmikosr.github.io/notepad2-mod/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code></p>
+<p><strong>官方介绍</strong>：<br>Utilities and Source Codes for Windows<br>非官方介绍：<br>小巧，实用，漂亮的文本编辑器</p>
+<p><strong>使用场景</strong>：<br>想要替换Windows显得简陋的记事本（notepad.exe）工具</p>
+<h3 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h3><p><strong>主页</strong>：<br><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>Code editing. Redefined.<br>非官方介绍：<br>微软出品的跨平台的优质代码编辑器</p>
+<p><strong>使用场景</strong>：<br>web开发利器，不想打开IDE时一个轻量级代码阅读编辑工具</p>
+<h3 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h3><p><strong>主页</strong>：<br><a href="https://www.sublimetext.com/">https://www.sublimetext.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>A sophisticated text editor for code, markup and prose<br>非官方介绍：<br>帅气、高效、跨平台的编辑器</p>
+<p><strong>使用场景</strong>：<br>看我写代码工具帅不帅</p>
+<h3 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h3><p><strong>主页</strong>：<br><a href="https://atom.io/">https://atom.io/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>A hackable text editor for the 21st Century<br>非官方介绍：<br>高颜值但是用起来卡卡卡的编辑器  </p>
+<p><strong>使用场景</strong>：<br>别给我说其他的啥啥功能强大，颜即正义，我就稀饭阿童木</p>
+<h3 id="Typora"><a href="#Typora" class="headerlink" title="Typora"></a>Typora</h3><p><strong>主页</strong>：<br><a href="https://www.typora.io/">https://www.typora.io/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>Typora — a markdown editor, markdown reader.<br>非官方介绍：<br>高颜值所见即所得的markdown编辑器  </p>
+<p><strong>使用场景</strong>：<br>两个栏写markdown太复杂了，编辑直接看</p>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><h3 id="Enterprise-Architect"><a href="#Enterprise-Architect" class="headerlink" title="Enterprise Architect"></a>Enterprise Architect</h3><p><strong>主页</strong>：<br><a href="http://sparxsystems.com/products/ea/index.html">http://sparxsystems.com/products/ea/index.html</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code>  </p>
+<p><strong>官方介绍</strong>：<br>UML Design Tools and UML CASE tools for software development<br>非官方介绍：<br>专业的UML设计软件</p>
+<p><strong>使用场景</strong>：<br>是时候找个强大专业的工具来设计下我的工程了</p>
+<h3 id="Visio"><a href="#Visio" class="headerlink" title="Visio"></a>Visio</h3><p><strong>主页</strong>：<br><a href="https://products.office.com/en-US/visio">https://products.office.com/en-US/visio</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code></p>
+<p><strong>官方介绍</strong>：<br>Flowchart Maker &amp; Diagramming Software<br>非官方介绍：<br>Office绘制UML小帮手</p>
+<p><strong>使用场景</strong>：<br>画个漂亮的流程图</p>
+<h2 id="远程工具"><a href="#远程工具" class="headerlink" title="远程工具"></a>远程工具</h2><h3 id="OpenSSH"><a href="#OpenSSH" class="headerlink" title="OpenSSH"></a>OpenSSH</h3><p><strong>主页</strong>：<br><a href="https://www.openssh.com/">https://www.openssh.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>OpenSSH is the premier connectivity tool for remote login with the SSH protocol<br>非官方介绍：<br>原始好用的SSH工具<br>Mac, Linux上自带，Windows10之后也提供了可选安装的OpenSSH客户端</p>
+<p><strong>使用场景</strong>：<br>快！我要连上那个服务器！</p>
+<h3 id="MobaXterm"><a href="#MobaXterm" class="headerlink" title="MobaXterm"></a>MobaXterm</h3><p><strong>主页</strong>：<br><a href="https://mobaxterm.mobatek.net/">https://mobaxterm.mobatek.net/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code>  </p>
+<p><strong>官方介绍</strong>：<br>MobaXterm free Xserver and tabbed SSH client for Windows<br>非官方介绍：<br>Windows上简单、免费、好用、功能强大的远程工具，除了SSH还支持远程Windows哦。另外MobaXterm的分屏同时输入功能很好用。</p>
+<p><strong>使用场景</strong>：<br>换个赏心悦目的远程工具吧</p>
+<h3 id="PuTTY"><a href="#PuTTY" class="headerlink" title="PuTTY"></a>PuTTY</h3><p><strong>主页</strong>：<br><a href="https://www.putty.org/">https://www.putty.org/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code>  </p>
+<p><strong>官方介绍</strong>：<br>a free SSH and telnet client for Windows<br>非官方介绍：<br>小巧的SSH客户端<br>Windows10上安装了系统自带的SSH客户端后，我觉得PuTTY作用已经不是很大了。如果说小巧，Windows10自带的ssh客户端才是真小巧，如果论功能，远不及<a href="#MobaXterm">MobaXterm</a>和<a href="#Xshell">Xshell</a><br>另外PyTTY有很多网友改装版，在此就不列举了，大家可以自己搜搜</p>
+<p><strong>使用场景</strong>：<br>我不嫌丑，就想来个轻便而不简陋的SSH客户端</p>
+<h3 id="Xshell"><a href="#Xshell" class="headerlink" title="Xshell"></a>Xshell</h3><p><strong>主页</strong>：<br><a href="https://www.netsarang.com/products/xsh_overview.html">https://www.netsarang.com/products/xsh_overview.html</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code>  </p>
+<p><strong>官方介绍</strong>：<br>The Industry’s Most Powerful SSH Client<br>非官方介绍：<br>是个不错的ssh客户端，但是官方介绍口气大的不行不行的。使用此工具时请注意版权！用于商业时请尊重版权。我工作过有两家大公司都因为版权问题禁止使用。</p>
+<p><strong>使用场景</strong>：<br>换个666的SSH客户端</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="Robomongo"><a href="#Robomongo" class="headerlink" title="Robomongo"></a>Robomongo</h3><p><strong>主页</strong>：<br><a href="https://robomongo.org/">https://robomongo.org/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>native MongoDB management tool (Admin UI)<br>非官方介绍：<br>好用的MongoDB管理工具，支持界面化查看数据，支持使用mongo命令查询数据<br>以前叫做Robomongo，后来改名为Robo 3T，另外现在还有更专业的Studio 3T</p>
+<p><strong>使用场景</strong>：<br>来个轻便好用的MongoDB开发者工具</p>
+<h3 id="MongoDB-Compass"><a href="#MongoDB-Compass" class="headerlink" title="MongoDB Compass"></a>MongoDB Compass</h3><p><strong>主页</strong>：<br><a href="https://www.mongodb.com/products/compass">https://www.mongodb.com/products/compass</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>The easiest way to explore and manipulate your MongoDB data<br>非官方介绍：<br>这是官方的MongoDB管理工具，好用哦</p>
+<p><strong>使用场景</strong>：<br>官方工具闪亮登场</p>
+<h3 id="DBeaver"><a href="#DBeaver" class="headerlink" title="DBeaver"></a>DBeaver</h3><p><strong>主页</strong>：<br><a href="https://dbeaver.com/">https://dbeaver.com/</a></p>
+<p><strong>适用系统</strong>：<br><code>Windows</code> | <code>Mac</code> | <code>Linux</code>  </p>
+<p><strong>官方介绍</strong>：<br>Universal Database Manager<br>非官方介绍：<br>多种数据库的管理好工具<br>此工具分免费的社区版（DBeaver CE）和收费的企业版（DBeaver EE）</p>
+<p><strong>使用场景</strong>：<br>来个跨平台支持各种数据库的管理工具</p>
+]]></content>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop分布式部署</title>
+    <url>/doc/hadoop/hadoop-deploy/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍分布式部署hadoop方式，各角色部署使用独立的用户  </p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> HDFS 部署</li>
+<li><input checked="" disabled="" type="checkbox"> httpfs 部署</li>
+<li><input disabled="" type="checkbox"> yarn 部署</li>
+<li><input disabled="" type="checkbox"> hive 部署</li>
+<li><input disabled="" type="checkbox"> HBase 部署</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><ul>
+<li>CentOS-7(Ubuntu亦可，或使用docker容器部署)</li>
+<li><a href="https://mirrors.aliyun.com/apache/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz">hadoop-2.6.5.tar.gz</a></li>
+<li><a href="https://mirrors.aliyun.com/apache/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz">zookeeper-3.4.12.tar.gz</a></li>
+</ul>
+<h1 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h1><table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>node1</td>
+<td>namenode, datanode, JournalNode, zookeeper</td>
+</tr>
+<tr>
+<td>node2</td>
+<td>namenode, datanode, JournalNode, zookeeper</td>
+</tr>
+<tr>
+<td>node3</td>
+<td>datanode, JournalNode, zookeeper, httpfs</td>
+</tr>
+</tbody></table>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="配置zookeeper"><a href="#配置zookeeper" class="headerlink" title="配置zookeeper"></a>配置zookeeper</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加zookeeper用户</span></span><br><span class="line">useradd zookeeper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压并安装zookeeper包</span></span><br><span class="line">tar -xvf zookeeper-3.4.12.tar.gz</span><br><span class="line"><span class="built_in">mv</span> zookeeper-3.4.12 /opt/</span><br><span class="line"><span class="built_in">chown</span> root:root /opt/zookeeper-3.4.12/ -R</span><br><span class="line"><span class="built_in">ln</span> -vs /opt/zookeeper-3.4.12/ /opt/zookeeper</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建配置文件</span></span><br><span class="line"><span class="built_in">cp</span> /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建日志和数据目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /var/log/zookeeper</span><br><span class="line"><span class="built_in">chown</span> zookeeper:zookeeper /var/log/zookeeper/</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> /var/lib/zookeeper</span><br><span class="line"><span class="built_in">chown</span> zookeeper:zookeeper /var/lib/zookeeper/</span><br></pre></td></tr></table></figure>
+
+<p>在node1上执行：<code>echo 1 &gt; /var/lib/zookeeper/myid</code><br>在node2上执行：<code>echo 2 &gt; /var/lib/zookeeper/myid</code><br>在node3上执行：<code>echo 3 &gt; /var/lib/zookeeper/myid</code></p>
+<p>执行<code>vim /opt/zookeeper/conf/zoo.cfg</code> 底部添加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dataDir=/var/lib/zookeeper</span><br><span class="line">server.1=node1:2888:3888</span><br><span class="line">server.2=node2:2888:3888</span><br><span class="line">server.3=node3:2888:3888</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>vim /opt/zookeeper/bin/zkEnv.sh</code> 修改如下内容</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;x<span class="variable">$&#123;ZOO_LOG_DIR&#125;</span>&quot;</span> = <span class="string">&quot;x&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    ZOO_LOG_DIR=<span class="string">&quot;/var/log/zookeeper&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>在node1, node2, node3上启动zookeeper  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">su zookeeper -c <span class="string">&quot;/opt/zookeeper/bin/zkServer.sh start&quot;</span></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">su zookeeper -c <span class="string">&quot;/opt/zookeeper/bin/zkServer.sh stop&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="SSH-配置"><a href="#SSH-配置" class="headerlink" title="SSH 配置"></a>SSH 配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建用户组hadoop</span></span><br><span class="line">groupadd hadoop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户hdfs并设置用户组为hadoop</span></span><br><span class="line">useradd hdfs -g hadoop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置hdfs密码</span></span><br><span class="line">passwd hdfs</span><br><span class="line"></span><br><span class="line">su hdfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一路回车</span></span><br><span class="line">ssh-keygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本主机的公钥分发至node1</span></span><br><span class="line">ssh-copy-id node1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用ssh-copy-id将：</span></span><br><span class="line"><span class="comment"># node1, node2的公钥分发至node1, node2, node3</span></span><br><span class="line"><span class="comment"># node3的公钥分发至node3</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置HDFS"><a href="#配置HDFS" class="headerlink" title="配置HDFS"></a>配置HDFS</h2><p>切换至root用户</p>
+<ol>
+<li>安装和配置</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解压hadoop安装包</span></span><br><span class="line">tar -xvf hadoop-2.6.5.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> hadoop-2.6.5 /opt/</span><br><span class="line"></span><br><span class="line"><span class="built_in">chown</span> root:root /opt/hadoop-2.6.5 -R</span><br><span class="line"></span><br><span class="line"><span class="built_in">ln</span> -vs /opt/hadoop-2.6.5/ /opt/hadoop</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> /var/log/hadoop-hdfs</span><br><span class="line"><span class="built_in">chown</span> hdfs:hadoop /var/log/hadoop-hdfs</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> /var/lib/hadoop-hdfs</span><br><span class="line"><span class="built_in">chown</span> hdfs:hadoop /var/lib/hadoop-hdfs</span><br></pre></td></tr></table></figure>
+
+<p>以下修改hdfs相关配置，配置文件位于目录<code>/opt/hadoop/ect/hadoop</code>  </p>
+<p>执行<code>vim hadoop-env.sh</code> 修改如下对应配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export HADOOP_LOG_DIR=/var/log/hadoop-hdfs</span><br><span class="line"># 此处注意修改为环境中对应的JAVA_HOME路径</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_171</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>vim core-site.xml</code>，其中<code>&lt;configuration&gt;</code>节点修改为如下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/var/lib/hadoop-hdfs<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://mycluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>ha.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>node1:2181,node2:2181,node3:2181<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>执行<code>vim hdfs-site.xml</code>，其中<code>&lt;configuration&gt;</code>节点修改为如下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.nameservices<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mycluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.namenodes.mycluster<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>node1,node2<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.rpc-address.mycluster.node1<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>node1:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.http-address.mycluster.node1<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>node1:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.rpc-address.mycluster.node2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>node2:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.http-address.mycluster.node2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>node2:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.shared.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>qjournal://node1:8485;node2:8485;node3:8485/journal<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.journalnode.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/var/lib/hadoop-hdfs<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.automatic-failover.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.client.failover.proxy.provider.mycluster<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.fencing.methods<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">            sshfence</span><br><span class="line">            shell(/bin/true)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.fencing.ssh.private-key-files<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/root/.ssh/id_rsa<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.ha.fencing.ssh.connect-timeout<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>30000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/var/lib/hadoop-hdfs/nn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/var/lib/hadoop-hdfs/dn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>执行<code>vim slaves</code> 替换为如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node1</span><br><span class="line">node2</span><br><span class="line">node3</span><br></pre></td></tr></table></figure>
+<p>执行<code>cp mapred-site.xml.template mapred-site.xml</code> 复制<code>mapred-site.xml.template</code>为<code>mapred-site.xml</code><br>执行<code>vim mapred-site.xml</code>，其中<code>&lt;configuration&gt;</code>节点修改为如下内容</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>启动journalnode</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">su hdfs -c &quot;/opt/hadoop/sbin/hadoop-daemon.sh start journalnode&quot;</span><br><span class="line"># 对应停止命令如下</span><br><span class="line"># su hdfs -c &quot;/opt/hadoop/sbin/hadoop-daemon.sh stop journalnode&quot;</span><br></pre></td></tr></table></figure>
+<p>使用jps可以查到JournalNode进程<br>如果无法使用jps则需要先导入java环境变量，例如使用<code>source /etc/profile</code></p>
+<ol start="3">
+<li>初始化namenode  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># node1上执行</span><br><span class="line">su hdfs -c &quot;/opt/hadoop/bin/hdfs namenode -format&quot;</span><br><span class="line">su hdfs -c &quot;scp -r /var/lib/hadoop-hdfs/nn hdfs@node2:/var/lib/hadoop-hdfs&quot;</span><br><span class="line">su hdfs -c &quot;/opt/hadoop/bin/hdfs zkfc -formatZK&quot;</span><br><span class="line">su hdfs -c &quot;/opt/hadoop/sbin/start-dfs.sh&quot;</span><br></pre></td></tr></table></figure>
+
+打开<a href="http://node1:50070/">http://node1:50070</a>或<a href="http://node2:50070/">http://node2:50070</a>查看hdfs信息</li>
+</ol>
+<h2 id="配置HttpFs"><a href="#配置HttpFs" class="headerlink" title="配置HttpFs"></a>配置HttpFs</h2><pre><code><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建用户</span></span><br><span class="line">useradd httpfs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /var/log/hadoop-httpfs</span><br><span class="line"><span class="built_in">chown</span> httpfs:httpfs /var/log/hadoop-httpfs/</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> /var/tmp/hadoop-httpfs</span><br><span class="line"><span class="built_in">chown</span> httpfs:httpfs /var/tmp/hadoop-httpfs/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置权限</span></span><br><span class="line"><span class="built_in">chmod</span> +r /opt/hadoop/share/hadoop/httpfs/tomcat/conf -R</span><br></pre></td></tr></table></figure>
+
+vim httpfs-site.xml
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>httpfs.proxyuser.hue.hosts<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>httpfs.proxyuser.hue.groups<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+vim core-site.xml 添加
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.httpfs.hosts<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.httpfs.groups<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+vim httpfs-env.sh
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> HTTPFS_LOG=/var/log/hadoop-httpfs</span><br><span class="line"><span class="built_in">export</span> HTTPFS_TEMP=/var/tmp/hadoop-httpfs</span><br></pre></td></tr></table></figure>
+
+启动或停止
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">su httpfs -c <span class="string">&quot;/opt/hadoop/sbin/httpfs.sh start&quot;</span></span><br><span class="line">su httpfs -c <span class="string">&quot;/opt/hadoop/sbin/httpfs.sh stop&quot;</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><p>以下为本文档中所使用的docker容器构建和编排相关的文档，如果需要使用容器部署hadoop，可以参考使用</p>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>构建<code>centos7-base</code>镜像所使用的相关文件如下</p>
+<p>目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── Dockerfile</span><br><span class="line">└── files</span><br><span class="line">    └── jdk-8u171-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>jdk下载地址：<br><a href="http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz">jdk-8u171-linux-x64.tar.gz</a></p>
+<p>Dockerfile内容</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos:<span class="number">7.2</span>.<span class="number">1511</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> yancai</span><br><span class="line"><span class="keyword">ENV</span> TZ Asia/Shanghai</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置yum源 安装常用工具</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; yum makecache \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; yum install -y vim mlocate telnet zlib-devel openssh-server openssh-clients net-tools \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">mkdir</span> /usr/java</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /root</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装jdk</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> files/jdk-8u171-linux-x64.tar.gz /usr/java</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">echo</span> <span class="string">&quot;export JAVA_HOME=/usr/java/jdk1.8.0_171&quot;</span> &gt;&gt; /etc/profile \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;export PATH=\$JAVA_HOME/bin:\$PATH&quot;</span> &gt;&gt; /etc/profile \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar&quot;</span> &gt;&gt; /etc/profile \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">ln</span> -vs /usr/java/jdk1.8.0_171/bin/java /usr/bin/java</span></span><br></pre></td></tr></table></figure>
+
+
+<p>在<code>Dockerfile</code>所在目录使用<code>sudo docker build --tag=&quot;centos7-base&quot; .</code>构建镜像</p>
+<h2 id="docker-compose-yml"><a href="#docker-compose-yml" class="headerlink" title="docker-compose.yml"></a>docker-compose.yml</h2><p>以下为<code>docker-compose.yml</code>内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">node1:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">centos7-base</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">node1</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">node1</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line">        <span class="attr">volumes:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">~/share:/root/share</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">node2:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">centos7-base</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">node2</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">node2</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line">        <span class="attr">volumes:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">~/share:/root/share</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">node3:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">centos7-base</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">node3</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">node3</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line">        <span class="attr">volumes:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">~/share:/root/share</span></span><br></pre></td></tr></table></figure>
+
+<p>在<code>docker-compose.yml</code>所在目录使用命令<code>sudo docker-compose up -d</code>启动容器  </p>
+<p>使用docker容器部署时，需要开启SSH服务，手动开启方式如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在容器内执行</span></span><br><span class="line">ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key</span><br><span class="line">/usr/sbin/sshd</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL安装及WSL Linux环境常用配置手册</title>
+    <url>/doc/wsl/wsl-setup-and-config-guide/</url>
+    <content><![CDATA[<h1 id="WSL安装方式"><a href="#WSL安装方式" class="headerlink" title="WSL安装方式"></a>WSL安装方式</h1><ol>
+<li><p>安装方式</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据实际情况修改参数</span></span><br><span class="line"><span class="comment"># -d指定发行版本名称</span></span><br><span class="line"><span class="comment"># --name设置虚拟机实例名称，实例名称不可重复</span></span><br><span class="line"><span class="comment"># --location设置虚拟机安装位置</span></span><br><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu<span class="literal">-26</span>.<span class="number">04</span> <span class="literal">--name</span> Ubuntu<span class="literal">-26</span>.<span class="number">04</span> <span class="literal">--location</span> D:\wsl\Ubuntu</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开<code>WSL Settings</code>软件，<strong>网络</strong>-<strong>网络模式</strong>设置为<code>Mirrored</code>，这样的话WSL中虚机和主机共享一个网络</p>
+</li>
+<li><p>WSL备份与恢复</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 备份虚拟机，根据实际情况修改导出位置</span></span><br><span class="line">wsl <span class="literal">--export</span> Ubuntu<span class="literal">-26</span>.<span class="number">04</span> D:\wsl\snapshot\ubuntu<span class="literal">-26</span>.<span class="number">04</span><span class="literal">-snapshot-202606082220</span>.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从备份恢复，第一个位置为虚机文件位置，第二个为备份文件位置</span></span><br><span class="line">wsl <span class="literal">--import</span> Ubuntu<span class="literal">-26</span>.<span class="number">04</span><span class="literal">-test</span> D:\wsl\ubuntu<span class="literal">-test</span> D:\wsl\snapshot\ubuntu<span class="literal">-26</span>.<span class="number">04</span><span class="literal">-snapshot-20260608</span>.tar</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Linux常见工具安装及配置方式"><a href="#Linux常见工具安装及配置方式" class="headerlink" title="Linux常见工具安装及配置方式"></a>Linux常见工具安装及配置方式</h1><p>其他Linux系统初始化也可以参考。</p>
+<h2 id="建议安装配置"><a href="#建议安装配置" class="headerlink" title="建议安装配置"></a>建议安装配置</h2><h3 id="安装常用的软件"><a href="#安装常用的软件" class="headerlink" title="安装常用的软件"></a>安装常用的软件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新apt源</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装以下常用软件</span></span><br><span class="line"><span class="built_in">sudo</span> apt install plocate zip net-tools telnet python3.14-venv pipx</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置默认语言环境"><a href="#设置默认语言环境" class="headerlink" title="设置默认语言环境"></a>设置默认语言环境</h3><p>否则带有中文的文件名输出会乱码。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> locale-gen en_US.UTF-8</span><br><span class="line"><span class="built_in">sudo</span> update-locale LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装bun"><a href="#安装bun" class="headerlink" title="安装bun"></a>安装bun</h3><p>bun是目前最流行最快的JavaScript包管理工具。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://bun.sh/install | bash</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>source ~/.bashrc</code>或退出重新进入虚机，输入<code>bun -v</code>可看到输出版本号即说明安装成功。</p>
+<h3 id="安装uv"><a href="#安装uv" class="headerlink" title="安装uv"></a>安装uv</h3><p>uv是目前最流行最快的Python包管理工具。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -LsSf https://astral.sh/uv/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>source ~/.bashrc</code>或退出重新进入虚机，输入<code>uv --version</code>可看到输出版本号即说明安装成功。</p>
+<h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><p>nvm是node.js多版本管理工具。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>注意根据需要修改以上脚本中的版本号，最新版本可参见<a href="https://github.com/nvm-sh/nvm"><code>https://github.com/nvm-sh/nvm</code></a></p>
+<p>使用<code>source ~/.bashrc</code>或退出重新进入虚机，输入<code>nvm --version</code>可看到输出版本号即说明安装成功。</p>
+<h3 id="安装OpenCode"><a href="#安装OpenCode" class="headerlink" title="安装OpenCode"></a>安装OpenCode</h3><p>OpenCode是类似ClaudeCode、CodeX的开源平替工具</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bun add -g opencode-ai</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>opencode -v</code>可看到输出版本号即说明安装成功。</p>
+<h4 id="配置OpenCode大模型"><a href="#配置OpenCode大模型" class="headerlink" title="配置OpenCode大模型"></a>配置OpenCode大模型</h4><p>使用<code>opencode</code>命令进入OpenCode，输入<code>/connect</code>选择大模型供应商，配置API Key即可使用。</p>
+<p>OpenCode同样提供OpenCode Go和OpenCode Zen大模型服务，这两个服务聚合力主流的大模型，可按需切换使用。OpenCode Go相对便宜，聚合了大量开源优质大模型；OpenCode Zen相对贵一些，聚合了大量闭源优质模型。可访问<a href="https://opencode.ai/">https://opencode.ai/</a>了解更多。</p>
+<h4 id="安装oh-my-opencode插件"><a href="#安装oh-my-opencode插件" class="headerlink" title="安装oh-my-opencode插件"></a>安装oh-my-opencode插件</h4><p>oh-my-opencode是OpenCode的增强插件。</p>
+<p>打开OpenCode，粘贴如下内容并执行即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install and configure oh-my-opencode by following the instructions here:</span><br><span class="line">https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/refs/heads/master/docs/guide/installation.md</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="安装MiniCode"><a href="#安装MiniCode" class="headerlink" title="安装MiniCode"></a>安装MiniCode</h3><p>MiMoCode是小米参考OpenCode开发的CLI工具，对中文支持友好。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://mimo.xiaomi.com/install | bash</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>source ~/.bashrc</code>或退出重新进入虚机，输入<code>mimo -v</code>可看到输出版本号即说明安装成功。</p>
+<h2 id="可选配置"><a href="#可选配置" class="headerlink" title="可选配置"></a>可选配置</h2><h3 id="设置网络代理脚本"><a href="#设置网络代理脚本" class="headerlink" title="设置网络代理脚本"></a>设置网络代理脚本</h3><p>将以下脚本追加至<code>~/.bashrc</code>中，这样可以使用命令<code>proxy_on</code>开启代理，<code>proxy_off</code>关闭代理，<code>proxy_status</code>查看代理状态，也可以使用<code>curl https://www.google.com</code>测试是否代理生效。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启代理 (默认地址为 http://127.0.0.1:7897，请根据你的实际情况修改)</span></span><br><span class="line"><span class="function"><span class="title">proxy_on</span></span>() &#123;</span><br><span class="line">    <span class="comment"># 如果传入了参数，则使用传入的参数作为代理地址；否则使用默认地址</span></span><br><span class="line">    <span class="built_in">local</span> proxy_url=<span class="variable">$&#123;1:-&quot;http://127.0.0.1:7897&quot;&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">export</span> http_proxy=<span class="string">&quot;<span class="variable">$proxy_url</span>&quot;</span></span><br><span class="line">    <span class="built_in">export</span> https_proxy=<span class="string">&quot;<span class="variable">$proxy_url</span>&quot;</span></span><br><span class="line">    <span class="built_in">export</span> HTTP_PROXY=<span class="string">&quot;<span class="variable">$proxy_url</span>&quot;</span></span><br><span class="line">    <span class="built_in">export</span> HTTPS_PROXY=<span class="string">&quot;<span class="variable">$proxy_url</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置不走代理的本地地址 (非常重要，否则本地服务可能无法访问)</span></span><br><span class="line">    <span class="built_in">export</span> no_proxy=<span class="string">&quot;localhost,127.0.0.1,::1&quot;</span></span><br><span class="line">    <span class="built_in">export</span> NO_PROXY=<span class="string">&quot;localhost,127.0.0.1,::1&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;✅ 代理已开启: <span class="variable">$proxy_url</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭代理</span></span><br><span class="line"><span class="function"><span class="title">proxy_off</span></span>() &#123;</span><br><span class="line">    <span class="built_in">unset</span> http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy NO_PROXY</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;❌ 代理已关闭&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前代理状态</span></span><br><span class="line"><span class="function"><span class="title">proxy_status</span></span>() &#123;</span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$http_proxy</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;🌐 当前代理状态: 已开启&quot;</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;   代理地址: <span class="variable">$http_proxy</span>&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;🚫 当前代理状态: 未开启&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="取消磁盘挂载"><a href="#取消磁盘挂载" class="headerlink" title="取消磁盘挂载"></a>取消磁盘挂载</h3><p><strong>[WSL建议配置]</strong></p>
+<p>WSL默认会挂载主机上的磁盘至<code>/mnt</code>目录中，将以下脚本追加至<code>~/.bashrc</code>中可以取消默认挂载指定盘。如果不取消挂载，那么从WSL中会直接访问到主机文件，有误操作风险。WSL中安装了一些搜索软件（如<code>plocate</code>），因为挂载了主机上的磁盘文件，索引速度会变慢。如果没有必要，建议取消所有挂载。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 卸载主机磁盘</span></span><br><span class="line"><span class="keyword">if</span> mountpoint -q /mnt/c; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">sudo</span> umount /mnt/c;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> mountpoint -q /mnt/d; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">sudo</span> umount /mnt/d;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> mountpoint -q /mnt/e; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">sudo</span> umount /mnt/e;</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> mountpoint -q /mnt/f; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">sudo</span> umount /mnt/f;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>设置取消挂载免密，否则每次进入系统会要求输入密码，创建文件<code>sudo vim /etc/sudoers.d/umount-wsl</code>，文件内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 增加如下内容，注意xxxx需要改为对应的用户名</span><br><span class="line">xxxx ALL=(ALL) NOPASSWD: /usr/bin/umount</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置pip、uv镜像源"><a href="#设置pip、uv镜像源" class="headerlink" title="设置pip、uv镜像源"></a>设置pip、uv镜像源</h3><p><strong>[建议配置]</strong></p>
+<p>设置pip包镜像源为阿里云镜像源，可加速Python包下载速度，设置后同样适用于uv</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line"></span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+
+<p>在<code>~/.pip/pip.conf</code>中添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line">[install]</span><br><span class="line">trusted-host=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置npm、bun镜像源"><a href="#设置npm、bun镜像源" class="headerlink" title="设置npm、bun镜像源"></a>设置npm、bun镜像源</h3><p><strong>[建议配置]</strong></p>
+<p>设置npm包镜像源为阿里云镜像源，可加速node.js包下载速度，设置后同样适用于bun</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>WSL</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>config</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人开发的博客介绍</title>
+    <url>/doc/mydev/blog_readme/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>自我推荐一个自己开发的简易博客。<br><a href="https://github.com/yancai/blog">https://github.com/yancai/blog</a></p>
+<p>此博客是一个基于<a href="http://flask.pocoo.org/">Flask</a>和<a href="https://pythonhosted.org/Markdown/">Python Markdown</a>开发的简易博客。<br>本博客支持基本的Markdown语法，并且支持table和Meta信息，具体参见<a href="in/About.md">About.md</a></p>
+<span id="more"></span>
+
+<h1 id="工程依赖包安装"><a href="#工程依赖包安装" class="headerlink" title="工程依赖包安装"></a>工程依赖包安装</h1><p>本工程主要依赖于Flask、Jinja2，具体参见requirement.txt</p>
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><ol start="0">
+<li>Python环境搭建及依赖包安装，依赖包参见<code>requirements.txt</code>；</li>
+<li>将你写好的.md文件丢到<code>generate.py</code>中<code>INPUT_CONTENT</code>所配置的目录中，默认为<code>./in</code>目录；</li>
+<li>运行<code>generate.py</code>文件，生成html页面文件和索引文件；</li>
+<li>运行<code>blog.py</code>文件，启动flask网站，用以对外提供访问html文件；</li>
+<li>访问<code>http://127.0.0.1:5000/api/index/generate/</code>生成索引文件；</li>
+<li>访问<code>http://127.0.0.1:5000/upload/</code>上传你编写好的md文件（md文件名请使用英文字母、数字、中划线、下划线的组合）；</li>
+</ol>
+<h1 id="工程结构简介"><a href="#工程结构简介" class="headerlink" title="工程结构简介"></a>工程结构简介</h1><pre><code>blog
+├─start.sh          -- linux启动脚本
+├─stop.sh           -- linux停止脚本
+├─start.bat         -- windows启动脚本
+├─blog.py           -- flask工程主文件
+├─generate.py       -- Markdown生成html工具
+├─ReadMe.md         -- 本文档
+├─requirements.txt  -- 依赖包
+├─settings.py       -- flask 配置
+│
+├─api           -- 数据查询接口
+├─in
+│  └─About.md   -- 博客撰写方法说明
+│
+├─static        -- 静态资源文件夹
+│  ├─favicon.ico
+│  ├─css
+│  ├─font
+│  ├─fonts
+│  └─js
+├─templates     -- html模板
+└─utils         -- 工具类
+</code></pre>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><img src="/doc/mydev/blog_readme/screenshot.png" class="" title="截图">
+]]></content>
+      <tags>
+        <tag>blog</tag>
+        <tag>Python</tag>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Node.js安装配置</title>
+    <url>/doc/nodejs/nodejs-install/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文简介Node.js的安装和npm, yarn的安装与代理配置方法。</p>
+<span id="more"></span>
+
+<h1 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h1><p>下载Node.js安装包: <a href="https://nodejs.org/dist/v8.11.1/node-v8.11.1-linux-x64.tar.xz">node-v8.11.1-linux-x64.tar.xz</a></p>
+<h1 id="安装配置Node-js"><a href="#安装配置Node-js" class="headerlink" title="安装配置Node.js"></a>安装配置Node.js</h1><p>解压并创建软连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解压至opt目录</span></span><br><span class="line">tar -xvf node-v8.11.1-linux-x64.tar.xz -C /opt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立软连接</span></span><br><span class="line"><span class="built_in">ln</span> -vs /opt/node-v8.11.1-linux-x64 /opt/node</span><br></pre></td></tr></table></figure>
+
+<p>将node.js目录添加至环境变量<br>在<code>~/.zshrc</code>或<code>~/.bashrc</code>中添加如下内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> NODE_HOME=/opt/node</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$NODE_HOME</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>source ~/.zshrc</code>或<code>source ~/.bashrc</code>导入环境变量<br>输入<code>node -v</code>查看版本可以看到版本信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; node -v</span><br><span class="line">v8.11.1</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="配置cnpm"><a href="#配置cnpm" class="headerlink" title="配置cnpm"></a>配置cnpm</h1><p>使用淘宝的npm（<a href="https://npm.taobao.org/">TAONPM</a>）镜像下载包时候很快</p>
+<p>在<code>~/.zshrc</code>或<code>~/.bashrc</code>中添加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias cnpm=&quot;npm --registry=https://registry.npm.taobao.org --cache=$HOME/.npm/.cache/cnpm --disturl=https://npm.taobao.org/dist --userconfig=$HOME/.cnpmrc&quot;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>source ~/.zshrc</code>或<code>source ~/.bashrc</code>导入环境变量，即可使用<code>cnpm</code>命令，用法和<code>npm</code>一致，安装包时候下载会从淘宝镜像下载，速度杠杠的！</p>
+<h1 id="安装与配置yarn"><a href="#安装与配置yarn" class="headerlink" title="安装与配置yarn"></a>安装与配置yarn</h1><p>这里说的yarn是facebook推出的Node.js包管理工具<a href="https://yarnpkg.com/">yarn</a>，和Hadoop家族中的<a href="https://hadoop.apache.org/">Hadoop YARN</a>是不一样的东西。<br>yarn的包安装速度比npm快不少。  </p>
+<p>使用cnpm安装yarn</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cnpm install yarn -g</span><br></pre></td></tr></table></figure>
+
+
+<p>将yarn目录添加至环境变量<br>在<code>~/.zshrc</code>或<code>~/.bashrc</code>中添加如下内容</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/.yarn/bin</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>source ~/.zshrc</code>或<code>source ~/.bashrc</code>导入环境变量，即可使用<code>yarn</code>命令。  </p>
+<p>yarn可以使用上面提到的淘宝的npm镜像，这样yarn就更快了，配置yarn镜像方法很简单，使用命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>或者在<code>~/.yarnrc</code>中添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">registry &quot;https://registry.npm.taobao.org&quot;</span><br></pre></td></tr></table></figure>
+
+<p>之后即可使用yarn来安装管理包啦</p>
+<h1 id="npm与yarn常用配置命令"><a href="#npm与yarn常用配置命令" class="headerlink" title="npm与yarn常用配置命令"></a>npm与yarn常用配置命令</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> prefix D:\AppData\npm</span><br><span class="line">npm config <span class="built_in">set</span> cache D:\AppData\npm-cache</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置镜像源</span></span><br><span class="line">npm config <span class="built_in">set</span> registry http://registry.npm.taobao.org/</span><br><span class="line"></span><br><span class="line">yarn config <span class="built_in">set</span> global-folder D:\AppData\yarn\global</span><br><span class="line">yarn config <span class="built_in">set</span> cache-folder D:\AppData\yarn\cache</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置镜像源</span></span><br><span class="line">yarn config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<h1 id="快速链接"><a href="#快速链接" class="headerlink" title="快速链接"></a>快速链接</h1><ul>
+<li><a href="https://nodejs.org/">Node.js</a></li>
+<li><a href="https://yarnpkg.com/">yarn</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Node.js</tag>
+        <tag>npm</tag>
+        <tag>Yarn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jupyter快速部署</title>
+    <url>/doc/python/deploy_jupyter/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文简介如何部署<a href="https://jupyter.org/">jupyter</a><br>jupyter类似web版的ipython，吊炸天，帅爆了，很适合写代码示例或者技术文档</p>
+<span id="more"></span>
+
+<h1 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h1><p>默认目录为：<code>/home/jupyter</code></p>
+<ol>
+<li>使用virtualenv创建虚拟环境<br><code>virtualenv jupyter_env</code></li>
+<li>进入虚拟环境<br>linux：<code>source env/bin/active</code><br>windows：<code>jupyter_env\Scripts\activate</code></li>
+<li>安装jupyter<br><code>pip install jupyter</code></li>
+<li>启动jupyter<br><code>jupyter notebook --ip 0.0.0.0 --port 8000</code><br>浏览器打开地址访问jupyter：<a href="http://ip:port">http://ip:port</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyCharm远程调试Python代码</title>
+    <url>/doc/python/pycharm-remote-debug/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍如何使用<a href="https://www.jetbrains.com/pycharm/">PyCharm</a>进行远程调试Python代码。</p>
+<span id="more"></span>
+
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>PyCharm</li>
+<li>远程环境，本例中为linux系统</li>
+</ul>
+<h1 id="方法一：使用远程解释器调试"><a href="#方法一：使用远程解释器调试" class="headerlink" title="方法一：使用远程解释器调试"></a>方法一：使用远程解释器调试</h1><ol>
+<li><p>准备代码<br>以下为需要远程调试的代码<code>demo.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name=<span class="string">&quot;world!&quot;</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello &quot;</span> + name)</span><br><span class="line">    hostname = socket.gethostname()</span><br><span class="line">    <span class="built_in">print</span>(hostname)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    hello_world()</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>PyCharm连接到远程环境<br>点击【Tools】-【Deployment】-【Configuration】  </p>
+<img src="/doc/python/pycharm-remote-debug/001.png" class="" title="001.png">
+
+<p>点“+”加号，新增一个sftp配置</p>
+<img src="/doc/python/pycharm-remote-debug/002.png" class="" title="002.png">
+
+<p>填写host, port, User name, Password等信息，填写好后可以点击<code>Test SFTP connection...</code>来测试配置是否正确。可以点击<code>Autodetect</code>自动填写Root path，或者手动配置  </p>
+<img src="/doc/python/pycharm-remote-debug/003.png" class="" title="003.png">
+
+<p>点击【Mappings】来配置远程服务器目录和本地目录映射关系，填写Local path, Deployment path on server，也可以点击右侧<code>...</code>来手动选择目录。<strong>注意，Deployment path on server填写的是以Root path为根目录的相对路径</strong>，可以在【Excluded Paths】中填写需要被排除同步的文件或文件夹，点击OK保存配置</p>
+<img src="/doc/python/pycharm-remote-debug/004.png" class="" title="004.png">
+</li>
+<li><p>上传代码至远程服务器<br>在需要上传的代码或文件夹上点击右键-【Deployment】-【Upload to …】，即可将代码上传至远程服务器  </p>
+<img src="/doc/python/pycharm-remote-debug/005.png" class="" title="005.png">
+
+<p>可以点击【Tools】-【Deployment】-【Browse Remote Host】查看远程服务器<code>Root path</code>下的目录结构</p>
+<img src="/doc/python/pycharm-remote-debug/006.png" class="" title="006.png">
+</li>
+<li><p>配置远程解释器<br>点击【settings】-【Project Interpreter】-【右上方小齿轮】-【add】</p>
+<img src="/doc/python/pycharm-remote-debug/007.png" class="" title="007.png">
+
+<p>点击【SSH Interpreter】-【Existing server configuration】，然后选择move，下一步 </p>
+<img src="/doc/python/pycharm-remote-debug/008.png" class="" title="008.png">
+
+<p>填写Interpreter（远程服务器Python解释器路径）,以及Sync folders（本地目录和远程目录的映射关系），点击Finish完成</p>
+<img src="/doc/python/pycharm-remote-debug/009.png" class="" title="009.png">
+</li>
+<li><p>开始调试或运行<br>在保证远程Python解释器环境安装了工程所需的依赖包后，开始调试或者运行即可</p>
+</li>
+</ol>
+<h1 id="方法二：使用pycharm-debug包调试"><a href="#方法二：使用pycharm-debug包调试" class="headerlink" title="方法二：使用pycharm-debug包调试"></a>方法二：使用pycharm-debug包调试</h1><ol>
+<li><p>准备代码<br>以下为需要远程调试的代码<code>demo.py</code>，将代码上传至远程服务器上</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name=<span class="string">&quot;world!&quot;</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello &quot;</span> + name)</span><br><span class="line">    hostname = socket.gethostname()</span><br><span class="line">    <span class="built_in">print</span>(socket.gethostname())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    hello_world()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>远程服务器上安装<code>pytharm-debug.egg</code>（Python2.x适用）或<code>pycharm-debug-py3k.egg</code>（Python3.x适用）<br>安装包位于pycharm安装目中的<code>debug-eggs</code>目录中，将需要的安装包上传至远程服务器上，使用如下命令安装依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">easy_install pycharm-debug.egg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在本地pycharm中新建远程调试配置  </p>
+<img src="/doc/python/pycharm-remote-debug/010.png" class="" title="010.png">
+
+<p>新建<code>Python Remote Debug</code></p>
+<img src="/doc/python/pycharm-remote-debug/011.png" class="" title="011.png">
+
+<p>填写本地ip，端口（本地启动调试服务的端口，不和已有端口冲突即可），远程和本地目录映射关系（此处可以不配置，调试启动是选择Download远程代码也可以）  </p>
+<img src="/doc/python/pycharm-remote-debug/012.png" class="" title="012.png">
+</li>
+<li><p>修改远程需要调试的代码</p>
+<p> 将如下代码添加至远程需要被调试的代码中，添加至需要开始调试的地方</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pydevd</span><br><span class="line">pydevd.settrace(<span class="string">&#x27;10.60.84.78&#x27;</span>, port=<span class="number">6666</span>, stdoutToServer=<span class="literal">True</span>, stderrToServer=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p> 例如：</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pydevd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello_world</span>(<span class="params">name=<span class="string">&quot;world!&quot;</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello &quot;</span> + name)</span><br><span class="line">    pydevd.settrace(<span class="string">&#x27;10.60.84.78&#x27;</span>, port=<span class="number">6666</span>, stdoutToServer=<span class="literal">True</span>, stderrToServer=<span class="literal">True</span>)</span><br><span class="line">    hostname = socket.gethostname()</span><br><span class="line">    <span class="built_in">print</span>(hostname)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    hello_world()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>远程代码启动  </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python demo.py</span><br></pre></td></tr></table></figure>
+<p>启动后，运行至<code>pydevd.settrace(...</code>处会等待pycharm启动debug</p>
+</li>
+<li><p>PyCharm启动Remote Debug  </p>
+<img src="/doc/python/pycharm-remote-debug/013.png" class="" title="013.png">
+
+<p>此时若没有配置目录映射，则会提示如下信息：</p>
+<img src="/doc/python/pycharm-remote-debug/014.png" class="" title="014.png">
+<p>选择Download可以下载远程代码，也可以配置目录映射  </p>
+<p>之后可进入到开始调试了的入口，可以开始调试啦</p>
+<img src="/doc/python/pycharm-remote-debug/015.png" class="" title="015.png"></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>debug</tag>
+        <tag>PyCharm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tutorial-pip</title>
+    <url>/doc/python/tutorial-pip/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍：</p>
+<ul>
+<li>Python包是什么？</li>
+<li>如何安装Python包？</li>
+<li>以及Python的常用包管理工具<a href="https://pip.pypa.io/en/stable/">pip</a>(Package Installer for Python)的常用方法和配置方式。</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="Python包"><a href="#Python包" class="headerlink" title="Python包"></a>Python包</h1><p>在常见的语言中，都会将一个或一组功能封装好，以包的形式发布复用。比如：Java使用maven构建jar包、war包；Node.js使用npm安装管理包。</p>
+<p>Python中也有包这一概念。Python包的格式也是经历了几代的进步，最早有<code>.egg</code>包（Python是大蟒，egg是蛋，那么Python的包就叫做egg），后来有<code>.whl</code>包，直到如今很多包使用<code>.zip</code>、<code>.tar.gz</code>。如今的Python包已经越来越好用了。</p>
+<h1 id="Python包安装方法"><a href="#Python包安装方法" class="headerlink" title="Python包安装方法"></a>Python包安装方法</h1><p>Python包如何安装呢？以下将介绍一下Python包的手动安装方式。</p>
+<blockquote>
+<p>安装Python包，绝大多数情况下建议使用本文后半部分的pip方式安装，只在万不得已的情况下使用手动安装。例如：只有安装包，而没有网络时候。</p>
+</blockquote>
+<p>以下将介绍如何手动安装Python中一个大名鼎鼎的包——<a href="http://python-requests.org/"><code>requests</code></a>，其它包的安装方式类似，request包下载地址如下：<br><a href="https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz">https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz</a></p>
+<p>下载好包之后，在任意目录解压开，可以看到如下的目录结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`-- requests-2.21.0</span><br><span class="line">    |-- HISTORY.md</span><br><span class="line">    |-- LICENSE</span><br><span class="line">    |-- MANIFEST.in</span><br><span class="line">    |-- Pipfile</span><br><span class="line">    |-- Pipfile.lock</span><br><span class="line">    |-- PKG-INFO</span><br><span class="line">    |-- pytest.ini</span><br><span class="line">    |-- README.md</span><br><span class="line">    |-- requests</span><br><span class="line">    |-- requests.egg-info</span><br><span class="line">    |-- setup.cfg</span><br><span class="line">    |-- setup.py</span><br><span class="line">    `-- tests</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>setup.py</code>是一个很关键的文件</p>
+<p>在<code>setup.py</code><strong>同级目录</strong>中使用如下命令即可安装<code>requests</code>包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li>务必在<code>setup.py</code><strong>同级目录</strong>中执行如上命令，否则会有可能导致安装失败</li>
+<li>安装时打印的日志如果没有异常，那么安装就顺利完成啦</li>
+<li>不同平台由于用户权限的问题，在执行<code>python setup.py install</code>时，可能需要<code>root</code>权限，在最前面加<code>sudo</code>，即<code>sudo python setup.py install</code></li>
+<li>由于Python包之间可能存在依赖关系，安装A包时候如果依赖了B包，但是B包如果没有安装，那么A包会安装失败，所以还是建议使用更高级的pip来进行包管理</li>
+</ol>
+<h1 id="pip是神马？PyPI是神马？"><a href="#pip是神马？PyPI是神马？" class="headerlink" title="pip是神马？PyPI是神马？"></a>pip是神马？PyPI是神马？</h1><blockquote>
+<p>pip is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes.</p>
+</blockquote>
+<p>以上这段是<a href="https://pip.pypa.io/">pip官方</a>的一段话，解释了pip和PyPI是什么，以及两者之间的关系。</p>
+<p>简单的来讲，pip（Package Installer for Python）就是Python的安装工具。使用pip可以从<a href="https://pypi.org/">PyPI（Python Package Index）官方索引</a>下载并安装Python包，或者从其他镜像源下载。</p>
+<p>使用pip安装Python包的时候，可以解决包依赖之间的问题，也可以一次下载安装多个Python包，目前pip已经是Python官方所支持的包安装工具。在某些环境（例如Windows）上安装Python时，已经自带pip工具。</p>
+<p>常用的PyPI镜像如下：</p>
+<ul>
+<li>PyPI官方：<a href="https://pypi.org/">https://pypi.org/</a></li>
+<li>阿里PyPI镜像源：<a href="https://mirrors.aliyun.com/pypi/simple/">https://mirrors.aliyun.com/pypi/simple/</a></li>
+<li>网易PyPI镜像源：<a href="http://mirrors.163.com/pypi/simple/">http://mirrors.163.com/pypi/simple/</a></li>
+<li>豆瓣PyPI镜像源：<a href="https://pypi.doubanio.com/simple/">https://pypi.doubanio.com/simple/</a></li>
+</ul>
+<h1 id="pip的安装方法"><a href="#pip的安装方法" class="headerlink" title="pip的安装方法"></a>pip的安装方法</h1><h2 id="Windows系统安装pip"><a href="#Windows系统安装pip" class="headerlink" title="Windows系统安装pip"></a>Windows系统安装pip</h2><p>Windows上安装包目前已经自带了pip，安装时勾选pip即可。  </p>
+<img src="/doc/python/tutorial-pip/01.jpg" class="" title="01.jpg">  
+
+<h2 id="Ubuntu系统安装pip"><a href="#Ubuntu系统安装pip" class="headerlink" title="Ubuntu系统安装pip"></a>Ubuntu系统安装pip</h2><p>Ubuntu上通常并没有自带pip，使用apt即可安装pip，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装Python3对应的pip</span></span><br><span class="line"><span class="built_in">sudo</span> apt install python3-pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Python2对应的pip</span></span><br><span class="line"><span class="built_in">sudo</span> apt install python-pip</span><br></pre></td></tr></table></figure>
+
+<h2 id="CentOS系统安装pip"><a href="#CentOS系统安装pip" class="headerlink" title="CentOS系统安装pip"></a>CentOS系统安装pip</h2><p>通常yum的官方仓库中木有pip，呵呵<br>so~<br>参考下面的通用安装pip方法</p>
+<h2 id="通用安装pip方法"><a href="#通用安装pip方法" class="headerlink" title="通用安装pip方法"></a>通用安装pip方法</h2><p>由于各平台包管理工具对于pip支持不尽相同，因此有时候不得不使用手动方式安装pip，手动安装方式在<code>Windows</code>、<code>CentOS</code>、<code>Ubuntu</code>、<code>Mac</code>等系统上均适用。</p>
+<ol>
+<li><p>下载安装包<br> 从PyPI搜索并下载<a href="https://pypi.org/"><code>https://pypi.org/</code></a>，下载时候如果没有特殊要求，那就直接下载最新的稳定版本；</p>
+<p> <strong>或者</strong>从点击如下超链接直接下载：</p>
+<ul>
+<li><a href="https://files.pythonhosted.org/packages/36/fa/51ca4d57392e2f69397cd6e5af23da2a8d37884a605f9e3f2d3bfdc48397/pip-19.0.3.tar.gz"><code>pip-19.0.3.tar.gz</code></a></li>
+</ul>
+</li>
+<li><p>安装pip  </p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解压pip包</span></span><br><span class="line">tar -xvf pip-19.0.3.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> pip-19.0.3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装pip</span></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p> <strong>注意</strong>：<br> 不同平台上由于Python环境不同，可能有些环境上安装pip时会报缺少<code>setuptools</code>，例如：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File &quot;setup.py&quot;, line 6, in &lt;module&gt;</span><br><span class="line">    from setuptools import find_packages, setup</span><br><span class="line">ImportError: No module named setuptools</span><br></pre></td></tr></table></figure>
+
+<p> 在这种情况下，需要先手动安装<code>setuptools</code>，可以从<a href="https://pypi.org/">PyPI</a>搜索下载，或点击此处<a href="https://files.pythonhosted.org/packages/c2/f7/c7b501b783e5a74cf1768bc174ee4fb0a8a6ee5af6afa92274ff964703e0/setuptools-40.8.0.zip"><code>setuptools-40.8.0.zip</code></a>下载安装包。</p>
+</li>
+</ol>
+<h1 id="pip的常用操作"><a href="#pip的常用操作" class="headerlink" title="pip的常用操作"></a>pip的常用操作</h1><ol>
+<li><p>搜索包  </p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜索 名称为xxx 的包</span></span><br><span class="line">pip search xxx</span><br></pre></td></tr></table></figure>
+
+<p> 示例：搜索名为request的包</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip search requests</span><br><span class="line">requests-hawk (1.0.0)                  - requests-hawk</span><br><span class="line">requests-dump (0.1.3)                  - `requests-dump` provides hook functions for requests.</span><br><span class="line">...</span><br><span class="line">requests (2.21.0)                      - Python HTTP for Humans.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装包  </p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 名称为xxx 的包</span></span><br><span class="line">pip install xxx</span><br></pre></td></tr></table></figure>
+
+<p> 示例</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 名称为requests 的包</span></span><br><span class="line">pip install requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本为2.21.0 的包</span></span><br><span class="line">pip install requests==2.21.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本号小于等于2.20 的包</span></span><br><span class="line">pip install <span class="string">&#x27;requests&lt;=2.20&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本号大于等于2.10且小于2.15 的包</span></span><br><span class="line">pip install <span class="string">&#x27;requests&gt;=2.10,&lt;2.15&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载包  </p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 卸载 名称为xxx 的包</span></span><br><span class="line">pip uninstall xxx</span><br></pre></td></tr></table></figure>
+
+<p> 示例</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 卸载 名称为requests 的包</span></span><br><span class="line">pip uninstall requests</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出当前环境已安装的Python包  </p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pip list</span><br><span class="line">Package               Version</span><br><span class="line">--------------------- ----------</span><br><span class="line">pip                   18.0</span><br><span class="line">pipenv                2018.11.26</span><br><span class="line">requests              2.21.0</span><br><span class="line">setuptools            39.0.1</span><br><span class="line">virtualenv            16.0.0</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="pip镜像配置"><a href="#pip镜像配置" class="headerlink" title="pip镜像配置"></a>pip镜像配置</h1><p>使用pip安装包时，默认会从<a href="https://pypi.org/">PyPI</a>官方下载包。由于网络的原因，通常会下载比较慢或者无法下载。为了解决这个问题，可以修改默认的pip下载镜像源，改为速度较快的镜像源。</p>
+<p>以下示例为修改pip镜像源为<a href="https://opsx.alibaba.com/mirror">阿里巴巴开源镜像站</a>的PyPI镜像源（若使用其它镜像源，配置方法类似）：</p>
+<ul>
+<li>在<code>Linux</code>系统或<code>Mac</code>系统创建文件：<code>~/.pip/pip.conf</code></li>
+<li>在<code>Windows</code>系统创建文件：<code>%USERPROFILE%\pip\pip.ini</code></li>
+</ul>
+<p>具体文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span>=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<p>按照如上配置后，再使用pip安装包时，就会从指定的镜像源下载包了，然后就可以开始愉快的玩耍啦~</p>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+        <tag>pip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用docker-compose编排容器快速上手指南</title>
+    <url>/doc/docker/docker-compose-quickstart/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在了解了docker的基本用法以及使用dockerfile构建镜像后，我们可以看起来开森愉快的捣腾docker容器了。<br>部署个nginx，折腾个tomcat，多版本Python，整个Hadoop等等等等。<br>爽了一段时间，容器逐渐越来越多时候，就会发现又有了新问题。<br>比个如，如果要搭建个简单的web服务，使用MySQL数据库（一个容器），使用Python Flask开发web（又一个容器），使用Nginx + uwsgi做反向代理（再一个容器），数据库可能会做读写分离，web服务可能会做高可用或者负载均衡。对于这个常见的场景，最简单那就几个容器一个个启动，彼此间约定好访问的ip或者域名。使用久了就会发现比较麻烦，如果要删除重新拉起一套，一个个查容器id，停止，删除，再启动，容器多了就会超级麻烦。</p>
+<p>一个好的办法就是用<a href="https://docs.docker.com/compose/">docker-compose</a>来管理编排多个服务。</p>
+<p>本文将简单介绍使用docker-compose编排服务的基本使用方法。</p>
+<span id="more"></span>
+
+<h1 id="docker-compose安装"><a href="#docker-compose安装" class="headerlink" title="docker-compose安装"></a>docker-compose安装</h1><p><a href="https://docs.docker.com/compose/install/">《Install Docker Compose》</a>这个里面有关docker-compose的安装方法写的挺详细的，建议时间充足阅读这个。  </p>
+<p>这里简单介绍下快速安装docker-compose的方法。<br>执行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载docker-compose</span></span><br><span class="line"><span class="built_in">sudo</span> curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(<span class="built_in">uname</span> -s)-$(<span class="built_in">uname</span> -m) -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加可执行权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p>验证是否安装成功，输入如下命令，查看docker-compose版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> docker-compose --version</span><br></pre></td></tr></table></figure>
+
+<p>输出版本信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose version 1.21.0, build 5920eb0</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker-compose使用方法"><a href="#docker-compose使用方法" class="headerlink" title="docker-compose使用方法"></a>docker-compose使用方法</h1><h2 id="demo示例"><a href="#demo示例" class="headerlink" title="demo示例"></a>demo示例</h2><p>下面展示个简单的例子，直接上相关文件内容：</p>
+<p>创建一个<code>demo</code>的目录，目录中包含有<code>docker-compose.yml</code>的文件，目录结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">demo</span><br><span class="line">└── docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p><code>docker-compose.yml</code>中的内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">nginx:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:1.13.12</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="number">8000</span><span class="string">:8000</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">front</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">python:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">python:2.7</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">python</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">python</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">front</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">backend</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">mysql:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">mysql:5.6</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">mysql</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">mysql</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">backend</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">front:</span></span><br><span class="line">    <span class="attr">backend:</span></span><br></pre></td></tr></table></figure>
+
+<p>先解释下如上的内容：</p>
+<ol>
+<li>创建了三个容器，分别为<code>nginx</code>, <code>python</code>, <code>mysql</code>；</li>
+<li>创建了两个网络层面，分别为<code>front</code>和<code>backend</code>；</li>
+<li><code>nginx</code>和<code>python</code>使用网络平面<code>front</code>，<code>python</code>和<code>mysql</code>使用网络平面<code>backend</code>，<code>nginx</code>无法访问<code>mysql</code>；</li>
+</ol>
+<h2 id="启动和验证"><a href="#启动和验证" class="headerlink" title="启动和验证"></a>启动和验证</h2><p>进入<code>demo</code>目录，使用如下命令拉起容器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>看到如下内容说明拉起成功</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Creating network &quot;demo_front&quot; with the default driver</span><br><span class="line">Creating network &quot;demo_backend&quot; with the default driver</span><br><span class="line">Creating python ... done</span><br><span class="line">Creating mysql  ... done</span><br><span class="line">Creating nginx  ... done</span><br></pre></td></tr></table></figure>
+
+<p>使用命令<code>sudo docker network ls</code>，可以查到有名为<code>demo_front</code>和<code>demo_backend</code>的两个网路。<br>使用命令<code>sudo docker inspect demo_front</code>或<code>sudo docker inspect demo_backend</code>可以查看网络平面详细信息。  </p>
+<p>使用命令<code>sudo docker exec -it python /bin/bash</code>，进入容器<code>python</code>。在容器<code>python</code>中测试访问<code>nginx</code>和<code>mysql</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping nginx</span><br><span class="line">ping mysql</span><br></pre></td></tr></table></figure>
+<p>容器<code>python</code>可以ping通容器<code>nginx</code>和容器<code>mysql</code>。 而<code>nginx</code>和<code>mysql</code>之间无法ping通。</p>
+<h2 id="停止和删除"><a href="#停止和删除" class="headerlink" title="停止和删除"></a>停止和删除</h2><p>使用如下命令可以一把停止和删除相关容器和网络，而无需手动一个个的停止再删除</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker-compose down</span><br></pre></td></tr></table></figure>
+
+<h2 id="网路问题"><a href="#网路问题" class="headerlink" title="网路问题"></a>网路问题</h2><p>常见的一个问题：假如需要扩容或者增加一个python的web服务，不妨称之为<code>webapp02</code>，新的<code>webapp02</code>服务需要加入到上面的<code>front</code>网络平面中，需要和nginx以及上面的python服务相互访问。可以使用docker命令的<code>--link</code>把<code>webapp02</code>和<code>nginx</code>、<code>python</code>连接起来，更好的办法是使用docker-compose来编排新的<code>webapp02</code>和其它容器或者网络之间的关系。  </p>
+<p>示例如下：<br>目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">demo-ext</span><br><span class="line">└── docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>docker-compose.yml内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">webapp02:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">python:2.7</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">webapp02</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">webapp02</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">front</span></span><br><span class="line">        <span class="comment">#    - backend</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">front:</span></span><br><span class="line">        <span class="attr">external:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">demo_front</span></span><br><span class="line"><span class="comment">#    backend:</span></span><br><span class="line"><span class="comment">#        external:</span></span><br><span class="line"><span class="comment">#            name: demo_backend</span></span><br></pre></td></tr></table></figure>
+
+<p>进入demo-ext目录中使用命令启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>可以看到如下信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WARNING: Some networks were defined but are not used by any service: backend</span><br><span class="line">Creating webapp02 ... done</span><br></pre></td></tr></table></figure>
+
+<p>进入容器<code>webapp02</code>后，测试可以ping通容器<code>nginx</code>和容器<code>python</code>，而无法ping通容器<code>mysql</code>。如需访问容器<code>mysql</code>删掉上面的<code>#</code>取消注释，重新使用命令<code>sudo docker-compose up -d</code>拉起即可。</p>
+<hr>
+<p>以上为一个简单的docker-compose使用示例，后面将会给出一个详细的<code>nginx</code>+<code>flask</code>+<code>mysql</code>的示例。</p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>docker-compose</tag>
+      </tags>
+  </entry>
+</search>

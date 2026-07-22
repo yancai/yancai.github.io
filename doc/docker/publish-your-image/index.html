@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Note.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/Note.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancai.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介 假如你有一个比较好的docker镜像怎么发布出来供大家使用呢？   你是否遇到过国外某些镜像很难下载下来呢？   你是否想过拥有一个自己的镜像仓库呢？  本文将介绍如何使用Docker Hub和阿里云的容器镜像服务来创建自己的docker镜像仓库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布你的个人docker镜像">
+<meta property="og:url" content="https://yancai.github.io/doc/docker/publish-your-image/index.html">
+<meta property="og:site_name" content="YanCai&#39;s some notes">
+<meta property="og:description" content="简介 假如你有一个比较好的docker镜像怎么发布出来供大家使用呢？   你是否遇到过国外某些镜像很难下载下来呢？   你是否想过拥有一个自己的镜像仓库呢？  本文将介绍如何使用Docker Hub和阿里云的容器镜像服务来创建自己的docker镜像仓库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-01.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-02.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-03.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-04.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-05.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-06.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-07.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-08.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-09.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-10.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-01.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-02.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-03.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-04.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-05.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-06.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/publish-your-image/aliyun-hub-07.png">
+<meta property="article:published_time" content="2018-08-24T08:31:43.000Z">
+<meta property="article:modified_time" content="2026-07-22T11:35:16.225Z">
+<meta property="article:author" content="YanCai">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yancai.github.io/doc/docker/publish-your-image/docker-hub-01.png">
+
+
+<link rel="canonical" href="https://yancai.github.io/doc/docker/publish-your-image/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yancai.github.io/doc/docker/publish-your-image/","path":"doc/docker/publish-your-image/","title":"发布你的个人docker镜像"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>发布你的个人docker镜像 | YanCai's some notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?fa919c3ef1b756e53587dd9af91c35b4"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">YanCai's some notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">😝</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dockerfile"><span class="nav-number">2.</span> <span class="nav-text">Dockerfile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-Hub"><span class="nav-number">3.</span> <span class="nav-text">Docker Hub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91-%E9%95%9C%E5%83%8F%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">阿里云 镜像容器服务</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">YanCai</p>
+  <div class="site-description" itemprop="description">一点点记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yancai/yancai.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yancai&#x2F;yancai.github.io" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yancai915@gmail.com" title="E-Mail → mailto:yancai915@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/docker/publish-your-image/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="YanCai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YanCai's some notes">
+      <meta itemprop="description" content="一点点记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="发布你的个人docker镜像 | YanCai's some notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          发布你的个人docker镜像
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-08-24 16:31:43" itemprop="dateCreated datePublished" datetime="2018-08-24T16:31:43+08:00">2018-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-22 19:35:16" itemprop="dateModified" datetime="2026-07-22T19:35:16+08:00">2026-07-22</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>假如你有一个比较好的docker镜像怎么发布出来供大家使用呢？  </li>
+<li>你是否遇到过国外某些镜像很难下载下来呢？  </li>
+<li>你是否想过拥有一个自己的镜像仓库呢？</li>
+</ul>
+<p>本文将介绍如何使用<a href="https://hub.docker.com/">Docker Hub</a>和<a href="https://www.aliyun.com/">阿里云</a>的容器镜像服务来创建自己的docker镜像仓库</p>
+<span id="more"></span>
+
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>以下为本文构建镜像时所使用的Dockerfile</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> k8s.gcr.io/etcd-amd64:<span class="number">3.1</span>.<span class="number">12</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> yancai yancai915@gamil.com</span><br></pre></td></tr></table></figure>
+<p>文件托管于<a href="https://github.com/yancai/myDockerfiles/blob/master/kubernetes/etcd-amd64/Dockerfile">https://github.com/yancai/myDockerfiles/blob/master/kubernetes/etcd-amd64/Dockerfile</a></p>
+<h1 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h1><ol>
+<li><p>打开<a href="https://hub.docker.com/">https://hub.docker.com</a></p>
+</li>
+<li><p>注册一个Docker Hub用户，并登录</p>
+</li>
+<li><p>绑定GitHub账号<br>点击【Setting】 - 【Linked Accounts &amp; Service】绑定Github账号  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-01.png" class="" title="docker-hub-01">
+
+<p>选择Public and Private  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-02.png" class="" title="docker-hub-02">
+
+<p>跳转至GitHub页面，授权即可</p>
+<p>授权后可以看到已经绑定成功  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-03.png" class="" title="docker-hub-03">
+</li>
+<li><p>创建构建计划<br>点击【Create】-【Create Automated Build】，选择GitHub  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-04.png" class="" title="docker-hub-04">
+
+<p>选择Dockerfile所在的仓库  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-05.png" class="" title="docker-hub-05">
+
+<p>填写镜像名称和介绍信息后点击【Create】  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-06.png" class="" title="docker-hub-06">
+
+<p>设置构建计划<br>选择【Type】，选择<code>Branch</code>或<code>Tag</code><br>填写【Name】，填写<code>Branch</code>或<code>Tag</code>的名称<br>填写【Dockerfile Location】，此路径为相对于GitHub仓库代码根目录的Dockerfile所在的路径<br>填写【Docker Tag Name】，版本信息<br>完成后点击【Save Changes】保存  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-07.png" class="" title="docker-hub-07">
+</li>
+<li><p>触发构建<br>首次保存构建信息后，如需开始构建需要手动点击【Trigger】触发构建。稍等片刻即可完成构建。<br>之后在GitHub上修改了相关代码提交后会自动触发Docker Hub构建。  </p>
+<img src="/doc/docker/publish-your-image/docker-hub-08.png" class="" title="docker-hub-08">
+</li>
+<li><p>下载镜像<br>构建完成后可以根据【Repo Info】和【Tags】中的镜像信息下载镜像，例如本示例下载方式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker pull yancai/demo-image:3.1.12</span><br></pre></td></tr></table></figure>
+<img src="/doc/docker/publish-your-image/docker-hub-09.png" class="" title="docker-hub-09">  
+<img src="/doc/docker/publish-your-image/docker-hub-10.png" class="" title="docker-hub-10"></li>
+</ol>
+<p>Docker Hub提供的镜像构建服务挺好用的，唯一就是构建好之后下载镜像时候，由于网络原因可能会十分慢。可以借用国内的一些类似Docker Hub的镜像服务来进行镜像构建和下载。<br>以下将介绍如何在<a href="https://dev.aliyun.com/">阿里云容器Hub</a>上进行Docker镜像构建和下载。</p>
+<h1 id="阿里云-镜像容器服务"><a href="#阿里云-镜像容器服务" class="headerlink" title="阿里云 镜像容器服务"></a>阿里云 镜像容器服务</h1><ol>
+<li><p>打开<a href="https://dev.aliyun.com/">https://dev.aliyun.com</a></p>
+</li>
+<li><p>注册一个阿里云账号，并登录，进入<a href="https://cr.console.aliyun.com/repositories">容器镜像服务页面</a></p>
+</li>
+<li><p>绑定GitHub账号<br>点击【代码源】-【Github 绑定账号】进行授权绑定代码源  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-01.png" class="" title="aliyun-hub-01">
+</li>
+<li><p>创建镜像仓库<br>点击【镜像仓库】-【创建镜像仓库】<br>选择【地域】<br>选择【命名空间】，如果没有则点击左侧【命名空间】创建命名空间<br>填写【仓库名称】、【摘要】、【描述信息】<br>选择【仓库类型】<br>点击下一步继续  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-02.png" class="" title="aliyun-hub-02">
+
+<p>选择GitHub，绑定Dockefile对应的仓库<br>如果有些镜像在国内拉取比较慢或者无法拉取，可以勾选【海外机构建】<br>点击【创建镜像仓库】保存镜像信息  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-03.png" class="" title="aliyun-hub-03">
+
+<p>点击对应仓库的【管理】设置构建详情  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-04.png" class="" title="aliyun-hub-04">
+
+<p>点击【构建】-【添加规则】<br>选择代码分支或Tag<br>填写【Dockerfile目录】，此路径为相对于GitHub仓库代码根目录的Dockerfile所在的路径<br>填写【Dockerfile文件名】<br>填写【镜像版本】<br>点击【确认】保存  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-05.png" class="" title="aliyun-hub-05">
+</li>
+<li><p>触发构建<br>首次保存构建信息后，如需开始构建需要手动点击【立即构建】触发构建。稍等片刻即可完成构建。<br>如果开启了【代码变更时自动构建镜像】，那么在GitHub上修改了相关代码提交后会自动触发构建。  </p>
+<img src="/doc/docker/publish-your-image/aliyun-hub-06.png" class="" title="aliyun-hub-06">
+</li>
+<li><p>下载镜像<br>构建完成后根据镜像的【基本信息】、【镜像版本】中的内容可以获取到下载镜像的地址。</p>
+<p>例如本示例镜像下载方式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker pull registry.cn-hangzhou.aliyuncs.com/yancai/demo:3.1.12</span><br></pre></td></tr></table></figure>
+<img src="/doc/docker/publish-your-image/aliyun-hub-07.png" class="" title="aliyun-hub-07"></li>
+</ol>
+<p>使用阿里云下载构建好的镜像，感觉就一个字：快！<br>如此，国外有些镜像难以下载时候，使用阿里云间接拉取构建，下载到本地后重命名镜像名称，这样也就间接的下载了一些无法拉取下来的镜像。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/doc/docker/minikube-install/" rel="prev" title="minikube 安装介绍">
+                  <i class="fa fa-angle-left"></i> minikube 安装介绍
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/doc/go/go-env/" rel="next" title="go开发环境配置">
+                  go开发环境配置 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">YanCai</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">16k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">57 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

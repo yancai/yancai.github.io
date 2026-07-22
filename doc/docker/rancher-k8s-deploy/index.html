@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Note.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/Note.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancai.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介本文将介绍在VMware虚拟环境下使用Rancher部署Kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用rancher部署kubernetes介绍">
+<meta property="og:url" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/index.html">
+<meta property="og:site_name" content="YanCai&#39;s some notes">
+<meta property="og:description" content="简介本文将介绍在VMware虚拟环境下使用Rancher部署Kubernetes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/01.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/02.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/03.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/04.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/05.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/06.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/07.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/08.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/09.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/10.png">
+<meta property="og:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/11.png">
+<meta property="article:published_time" content="2018-09-10T09:02:52.000Z">
+<meta property="article:modified_time" content="2026-07-22T11:35:16.227Z">
+<meta property="article:author" content="YanCai">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Rancher">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yancai.github.io/doc/docker/rancher-k8s-deploy/01.png">
+
+
+<link rel="canonical" href="https://yancai.github.io/doc/docker/rancher-k8s-deploy/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yancai.github.io/doc/docker/rancher-k8s-deploy/","path":"doc/docker/rancher-k8s-deploy/","title":"使用rancher部署kubernetes介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用rancher部署kubernetes介绍 | YanCai's some notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?fa919c3ef1b756e53587dd9af91c35b4"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">YanCai's some notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">😝</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">依赖版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%85%E5%90%ABDocker%E7%9A%84VMware%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%9B%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">包含Docker的VMware虚拟环境创建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rancher%E9%83%A8%E7%BD%B2"><span class="nav-number">4.</span> <span class="nav-text">Rancher部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2Kubernetes"><span class="nav-number">5.</span> <span class="nav-text">部署Kubernetes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2helm"><span class="nav-number">6.</span> <span class="nav-text">部署helm</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">YanCai</p>
+  <div class="site-description" itemprop="description">一点点记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yancai/yancai.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yancai&#x2F;yancai.github.io" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yancai915@gmail.com" title="E-Mail → mailto:yancai915@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/docker/rancher-k8s-deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="YanCai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YanCai's some notes">
+      <meta itemprop="description" content="一点点记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用rancher部署kubernetes介绍 | YanCai's some notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用rancher部署kubernetes介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-09-10 17:02:52" itemprop="dateCreated datePublished" datetime="2018-09-10T17:02:52+08:00">2018-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-22 19:35:16" itemprop="dateModified" datetime="2026-07-22T19:35:16+08:00">2026-07-22</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>532</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍在VMware虚拟环境下使用<a href="https://rancher.com/">Rancher</a>部署<a href="https://kubernetes.io/">Kubernetes</a></p>
+<span id="more"></span>
+
+<h1 id="依赖版本"><a href="#依赖版本" class="headerlink" title="依赖版本"></a>依赖版本</h1><ul>
+<li>docker: <code>17.03.3-ce</code></li>
+<li>rancher: <code>v1.6.21</code></li>
+<li>kubernetes: <code>v1.10.5</code></li>
+<li>helm: <code>v2.8.2</code></li>
+</ul>
+<h1 id="包含Docker的VMware虚拟环境创建"><a href="#包含Docker的VMware虚拟环境创建" class="headerlink" title="包含Docker的VMware虚拟环境创建"></a>包含Docker的VMware虚拟环境创建</h1><ol>
+<li><p>虚拟机创建<br>新建一个Linux的虚拟环境vm01，建议为CentOS7.x或Ubuntu18.04</p>
+</li>
+<li><p>安装docker</p>
+<p>安装参考: <a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a></p>
+<p>安装好后设置镜像和dns<br><code>sudo vim /etc/docker/daemon.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;registry-mirrors&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;https://registry.docker-cn.com&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dns&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;114.114.114.114&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;8.8.8.8&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;8.8.4.4&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>创建快照<br>基于vm01快照创建新的虚拟机vm02<br>在vm02中修改：<br>ubuntu <code>sudo vim /etc/cloud/cloud.cfg</code>: 设置preserve_hostname: true</p>
+<p>修改hostname和hosts</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vm01</td>
+<td>部署rancher</td>
+</tr>
+<tr>
+<td>vm02</td>
+<td>部署kubernetes</td>
+</tr>
+</tbody></table>
+<h1 id="Rancher部署"><a href="#Rancher部署" class="headerlink" title="Rancher部署"></a>Rancher部署</h1><p><strong>vm01上部署Rancher</strong>  </p>
+<ol>
+<li><p>安装Rancher<br>使用docker-compose拉起Rancher，docker-compose使用方法参见：<a href="/2018/04/23/docker/docker-compose-quickstart/">《使用docker-compose编排容器快速上手指南》</a>  </p>
+<p><code>docker-compose.yaml</code>如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">rancher:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">rancher/server:v1.6.21</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">rancher</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">rancher</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="number">8080</span><span class="string">:8080</span></span><br><span class="line">        <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure></li>
+<li><p>配置Rancher主机<br>访问<code>http://vm01:8080</code>  </p>
+<p>添加主机  </p>
+<img src="/doc/docker/rancher-k8s-deploy/01.png" class="" title="01.png">
+
+<p>Rancher API地址确认  </p>
+<img src="/doc/docker/rancher-k8s-deploy/02.png" class="" title="02.png">
+
+<p>添加主机，将生成的脚本复制并在Rancher的主机<strong>vm01</strong>上执行  </p>
+<img src="/doc/docker/rancher-k8s-deploy/03.png" class="" title="03.png">
+
+<p>稍等片刻，rancher会自动下载相关的镜像并拉起容器  </p>
+<img src="/doc/docker/rancher-k8s-deploy/04.png" class="" title="04.png"></li>
+</ol>
+<h1 id="部署Kubernetes"><a href="#部署Kubernetes" class="headerlink" title="部署Kubernetes"></a>部署Kubernetes</h1><p><strong>vm02上部署kubernetes</strong></p>
+<ol>
+<li><p>添加Kubernetes环境<br>【环境管理】-【添加环境】-选择Kubernetes  </p>
+<img src="/doc/docker/rancher-k8s-deploy/05.png" class="" title="05.png">
+</li>
+<li><p>获取添加kubernetes脚本<br>切换至kubernetes环境页面  </p>
+<img src="/doc/docker/rancher-k8s-deploy/06.png" class="" title="06.png">
+
+<p>添加主机，将生成的脚本复制并在Kubernetes的主机<strong>vm02</strong>上执行  </p>
+<img src="/doc/docker/rancher-k8s-deploy/07.png" class="" title="07.png">
+
+<p>执行后稍等片刻</p>
+<img src="/doc/docker/rancher-k8s-deploy/08.png" class="" title="08.png">
+
+<p>完成后可以查看主机上的信息</p>
+<img src="/doc/docker/rancher-k8s-deploy/09.png" class="" title="09.png">
+</li>
+<li><p>配置kubectl  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装kubectl</span></span><br><span class="line">curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.10.5/bin/linux/amd64/kubectl</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> ./kubectl /usr/local/bin/kubectl</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/kubectl</span><br></pre></td></tr></table></figure>
+<p>将kubectl配置写入vm02的<code>~/.kube/config</code>中</p>
+<img src="/doc/docker/rancher-k8s-deploy/10.png" class="" title="10.png">
+
+<img src="/doc/docker/rancher-k8s-deploy/11.png" class="" title="11.png"></li>
+</ol>
+<h1 id="部署helm"><a href="#部署helm" class="headerlink" title="部署helm"></a>部署helm</h1><p><strong>配置了kubectl配置文件的vm02上安装helm客户端</strong></p>
+<ol>
+<li><p>安装helm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz</span><br><span class="line">tar -xvf helm-v2.8.2-linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> linux-amd64/helm /usr/local/bin/helm</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/helm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化helm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm init</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Rancher/" rel="tag"># Rancher</a>
+              <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/doc/go/go-env/" rel="prev" title="go开发环境配置">
+                  <i class="fa fa-angle-left"></i> go开发环境配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/doc/python/tutorial-pip/" rel="next" title="tutorial-pip">
+                  tutorial-pip <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">YanCai</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">16k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">57 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

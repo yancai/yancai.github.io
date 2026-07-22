@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Note.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/Note.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancai.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介在了解了docker的基本用法以及使用dockerfile构建镜像后，我们可以看起来开森愉快的捣腾docker容器了。部署个nginx，折腾个tomcat，多版本Python，整个Hadoop等等等等。爽了一段时间，容器逐渐越来越多时候，就会发现又有了新问题。比个如，如果要搭建个简单的web服务，使用MySQL数据库（一个容器），使用Python Flask开发web（又一个容器），使用Ngi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用docker-compose编排容器快速上手指南">
+<meta property="og:url" content="https://yancai.github.io/doc/docker/docker-compose-quickstart/index.html">
+<meta property="og:site_name" content="YanCai&#39;s some notes">
+<meta property="og:description" content="简介在了解了docker的基本用法以及使用dockerfile构建镜像后，我们可以看起来开森愉快的捣腾docker容器了。部署个nginx，折腾个tomcat，多版本Python，整个Hadoop等等等等。爽了一段时间，容器逐渐越来越多时候，就会发现又有了新问题。比个如，如果要搭建个简单的web服务，使用MySQL数据库（一个容器），使用Python Flask开发web（又一个容器），使用Ngi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-04-23T14:47:47.000Z">
+<meta property="article:modified_time" content="2026-07-22T11:35:16.224Z">
+<meta property="article:author" content="YanCai">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="docker-compose">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://yancai.github.io/doc/docker/docker-compose-quickstart/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yancai.github.io/doc/docker/docker-compose-quickstart/","path":"doc/docker/docker-compose-quickstart/","title":"使用docker-compose编排容器快速上手指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用docker-compose编排容器快速上手指南 | YanCai's some notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?fa919c3ef1b756e53587dd9af91c35b4"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">YanCai's some notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">😝</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-compose%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">docker-compose安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-compose%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">docker-compose使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#demo%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.1.</span> <span class="nav-text">demo示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%92%8C%E9%AA%8C%E8%AF%81"><span class="nav-number">3.2.</span> <span class="nav-text">启动和验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">3.3.</span> <span class="nav-text">停止和删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="nav-number">3.4.</span> <span class="nav-text">网路问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">YanCai</p>
+  <div class="site-description" itemprop="description">一点点记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yancai/yancai.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yancai&#x2F;yancai.github.io" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yancai915@gmail.com" title="E-Mail → mailto:yancai915@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/docker/docker-compose-quickstart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="YanCai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YanCai's some notes">
+      <meta itemprop="description" content="一点点记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用docker-compose编排容器快速上手指南 | YanCai's some notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用docker-compose编排容器快速上手指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-23 22:47:47" itemprop="dateCreated datePublished" datetime="2018-04-23T22:47:47+08:00">2018-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-22 19:35:16" itemprop="dateModified" datetime="2026-07-22T19:35:16+08:00">2026-07-22</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在了解了docker的基本用法以及使用dockerfile构建镜像后，我们可以看起来开森愉快的捣腾docker容器了。<br>部署个nginx，折腾个tomcat，多版本Python，整个Hadoop等等等等。<br>爽了一段时间，容器逐渐越来越多时候，就会发现又有了新问题。<br>比个如，如果要搭建个简单的web服务，使用MySQL数据库（一个容器），使用Python Flask开发web（又一个容器），使用Nginx + uwsgi做反向代理（再一个容器），数据库可能会做读写分离，web服务可能会做高可用或者负载均衡。对于这个常见的场景，最简单那就几个容器一个个启动，彼此间约定好访问的ip或者域名。使用久了就会发现比较麻烦，如果要删除重新拉起一套，一个个查容器id，停止，删除，再启动，容器多了就会超级麻烦。</p>
+<p>一个好的办法就是用<a href="https://docs.docker.com/compose/">docker-compose</a>来管理编排多个服务。</p>
+<p>本文将简单介绍使用docker-compose编排服务的基本使用方法。</p>
+<span id="more"></span>
+
+<h1 id="docker-compose安装"><a href="#docker-compose安装" class="headerlink" title="docker-compose安装"></a>docker-compose安装</h1><p><a href="https://docs.docker.com/compose/install/">《Install Docker Compose》</a>这个里面有关docker-compose的安装方法写的挺详细的，建议时间充足阅读这个。  </p>
+<p>这里简单介绍下快速安装docker-compose的方法。<br>执行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载docker-compose</span></span><br><span class="line"><span class="built_in">sudo</span> curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(<span class="built_in">uname</span> -s)-$(<span class="built_in">uname</span> -m) -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加可执行权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p>验证是否安装成功，输入如下命令，查看docker-compose版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">sudo</span> docker-compose --version</span><br></pre></td></tr></table></figure>
+
+<p>输出版本信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose version 1.21.0, build 5920eb0</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker-compose使用方法"><a href="#docker-compose使用方法" class="headerlink" title="docker-compose使用方法"></a>docker-compose使用方法</h1><h2 id="demo示例"><a href="#demo示例" class="headerlink" title="demo示例"></a>demo示例</h2><p>下面展示个简单的例子，直接上相关文件内容：</p>
+<p>创建一个<code>demo</code>的目录，目录中包含有<code>docker-compose.yml</code>的文件，目录结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">demo</span><br><span class="line">└── docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p><code>docker-compose.yml</code>中的内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">nginx:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:1.13.12</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="number">8000</span><span class="string">:8000</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">front</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">python:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">python:2.7</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">python</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">python</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">front</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">backend</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">mysql:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">mysql:5.6</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">mysql</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">mysql</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">backend</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">front:</span></span><br><span class="line">    <span class="attr">backend:</span></span><br></pre></td></tr></table></figure>
+
+<p>先解释下如上的内容：</p>
+<ol>
+<li>创建了三个容器，分别为<code>nginx</code>, <code>python</code>, <code>mysql</code>；</li>
+<li>创建了两个网络层面，分别为<code>front</code>和<code>backend</code>；</li>
+<li><code>nginx</code>和<code>python</code>使用网络平面<code>front</code>，<code>python</code>和<code>mysql</code>使用网络平面<code>backend</code>，<code>nginx</code>无法访问<code>mysql</code>；</li>
+</ol>
+<h2 id="启动和验证"><a href="#启动和验证" class="headerlink" title="启动和验证"></a>启动和验证</h2><p>进入<code>demo</code>目录，使用如下命令拉起容器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker-compose up -d</span><br></pre></td></tr></table></figure>
+<p>看到如下内容说明拉起成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Creating network &quot;demo_front&quot; with the default driver</span><br><span class="line">Creating network &quot;demo_backend&quot; with the default driver</span><br><span class="line">Creating python ... done</span><br><span class="line">Creating mysql  ... done</span><br><span class="line">Creating nginx  ... done</span><br></pre></td></tr></table></figure>
+
+<p>使用命令<code>sudo docker network ls</code>，可以查到有名为<code>demo_front</code>和<code>demo_backend</code>的两个网路。<br>使用命令<code>sudo docker inspect demo_front</code>或<code>sudo docker inspect demo_backend</code>可以查看网络平面详细信息。  </p>
+<p>使用命令<code>sudo docker exec -it python /bin/bash</code>，进入容器<code>python</code>。在容器<code>python</code>中测试访问<code>nginx</code>和<code>mysql</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping nginx</span><br><span class="line">ping mysql</span><br></pre></td></tr></table></figure>
+<p>容器<code>python</code>可以ping通容器<code>nginx</code>和容器<code>mysql</code>。 而<code>nginx</code>和<code>mysql</code>之间无法ping通。</p>
+<h2 id="停止和删除"><a href="#停止和删除" class="headerlink" title="停止和删除"></a>停止和删除</h2><p>使用如下命令可以一把停止和删除相关容器和网络，而无需手动一个个的停止再删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker-compose down</span><br></pre></td></tr></table></figure>
+
+<h2 id="网路问题"><a href="#网路问题" class="headerlink" title="网路问题"></a>网路问题</h2><p>常见的一个问题：假如需要扩容或者增加一个python的web服务，不妨称之为<code>webapp02</code>，新的<code>webapp02</code>服务需要加入到上面的<code>front</code>网络平面中，需要和nginx以及上面的python服务相互访问。可以使用docker命令的<code>--link</code>把<code>webapp02</code>和<code>nginx</code>、<code>python</code>连接起来，更好的办法是使用docker-compose来编排新的<code>webapp02</code>和其它容器或者网络之间的关系。  </p>
+<p>示例如下：<br>目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">demo-ext</span><br><span class="line">└── docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p>docker-compose.yml内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">    <span class="attr">webapp02:</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">python:2.7</span></span><br><span class="line">        <span class="attr">container_name:</span> <span class="string">webapp02</span></span><br><span class="line">        <span class="attr">hostname:</span> <span class="string">webapp02</span></span><br><span class="line">        <span class="attr">networks:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">front</span></span><br><span class="line">        <span class="comment">#    - backend</span></span><br><span class="line">        <span class="attr">environment:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">command:</span> <span class="string">tail</span> <span class="string">-f</span> <span class="string">/dev/null</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">    <span class="attr">front:</span></span><br><span class="line">        <span class="attr">external:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">demo_front</span></span><br><span class="line"><span class="comment">#    backend:</span></span><br><span class="line"><span class="comment">#        external:</span></span><br><span class="line"><span class="comment">#            name: demo_backend</span></span><br></pre></td></tr></table></figure>
+
+<p>进入demo-ext目录中使用命令启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>可以看到如下信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Some networks were defined but are not used by any service: backend</span><br><span class="line">Creating webapp02 ... done</span><br></pre></td></tr></table></figure>
+
+<p>进入容器<code>webapp02</code>后，测试可以ping通容器<code>nginx</code>和容器<code>python</code>，而无法ping通容器<code>mysql</code>。如需访问容器<code>mysql</code>删掉上面的<code>#</code>取消注释，重新使用命令<code>sudo docker-compose up -d</code>拉起即可。</p>
+<hr>
+<p>以上为一个简单的docker-compose使用示例，后面将会给出一个详细的<code>nginx</code>+<code>flask</code>+<code>mysql</code>的示例。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/docker-compose/" rel="tag"># docker-compose</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/doc/nodejs/nodejs-install/" rel="prev" title="Node.js安装配置">
+                  <i class="fa fa-angle-left"></i> Node.js安装配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/doc/hadoop/hadoop-deploy/" rel="next" title="Hadoop分布式部署">
+                  Hadoop分布式部署 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">YanCai</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">16k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">57 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Note.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/Note.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancai.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介本文将介绍：  Python包是什么？ 如何安装Python包？ 以及Python的常用包管理工具pip(Package Installer for Python)的常用方法和配置方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tutorial-pip">
+<meta property="og:url" content="https://yancai.github.io/doc/python/tutorial-pip/index.html">
+<meta property="og:site_name" content="YanCai&#39;s some notes">
+<meta property="og:description" content="简介本文将介绍：  Python包是什么？ 如何安装Python包？ 以及Python的常用包管理工具pip(Package Installer for Python)的常用方法和配置方式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yancai.github.io/doc/python/tutorial-pip/01.jpg">
+<meta property="article:published_time" content="2019-02-15T13:41:59.000Z">
+<meta property="article:modified_time" content="2026-07-22T11:35:16.240Z">
+<meta property="article:author" content="YanCai">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="pip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yancai.github.io/doc/python/tutorial-pip/01.jpg">
+
+
+<link rel="canonical" href="https://yancai.github.io/doc/python/tutorial-pip/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yancai.github.io/doc/python/tutorial-pip/","path":"doc/python/tutorial-pip/","title":"tutorial-pip"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>tutorial-pip | YanCai's some notes</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?fa919c3ef1b756e53587dd9af91c35b4"></script>
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">YanCai's some notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">😝</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">Python包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E5%8C%85%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Python包安装方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E6%98%AF%E7%A5%9E%E9%A9%AC%EF%BC%9FPyPI%E6%98%AF%E7%A5%9E%E9%A9%AC%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">pip是神马？PyPI是神马？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">pip的安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85pip"><span class="nav-number">5.1.</span> <span class="nav-text">Windows系统安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85pip"><span class="nav-number">5.2.</span> <span class="nav-text">Ubuntu系统安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85pip"><span class="nav-number">5.3.</span> <span class="nav-text">CentOS系统安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%AE%89%E8%A3%85pip%E6%96%B9%E6%B3%95"><span class="nav-number">5.4.</span> <span class="nav-text">通用安装pip方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">pip的常用操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">pip镜像配置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">YanCai</p>
+  <div class="site-description" itemprop="description">一点点记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yancai/yancai.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yancai&#x2F;yancai.github.io" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yancai915@gmail.com" title="E-Mail → mailto:yancai915@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/python/tutorial-pip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="YanCai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YanCai's some notes">
+      <meta itemprop="description" content="一点点记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="tutorial-pip | YanCai's some notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tutorial-pip
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-02-15 21:41:59" itemprop="dateCreated datePublished" datetime="2019-02-15T21:41:59+08:00">2019-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-22 19:35:16" itemprop="dateModified" datetime="2026-07-22T19:35:16+08:00">2026-07-22</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文将介绍：</p>
+<ul>
+<li>Python包是什么？</li>
+<li>如何安装Python包？</li>
+<li>以及Python的常用包管理工具<a href="https://pip.pypa.io/en/stable/">pip</a>(Package Installer for Python)的常用方法和配置方式。</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="Python包"><a href="#Python包" class="headerlink" title="Python包"></a>Python包</h1><p>在常见的语言中，都会将一个或一组功能封装好，以包的形式发布复用。比如：Java使用maven构建jar包、war包；Node.js使用npm安装管理包。</p>
+<p>Python中也有包这一概念。Python包的格式也是经历了几代的进步，最早有<code>.egg</code>包（Python是大蟒，egg是蛋，那么Python的包就叫做egg），后来有<code>.whl</code>包，直到如今很多包使用<code>.zip</code>、<code>.tar.gz</code>。如今的Python包已经越来越好用了。</p>
+<h1 id="Python包安装方法"><a href="#Python包安装方法" class="headerlink" title="Python包安装方法"></a>Python包安装方法</h1><p>Python包如何安装呢？以下将介绍一下Python包的手动安装方式。</p>
+<blockquote>
+<p>安装Python包，绝大多数情况下建议使用本文后半部分的pip方式安装，只在万不得已的情况下使用手动安装。例如：只有安装包，而没有网络时候。</p>
+</blockquote>
+<p>以下将介绍如何手动安装Python中一个大名鼎鼎的包——<a href="http://python-requests.org/"><code>requests</code></a>，其它包的安装方式类似，request包下载地址如下：<br><a href="https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz">https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz</a></p>
+<p>下载好包之后，在任意目录解压开，可以看到如下的目录结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">`-- requests-2.21.0</span><br><span class="line">    |-- HISTORY.md</span><br><span class="line">    |-- LICENSE</span><br><span class="line">    |-- MANIFEST.in</span><br><span class="line">    |-- Pipfile</span><br><span class="line">    |-- Pipfile.lock</span><br><span class="line">    |-- PKG-INFO</span><br><span class="line">    |-- pytest.ini</span><br><span class="line">    |-- README.md</span><br><span class="line">    |-- requests</span><br><span class="line">    |-- requests.egg-info</span><br><span class="line">    |-- setup.cfg</span><br><span class="line">    |-- setup.py</span><br><span class="line">    `-- tests</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>setup.py</code>是一个很关键的文件</p>
+<p>在<code>setup.py</code><strong>同级目录</strong>中使用如下命令即可安装<code>requests</code>包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li>务必在<code>setup.py</code><strong>同级目录</strong>中执行如上命令，否则会有可能导致安装失败</li>
+<li>安装时打印的日志如果没有异常，那么安装就顺利完成啦</li>
+<li>不同平台由于用户权限的问题，在执行<code>python setup.py install</code>时，可能需要<code>root</code>权限，在最前面加<code>sudo</code>，即<code>sudo python setup.py install</code></li>
+<li>由于Python包之间可能存在依赖关系，安装A包时候如果依赖了B包，但是B包如果没有安装，那么A包会安装失败，所以还是建议使用更高级的pip来进行包管理</li>
+</ol>
+<h1 id="pip是神马？PyPI是神马？"><a href="#pip是神马？PyPI是神马？" class="headerlink" title="pip是神马？PyPI是神马？"></a>pip是神马？PyPI是神马？</h1><blockquote>
+<p>pip is the package installer for Python. You can use pip to install packages from the Python Package Index and other indexes.</p>
+</blockquote>
+<p>以上这段是<a href="https://pip.pypa.io/">pip官方</a>的一段话，解释了pip和PyPI是什么，以及两者之间的关系。</p>
+<p>简单的来讲，pip（Package Installer for Python）就是Python的安装工具。使用pip可以从<a href="https://pypi.org/">PyPI（Python Package Index）官方索引</a>下载并安装Python包，或者从其他镜像源下载。</p>
+<p>使用pip安装Python包的时候，可以解决包依赖之间的问题，也可以一次下载安装多个Python包，目前pip已经是Python官方所支持的包安装工具。在某些环境（例如Windows）上安装Python时，已经自带pip工具。</p>
+<p>常用的PyPI镜像如下：</p>
+<ul>
+<li>PyPI官方：<a href="https://pypi.org/">https://pypi.org/</a></li>
+<li>阿里PyPI镜像源：<a href="https://mirrors.aliyun.com/pypi/simple/">https://mirrors.aliyun.com/pypi/simple/</a></li>
+<li>网易PyPI镜像源：<a href="http://mirrors.163.com/pypi/simple/">http://mirrors.163.com/pypi/simple/</a></li>
+<li>豆瓣PyPI镜像源：<a href="https://pypi.doubanio.com/simple/">https://pypi.doubanio.com/simple/</a></li>
+</ul>
+<h1 id="pip的安装方法"><a href="#pip的安装方法" class="headerlink" title="pip的安装方法"></a>pip的安装方法</h1><h2 id="Windows系统安装pip"><a href="#Windows系统安装pip" class="headerlink" title="Windows系统安装pip"></a>Windows系统安装pip</h2><p>Windows上安装包目前已经自带了pip，安装时勾选pip即可。  </p>
+<img src="/doc/python/tutorial-pip/01.jpg" class="" title="01.jpg">  
+
+<h2 id="Ubuntu系统安装pip"><a href="#Ubuntu系统安装pip" class="headerlink" title="Ubuntu系统安装pip"></a>Ubuntu系统安装pip</h2><p>Ubuntu上通常并没有自带pip，使用apt即可安装pip，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Python3对应的pip</span></span><br><span class="line"><span class="built_in">sudo</span> apt install python3-pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装Python2对应的pip</span></span><br><span class="line"><span class="built_in">sudo</span> apt install python-pip</span><br></pre></td></tr></table></figure>
+
+<h2 id="CentOS系统安装pip"><a href="#CentOS系统安装pip" class="headerlink" title="CentOS系统安装pip"></a>CentOS系统安装pip</h2><p>通常yum的官方仓库中木有pip，呵呵<br>so~<br>参考下面的通用安装pip方法</p>
+<h2 id="通用安装pip方法"><a href="#通用安装pip方法" class="headerlink" title="通用安装pip方法"></a>通用安装pip方法</h2><p>由于各平台包管理工具对于pip支持不尽相同，因此有时候不得不使用手动方式安装pip，手动安装方式在<code>Windows</code>、<code>CentOS</code>、<code>Ubuntu</code>、<code>Mac</code>等系统上均适用。</p>
+<ol>
+<li><p>下载安装包<br> 从PyPI搜索并下载<a href="https://pypi.org/"><code>https://pypi.org/</code></a>，下载时候如果没有特殊要求，那就直接下载最新的稳定版本；</p>
+<p> <strong>或者</strong>从点击如下超链接直接下载：</p>
+<ul>
+<li><a href="https://files.pythonhosted.org/packages/36/fa/51ca4d57392e2f69397cd6e5af23da2a8d37884a605f9e3f2d3bfdc48397/pip-19.0.3.tar.gz"><code>pip-19.0.3.tar.gz</code></a></li>
+</ul>
+</li>
+<li><p>安装pip  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压pip包</span></span><br><span class="line">tar -xvf pip-19.0.3.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> pip-19.0.3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装pip</span></span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p> <strong>注意</strong>：<br> 不同平台上由于Python环境不同，可能有些环境上安装pip时会报缺少<code>setuptools</code>，例如：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">File &quot;setup.py&quot;, line 6, in &lt;module&gt;</span><br><span class="line">    from setuptools import find_packages, setup</span><br><span class="line">ImportError: No module named setuptools</span><br></pre></td></tr></table></figure>
+
+<p> 在这种情况下，需要先手动安装<code>setuptools</code>，可以从<a href="https://pypi.org/">PyPI</a>搜索下载，或点击此处<a href="https://files.pythonhosted.org/packages/c2/f7/c7b501b783e5a74cf1768bc174ee4fb0a8a6ee5af6afa92274ff964703e0/setuptools-40.8.0.zip"><code>setuptools-40.8.0.zip</code></a>下载安装包。</p>
+</li>
+</ol>
+<h1 id="pip的常用操作"><a href="#pip的常用操作" class="headerlink" title="pip的常用操作"></a>pip的常用操作</h1><ol>
+<li><p>搜索包  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索 名称为xxx 的包</span></span><br><span class="line">pip search xxx</span><br></pre></td></tr></table></figure>
+
+<p> 示例：搜索名为request的包</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pip search requests</span><br><span class="line">requests-hawk (1.0.0)                  - requests-hawk</span><br><span class="line">requests-dump (0.1.3)                  - `requests-dump` provides hook functions for requests.</span><br><span class="line">...</span><br><span class="line">requests (2.21.0)                      - Python HTTP for Humans.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装包  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 名称为xxx 的包</span></span><br><span class="line">pip install xxx</span><br></pre></td></tr></table></figure>
+
+<p> 示例</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 名称为requests 的包</span></span><br><span class="line">pip install requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本为2.21.0 的包</span></span><br><span class="line">pip install requests==2.21.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本号小于等于2.20 的包</span></span><br><span class="line">pip install <span class="string">&#x27;requests&lt;=2.20&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 名称为requests，版本号大于等于2.10且小于2.15 的包</span></span><br><span class="line">pip install <span class="string">&#x27;requests&gt;=2.10,&lt;2.15&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载包  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载 名称为xxx 的包</span></span><br><span class="line">pip uninstall xxx</span><br></pre></td></tr></table></figure>
+
+<p> 示例</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卸载 名称为requests 的包</span></span><br><span class="line">pip uninstall requests</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出当前环境已安装的Python包  </p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ pip list</span><br><span class="line">Package               Version</span><br><span class="line">--------------------- ----------</span><br><span class="line">pip                   18.0</span><br><span class="line">pipenv                2018.11.26</span><br><span class="line">requests              2.21.0</span><br><span class="line">setuptools            39.0.1</span><br><span class="line">virtualenv            16.0.0</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="pip镜像配置"><a href="#pip镜像配置" class="headerlink" title="pip镜像配置"></a>pip镜像配置</h1><p>使用pip安装包时，默认会从<a href="https://pypi.org/">PyPI</a>官方下载包。由于网络的原因，通常会下载比较慢或者无法下载。为了解决这个问题，可以修改默认的pip下载镜像源，改为速度较快的镜像源。</p>
+<p>以下示例为修改pip镜像源为<a href="https://opsx.alibaba.com/mirror">阿里巴巴开源镜像站</a>的PyPI镜像源（若使用其它镜像源，配置方法类似）：</p>
+<ul>
+<li>在<code>Linux</code>系统或<code>Mac</code>系统创建文件：<code>~/.pip/pip.conf</code></li>
+<li>在<code>Windows</code>系统创建文件：<code>%USERPROFILE%\pip\pip.ini</code></li>
+</ul>
+<p>具体文件内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span>=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<p>按照如上配置后，再使用pip安装包时，就会从指定的镜像源下载包了，然后就可以开始愉快的玩耍啦~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/pip/" rel="tag"># pip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/doc/docker/rancher-k8s-deploy/" rel="prev" title="使用rancher部署kubernetes介绍">
+                  <i class="fa fa-angle-left"></i> 使用rancher部署kubernetes介绍
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/doc/wsl/wsl-setup-and-config-guide/" rel="next" title="WSL安装及WSL Linux环境常用配置手册">
+                  WSL安装及WSL Linux环境常用配置手册 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">YanCai</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">16k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">57 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
