@@ -30,7 +30,7 @@
 <meta property="og:description" content="介绍Windows上安装WSL及配置WSL虚拟机的基本方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-22T12:08:00.000Z">
-<meta property="article:modified_time" content="2026-07-22T16:16:04.924Z">
+<meta property="article:modified_time" content="2026-07-22T17:12:49.474Z">
 <meta property="article:author" content="YanCai">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -169,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WSL%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">WSL安装方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">Linux常见工具安装及配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%AE%AE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">建议安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装常用的软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83"><span class="nav-number">2.1.2.</span> <span class="nav-text">设置默认语言环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85bun"><span class="nav-number">2.1.3.</span> <span class="nav-text">安装bun</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85uv"><span class="nav-number">2.1.4.</span> <span class="nav-text">安装uv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nvm"><span class="nav-number">2.1.5.</span> <span class="nav-text">安装nvm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85OpenCode"><span class="nav-number">2.1.6.</span> <span class="nav-text">安装OpenCode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEOpenCode%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">配置OpenCode大模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85oh-my-opencode%E6%8F%92%E4%BB%B6"><span class="nav-number">2.1.6.2.</span> <span class="nav-text">安装oh-my-opencode插件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85MiniCode"><span class="nav-number">2.1.7.</span> <span class="nav-text">安装MiniCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">可选配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E8%84%9A%E6%9C%AC"><span class="nav-number">2.2.1.</span> <span class="nav-text">设置网络代理脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD"><span class="nav-number">2.2.2.</span> <span class="nav-text">取消磁盘挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEpip%E3%80%81uv%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">2.2.3.</span> <span class="nav-text">设置pip、uv镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEnpm%E3%80%81bun%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">2.2.4.</span> <span class="nav-text">设置npm、bun镜像源</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WSL%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">WSL安装方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">Linux常见工具安装及配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%AE%AE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">建议安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装常用的软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83"><span class="nav-number">2.1.2.</span> <span class="nav-text">设置默认语言环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85bun"><span class="nav-number">2.1.3.</span> <span class="nav-text">安装bun</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85uv"><span class="nav-number">2.1.4.</span> <span class="nav-text">安装uv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nvm"><span class="nav-number">2.1.5.</span> <span class="nav-text">安装nvm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEpip%E3%80%81uv%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">2.1.6.</span> <span class="nav-text">设置pip、uv镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEnpm%E3%80%81bun%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">2.1.7.</span> <span class="nav-text">设置npm、bun镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85OpenCode"><span class="nav-number">2.1.8.</span> <span class="nav-text">安装OpenCode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEOpenCode%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">配置OpenCode大模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85oh-my-opencode%E6%8F%92%E4%BB%B6"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">安装oh-my-opencode插件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85MiniCode"><span class="nav-number">2.1.9.</span> <span class="nav-text">安装MiniCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">可选配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E8%84%9A%E6%9C%AC"><span class="nav-number">2.2.1.</span> <span class="nav-text">设置网络代理脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD"><span class="nav-number">2.2.2.</span> <span class="nav-text">取消磁盘挂载</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -259,7 +259,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-23 00:16:04" itemprop="dateModified" datetime="2026-07-23T00:16:04+08:00">2026-07-23</time>
+      <time title="修改时间：2026-07-23 01:12:49" itemprop="dateModified" datetime="2026-07-23T01:12:49+08:00">2026-07-23</time>
     </span>
 
   
@@ -315,6 +315,19 @@
 
 <p>注意根据需要修改以上脚本中的版本号，最新版本可参见<a href="https://github.com/nvm-sh/nvm"><code>https://github.com/nvm-sh/nvm</code></a></p>
 <p>使用<code>source ~/.bashrc</code>或退出重新进入虚机，输入<code>nvm --version</code>可看到输出版本号即说明安装成功。</p>
+<h3 id="设置pip、uv镜像源"><a href="#设置pip、uv镜像源" class="headerlink" title="设置pip、uv镜像源"></a>设置pip、uv镜像源</h3><p><strong>[可选，建议配置]</strong></p>
+<p>设置pip包镜像源为阿里云镜像源，可加速Python包下载速度，设置后同样适用于uv</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line"></span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+
+<p>在<code>~/.pip/pip.conf</code>中添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line">[install]</span><br><span class="line">trusted-host=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置npm、bun镜像源"><a href="#设置npm、bun镜像源" class="headerlink" title="设置npm、bun镜像源"></a>设置npm、bun镜像源</h3><p><strong>[可选，建议配置]</strong></p>
+<p>设置npm包镜像源为阿里云镜像源，可加速node.js包下载速度，设置后同样适用于bun</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="安装OpenCode"><a href="#安装OpenCode" class="headerlink" title="安装OpenCode"></a>安装OpenCode</h3><p>OpenCode是类似ClaudeCode、CodeX的开源平替工具</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bun add -g opencode-ai</span><br></pre></td></tr></table></figure>
 
@@ -342,17 +355,6 @@
 
 <p>设置取消挂载免密，否则每次进入系统会要求输入密码，创建文件<code>sudo vim /etc/sudoers.d/umount-wsl</code>，文件内容如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 增加如下内容，注意xxxx需要改为对应的用户名</span><br><span class="line">xxxx ALL=(ALL) NOPASSWD: /usr/bin/umount</span><br></pre></td></tr></table></figure>
-
-<h3 id="设置pip、uv镜像源"><a href="#设置pip、uv镜像源" class="headerlink" title="设置pip、uv镜像源"></a>设置pip、uv镜像源</h3><p><strong>[建议配置]</strong></p>
-<p>设置pip包镜像源为阿里云镜像源，可加速Python包下载速度，设置后同样适用于uv</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line"></span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-
-<p>在<code>~/.pip/pip.conf</code>中添加如下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"></span><br><span class="line">[install]</span><br><span class="line">trusted-host=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="设置npm、bun镜像源"><a href="#设置npm、bun镜像源" class="headerlink" title="设置npm、bun镜像源"></a>设置npm、bun镜像源</h3><p><strong>[建议配置]</strong></p>
-<p>设置npm包镜像源为阿里云镜像源，可加速node.js包下载速度，设置后同样适用于bun</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
 
 
 
