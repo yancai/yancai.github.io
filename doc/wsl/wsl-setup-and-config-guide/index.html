@@ -30,7 +30,7 @@
 <meta property="og:description" content="介绍Windows上安装WSL及配置WSL虚拟机的基本方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-22T12:08:00.000Z">
-<meta property="article:modified_time" content="2026-07-22T17:12:49.474Z">
+<meta property="article:modified_time" content="2026-07-23T07:24:26.158Z">
 <meta property="article:author" content="YanCai">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -259,7 +259,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-23 01:12:49" itemprop="dateModified" datetime="2026-07-23T01:12:49+08:00">2026-07-23</time>
+      <time title="修改时间：2026-07-23 15:24:26" itemprop="dateModified" datetime="2026-07-23T15:24:26+08:00">2026-07-23</time>
     </span>
 
   
@@ -269,7 +269,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -315,6 +315,10 @@
 
 <p>注意根据需要修改以上脚本中的版本号，最新版本可参见<a href="https://github.com/nvm-sh/nvm"><code>https://github.com/nvm-sh/nvm</code></a></p>
 <p>使用<code>source ~/.bashrc</code>或退出重新进入虚机，输入<code>nvm --version</code>可看到输出版本号即说明安装成功。</p>
+<p>安装nvm后，建议安装最新的LTS版本node.js环境作为默认环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+
+<p>执行完毕后，输入<code>node -v</code>可看到输出版本号即说明安装成功。</p>
 <h3 id="设置pip、uv镜像源"><a href="#设置pip、uv镜像源" class="headerlink" title="设置pip、uv镜像源"></a>设置pip、uv镜像源</h3><p><strong>[可选，建议配置]</strong></p>
 <p>设置pip包镜像源为阿里云镜像源，可加速Python包下载速度，设置后同样适用于uv</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line"></span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
