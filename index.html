@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yancai.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yancai.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"atom-one-light","dark":"atom-one-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="一点点记录">
 <meta property="og:type" content="website">
@@ -1515,7 +1515,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/mydev/blog_readme/">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/hadoop/flume_kafka_single/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1533,7 +1533,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/doc/mydev/blog_readme/" class="post-title-link" itemprop="url">个人开发的博客介绍</a>
+          <a href="/doc/hadoop/flume_kafka_single/" class="post-title-link" itemprop="url">flume和kafka单节点部署和使用的方法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1561,7 +1561,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>330</span>
+      <span>341</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1579,11 +1579,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>自我推荐一个自己开发的简易博客。<br><a href="https://github.com/yancai/blog">https://github.com/yancai/blog</a></p>
-<p>此博客是一个基于<a href="http://flask.pocoo.org/">Flask</a>和<a href="https://pythonhosted.org/Markdown/">Python Markdown</a>开发的简易博客。<br>本博客支持基本的Markdown语法，并且支持table和Meta信息，具体参见<a href="in/About.md">About.md</a></p>
+          <h1 id="flume-kafka-single"><a href="#flume-kafka-single" class="headerlink" title="flume kafka single"></a>flume kafka single</h1><p>本文介绍了flume和kafka单节点部署和使用的方法</p>
+<h1 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h1><ul>
+<li>kafka: <code>kafka_2.11-1.0.0.tgz</code></li>
+<li>flume: <code>apache-flume-1.8.0-bin.tar.gz</code></li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/doc/mydev/blog_readme/#more" rel="contents">
+              <a class="btn" href="/doc/hadoop/flume_kafka_single/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1714,7 +1717,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/hadoop/flume_kafka_single/">
+    <link itemprop="mainEntityOfPage" href="https://yancai.github.io/doc/mydev/blog_readme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1732,7 +1735,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/doc/hadoop/flume_kafka_single/" class="post-title-link" itemprop="url">flume和kafka单节点部署和使用的方法</a>
+          <a href="/doc/mydev/blog_readme/" class="post-title-link" itemprop="url">个人开发的博客介绍</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1760,7 +1763,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>341</span>
+      <span>330</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1778,14 +1781,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="flume-kafka-single"><a href="#flume-kafka-single" class="headerlink" title="flume kafka single"></a>flume kafka single</h1><p>本文介绍了flume和kafka单节点部署和使用的方法</p>
-<h1 id="安装包准备"><a href="#安装包准备" class="headerlink" title="安装包准备"></a>安装包准备</h1><ul>
-<li>kafka: <code>kafka_2.11-1.0.0.tgz</code></li>
-<li>flume: <code>apache-flume-1.8.0-bin.tar.gz</code></li>
-</ul>
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>自我推荐一个自己开发的简易博客。<br><a href="https://github.com/yancai/blog">https://github.com/yancai/blog</a></p>
+<p>此博客是一个基于<a href="http://flask.pocoo.org/">Flask</a>和<a href="https://pythonhosted.org/Markdown/">Python Markdown</a>开发的简易博客。<br>本博客支持基本的Markdown语法，并且支持table和Meta信息，具体参见<a href="in/About.md">About.md</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/doc/hadoop/flume_kafka_single/#more" rel="contents">
+              <a class="btn" href="/doc/mydev/blog_readme/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
