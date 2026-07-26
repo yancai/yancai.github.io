@@ -14,6 +14,10 @@ scheme: Gemini
 
 darkmode: false
 
+# lightdark:
+#   enable: true        # 开启顶部切换按钮
+#   check_supports: true # 浏览器兼容性校验，保持true即可
+
 # ---------------------------------------------------------------
 # Site Information Settings
 # ---------------------------------------------------------------
@@ -115,14 +119,14 @@ theme_color:
 
 codeblock:
   theme:
-    light: default
-    dark: stackoverflow-dark
+    light: atom-one-light
+    dark: atom-one-dark
   copy_button:
-    enable: false
+    enable: true
   fold:
     enable: false
     height: 500
-  language: false
+  language: true
 
 back2top:
   enable: true
