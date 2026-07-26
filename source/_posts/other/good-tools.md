@@ -31,13 +31,12 @@ tags:
         - [Snipaste](#Snipaste)
         - [Listary](#Listary)
         - [cmder](#cmder)
+        - [Windows Terminal + WSL](#Windows-Terminal-WSL)
         - [Beyond Compare](#Beyond-Compare)
     - [文本编辑器](#文本编辑器)
         - [Vim](#Vim)
-        - [Notepad2](#Notepad2)
+        - [Notepad4](#Notepad4)
         - [Visual Studio Code](#Visual-Studio-Code)
-        - [Sublime Text](#Sublime-Text)
-        - [Atom](#Atom)
         - [Typora](#Typora)
     - [设计](#设计)
         - [Enterprise Architect](#Enterprise-Architect)
@@ -149,7 +148,10 @@ File Search & App Launcher
 **使用场景**：
 搜索文件；快速打开应用；我更喜欢的是使用快速选择文件夹的功能，Windows上传、下载、保存文件时通常要手动选择。使用Listary如果这个文件夹已经打开了，点到对应文件夹，再切回文件选择窗口，这是就已经自动选择到了刚才已经打开的文件夹
 
-### cmder
+### ~~cmder~~
+
+推荐使用[Windows Terminal + WSL](#Windows-Terminal-WSL)替代
+
 **主页**：  
 [http://cmder.net/](http://cmder.net/)
 
@@ -163,6 +165,25 @@ Windows增强命令行工具
 
 **使用场景**：  
 嫌弃cmd丑丑的界面
+
+### Windows Terminal + WSL
+
+**主页**：
+Windows Terminal：[https://github.com/microsoft/terminal](https://github.com/microsoft/terminal)
+WSL：[https://github.com/microsoft/WSL](https://github.com/microsoft/WSL)
+
+**适用系统**：
+`Windows`
+
+**官方介绍**： 
+Windows Terminal: The new Windows Terminal and the original Windows console host, all in the same place!
+WSL: Windows Subsystem for Linux
+
+非官方介绍：
+Windows上丝滑体验Linux
+
+**使用场景**：
+Windows上使用Linux开发
 
 ### Beyond Compare
 **主页**：  
@@ -200,23 +221,20 @@ the ubiquitous text editor
 **使用场景**：  
 换个思维方式来编辑文本
 
-### Notepad2
+### Notepad4
 **主页**：  
-[http://www.flos-freeware.ch/](http://www.flos-freeware.ch/)
-
-网友修改增强版地址：  
-[https://xhmikosr.github.io/notepad2-mod/](https://xhmikosr.github.io/notepad2-mod/)
+[https://github.com/zufuliu/notepad4](https://github.com/zufuliu/notepad4)
 
 **适用系统**：  
 `Windows`
 
 **官方介绍**：  
-Utilities and Source Codes for Windows  
+a light-weight text editor for Windows  
 非官方介绍：  
 小巧，实用，漂亮的文本编辑器
 
 **使用场景**：  
-想要替换Windows显得简陋的记事本（notepad.exe）工具
+想要替换Windows~~显得简陋的~~记事本（notepad.exe）工具
 
 ### Visual Studio Code
 **主页**：  
@@ -231,39 +249,7 @@ Code editing. Redefined.
 微软出品的跨平台的优质代码编辑器
 
 **使用场景**：  
-web开发利器，不想打开IDE时一个轻量级代码阅读编辑工具
-
-
-### Sublime Text
-**主页**：  
-[https://www.sublimetext.com/](https://www.sublimetext.com/)
-
-**适用系统**：  
-`Windows` | `Mac` | `Linux`  
-
-**官方介绍**：  
-A sophisticated text editor for code, markup and prose
-非官方介绍：  
-帅气、高效、跨平台的编辑器
-
-**使用场景**：  
-看我写代码工具帅不帅
-
-
-### Atom
-**主页**：  
-[https://atom.io/](https://atom.io/)
-
-**适用系统**：  
-`Windows` | `Mac` | `Linux`  
-
-**官方介绍**：  
-A hackable text editor for the 21st Century
-非官方介绍：
-高颜值但是用起来卡卡卡的编辑器  
-
-**使用场景**：  
-别给我说其他的啥啥功能强大，颜即正义，我就稀饭阿童木
+开发利器，一个~~轻量级~~（现在不轻了）开发好工具
 
 
 ### Typora
