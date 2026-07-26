@@ -17,21 +17,34 @@ tags:
    # 根据实际情况修改参数
    # -d指定发行版本名称
    # --name设置虚拟机实例名称，实例名称不可重复
-   # --location设置虚拟机安装位置
+   # --location设置虚拟机安装位置，注意创建目录
    wsl --install -d Ubuntu-26.04 --name Ubuntu-26.04 --location D:\wsl\Ubuntu
    ```
 
 2. 打开`WSL Settings`软件，**网络**-**网络模式**设置为`Mirrored`，这样的话WSL中虚机和主机共享一个网络
 
-3. WSL备份与恢复
+3. 其他常用命令
 
    ```powershell
-   # 备份虚拟机，根据实际情况修改导出位置
+   # 查看当前有哪些虚拟机及状态
+   wsl -l -v
+   
+   # 运行指定名称的虚拟机
+   wsl -d <name>
+   
+   # 备份虚拟机，根据实际情况修改导出位置，注意创建目录
    wsl --export Ubuntu-26.04 D:\wsl\snapshot\ubuntu-26.04-snapshot-202606082220.tar
    
-   # 从备份恢复，第一个位置为虚机文件位置，第二个为备份文件位置
+   # 从备份恢复，第一个位置为虚机文件位置，第二个为备份文件位置，注意创建目录
    wsl --import Ubuntu-26.04-test D:\wsl\ubuntu-test D:\wsl\snapshot\ubuntu-26.04-snapshot-20260608.tar
+   
+   # 删除指定名称的虚拟机
+   wsl --unregister <name>
    ```
+
+   
+
+
 
 # Linux常见工具安装及配置方式
 
@@ -89,6 +102,48 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.6/install.sh | bash
 注意根据需要修改以上脚本中的版本号，最新版本可参见[`https://github.com/nvm-sh/nvm`](https://github.com/nvm-sh/nvm)
 
 使用`source ~/.bashrc`或退出重新进入虚机，输入`nvm --version`可看到输出版本号即说明安装成功。
+
+安装nvm后，建议安装最新的LTS版本node.js环境作为默认环境。
+
+```bash
+nvm install --lts
+```
+
+执行完毕后，输入`node -v`可看到输出版本号即说明安装成功。
+
+### 设置pip、uv镜像源
+
+**[可选，建议配置]**
+
+设置pip包镜像源为阿里云镜像源，可加速Python包下载速度，设置后同样适用于uv
+
+```
+mkdir ~/.pip
+
+vim ~/.pip/pip.conf
+```
+
+在`~/.pip/pip.conf`中添加如下内容：
+
+```
+[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+
+[install]
+trusted-host=mirrors.aliyun.com
+```
+
+### 设置npm、bun镜像源
+
+**[可选，建议配置]**
+
+设置npm包镜像源为阿里云镜像源，可加速node.js包下载速度，设置后同样适用于bun
+
+```bash
+npm config set registry https://registry.npmmirror.com
+```
+
+
 
 ### 安装OpenCode
 
@@ -202,38 +257,6 @@ fi
 ```
 # 增加如下内容，注意xxxx需要改为对应的用户名
 xxxx ALL=(ALL) NOPASSWD: /usr/bin/umount
-```
-
-### 设置pip、uv镜像源
-
-**[建议配置]**
-
-设置pip包镜像源为阿里云镜像源，可加速Python包下载速度，设置后同样适用于uv
-
-```
-mkdir ~/.pip
-
-vim ~/.pip/pip.conf
-```
-
-在`~/.pip/pip.conf`中添加如下内容：
-
-```
-[global]
-index-url = http://mirrors.aliyun.com/pypi/simple/
-
-[install]
-trusted-host=mirrors.aliyun.com
-```
-
-### 设置npm、bun镜像源
-
-**[建议配置]**
-
-设置npm包镜像源为阿里云镜像源，可加速node.js包下载速度，设置后同样适用于bun
-
-```bash
-npm config set registry https://registry.npmmirror.com
 ```
 
 
